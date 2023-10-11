@@ -1,0 +1,449 @@
+\documentclass[autodetect-engine,ja=standard, 10.5pt, a4paper, titlepage]{bxjsarticle}
+% fleqn：数式を左詰めにする(titlepageの前に挿入可能)
+% titlepage：表紙を独立させる
+%\setlength{\mathindent}{50pt}
+%-------------------------------------------------------%
+
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{amsmath} % 数式用
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate} % 箇条書き
+\usepackage{comment} % コメントアウト
+\usepackage[super]{cite} % 参考文献 上付き
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs} % tableのmidrule
+\usepackage{multirow} % tableのmultirow
+\usepackage{float} % [H]で厳密に位置を固定
+\usepackage{nccmath} % 数式を左に動かす
+\usepackage{mathtools}
+\usepackage{empheq}
+\usepackage{accents} % \undertildeで下付きチルダ
+\usepackage{nccmath} % 数式左寄せ環境fleqn
+
+%-------------------------------------------------------%
+
+\pagestyle{plain} % empty：ページ番号削除
+
+%-------------------------------------------------------%
+
+% セクション・サブセクションの見出しのサイズ
+\titleformat*{\section}{\Large\bfseries} % サイズ・太字
+\titleformat*{\subsection}{\large\bfseries}
+
+%-------------------------------------------------------%
+
+\newcommand{\reference}[0]{\setlength{\hangindent}{18pt}\noindent}
+\renewcommand{\refeq}[1]{\eqref{#1}式}
+\newcommand{\reffig}[1]{図\ref{#1}}
+\newcommand{\reftable}[1]{表\ref{#1}}
+\newcommand{\degree}[0]{\mathrm{{}^\circ \hspace*{-0.5pt} C}}
+\renewcommand{\deg}[0]{\mathrm{{}^\circ}}
+\newcommand{\Vector}[1]{{\mbox{\boldmath$#1$}}}
+\newcommand{\tensor}[1]{\undertilde{#1}}
+
+\newcommand{\refcite}[2]{\cite{#1}${}^{\text{#2}}$}
+\renewcommand{\citeform}[1]{#1)}
+\makeatletter % \usepackage以外で@を含むときはこれで囲む
+\renewcommand{\@biblabel}[1]{#1)}
+\makeatother
+
+\numberwithin{equation}{section} % 式番号にセクションを併記する場合
+
+%**************************************************************
+\begin{document}
+%\parindent = 0pt % 常に字下げなし
+\centerline{\LARGE 数I\!I\!I積分\: 解答}
+\vskip.3cm
+\rightline{author\;:\;Yuta\;Suzuki}
+\vskip.5cm
+
+以下，$C$を積分定数とする。
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:1.\quad \int  \:dx
+      = x + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:2.\quad \int x^n \:dx
+      =
+      \begin{dcases*}
+        \log |x| + C \quad (n = -1)\\
+        \frac{1}{n+1}x^{n+1} + C \quad (n \neq -1)
+      \end{dcases*}
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:3.\quad \int 2^x \:dx
+      = \frac{2^x}{\log 2} + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:4.\quad \int \log x \:dx
+      &= x\log x - \int \:dx \\
+      &= x\log x - x + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:5.\quad \int x\log x \:dx
+      &= \int (\frac{1}{2}x^2)' \log x \:dx \\
+      &= \frac{1}{2}x^2\log x - \int \frac{1}{2}x \: dx \\
+      &= \frac{1}{2}x^2\log x - \frac{1}{4}x^2 + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:6.\quad \int \sin 2x \sin 9x \:dx
+      &= \int -\frac{1}{2}(\cos 11x - \cos 7x)\:dx \\
+      &= \frac{1}{22}\sin 11x + \frac{1}{14}\sin 7x + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:7.\quad \int \tan x \:dx
+      &= -\log |\cos x| + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:8.\quad \int \frac{dx}{\sin x + 1}
+      &= \int \frac{(\sin x - 1)}{(\sin x + 1)(\sin x - 1)} \:dx \\
+      &= \int \frac{1}{\cos^2 x} - \frac{\sin x}{\cos^2 x} \:dx \\
+      &= \int \frac{1}{\cos^2 x} -\biggl( - \frac{(\cos x)'}{\cos^2 x} \biggr) \:dx \\
+      &= \tan x - \frac{1}{\cos x} + C
+    \end{align*}
+  \end{fleqn}
+  別解：三角関数を含む分数関数の積分→$t = \tan\cfrac{x}{2}$の置換
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      &t = \tan\cfrac{x}{2}\text{とおくと}\\
+      &\tan x = \frac{2t}{1-t^2} \quad\text{(\because\. 倍角の公式)}\\
+      &\tan^2\frac{x}{2} = \frac{1 - \cos x}{1 + \cos x} \quad\text{(\because \. 半角の公式)}\\
+      &\therefore \cos x = \frac{1 - t^2}{1 + t^2} \\
+      &\sin x = \tan x \cos x = \frac{2t}{1 + t^2} \\
+      &dt = \frac{dx}{2\cos^2\cfrac{x}{2}} = \frac{1 + t^2}{2}\:dx\Rightarrow dx = \frac{2}{1 + t^2}\:dt
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \int \frac{dx}{\sin x + 1}
+      &= \int \frac{\cfrac{2}{1+t^2}}{\cfrac{2t}{1+t^2}+1} \:dt \\
+      &= \int \frac{2}{t^2 + 2t + 1}\:dt \\
+      &= \int \frac{2}{(t+1)^2}\:dt \\
+      &= -\frac{1}{t+1} + C = -\frac{2}{\tan\cfrac{x}{2} + 1} + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \:\:9.\quad \int \frac{dx}{\cos x}
+      &= \int \frac{\cos x}{\cos^2 x} \:dx \\
+      &= \int \frac{\cos x}{1-\sin^2 x} \:dx \\
+      &= \int \frac{1}{2}\biggl(\frac{\cos x}{1-\sin x} + \frac{\cos x}{1 + \sin x}\biggr) \:dx \\
+      &= -\frac{1}{2}\log|1-\sin x| + \frac{1}{2}\log|1 + \sin x| + C \\
+      &= \frac{1}{2}\log \left|\frac{1 + \sin x}{1 - \sin x}\right| + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      10.\quad \int \frac{dx}{x^2 + 2x + 1}
+      &= \int \frac{dx}{(x + 1)^2} \\
+      &= - \frac{1}{x+1} + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      11.\quad \int \frac{dx}{x^2 - 4x + 3}
+      &= \int \frac{1}{2}\biggl( \frac{1}{x-3} - \frac{1}{x-1} \biggr) \:dx \\
+      &= \frac{1}{2}\log \left| \frac{x-3}{x-1} \right| + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      12.\quad \int_{-2}^{\sqrt{5}-2} \frac{dx}{x^2 + 4x + 9}
+      &= \int_{-2}^{\sqrt{5}-2} \frac{dx}{(x+2)^2 + 5} \\
+      &= \int_{0}^{\frac{\pi}{4}}\frac{\sqrt{5}}{5(1+\tan^2\theta)}\times \frac{1}{\cos^2\theta}\:d\theta \quad(x=\sqrt{5}\tan\theta-2)\\
+      &= \frac{\sqrt{5}}{20}\pi
+    \end{align*}
+  \end{fleqn}
+例題：
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \int_{-1}^{\sqrt{3}}\frac{dx}{x^2 + 4x + 5} \\
+      &= \int_{-1}^{\sqrt{3}}\frac{dx}{(x+2)^2+1} \\
+      &= \int_{\frac{\pi}{4}}^{\frac{5}{12}\pi}\frac{1}{1+\tan^2\theta}\cdot\frac{1}{\cos^2\theta}\:d\theta \quad(x+2 = \tan\theta)\\ 
+      &= \int_{\frac{\pi}{4}}^{\frac{5}{12}\pi}\:d\theta \\
+      &= \frac{5}{12}\pi - \frac{\pi}{4} \\
+      &= \frac{\pi}{6}
+    \end{align*}
+  \end{fleqn}
+補遺： \\
+$\tan\cfrac{\raisebox{-3pt}{5}}{12}\pi = 2 + \sqrt{3}$はわからなかったかもしれませんが，知っておいて損はありません。
+$\cfrac{\raisebox{-3pt}{$\pi$}}{12}，\cfrac{\raisebox{-3pt}{$\pi$}}{8}$などは有名角に加えて導出はできるようにしましょう。
+$\cfrac{\raisebox{-3pt}{$\pi$}}{12}=\cfrac{\raisebox{-3pt}{$\pi$}}{3}-\cfrac{\raisebox{-3pt}{$\pi$}}{4}$から加法定理です。
+また，$\cfrac{\raisebox{-3pt}{$\pi$}}{8}$のように加法定理が使えなさそうな場合は
+$\cfrac{\raisebox{-3pt}{$\pi$}}{8}=\cfrac{\raisebox{-3pt}{$\pi$}}{4}\times\cfrac{\raisebox{-3pt}{1}}{2}$から半角の公式を用いて導出します。
+自分の手を動かして求めないとわからないこともあります。
+例えば$\cfrac{\raisebox{-3pt}{$\pi$}}{8}$については半角の公式を用いるためその三角関数の2乗が求まるのでその平方根を求める必要があります。
+そのとき，二重根号を外せるものとそうでないものがあるので注意してください。\\
+https://mathsuke.jp/trigonometric-ratio/ \,が参考になります。
+
+% \begin{equation*}
+%   \text{$\sqrt{A\pm 2\sqrt{B}}$について$A^2-4B$が平方数$\Leftrightarrow$二重根号を外せる}  
+% \end{equation*}
+% ということを覚えておいてもよいかもしれません。
+
+
+
+
+
+
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      13.\quad \int \frac{2x^2 + 12x + 7}{x^2 + 5x + 1} \:dx
+      &= \int \biggl( 2 + \frac{2x + 5}{x^2 + 5x + 1} \biggr) \:dx \\
+      &= 2x + \log|x^2 + 5x + 1| + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      14.\quad \int \frac{3x + 1}{(x+2)^2} \:dx
+      &= \int \frac{(x + 2)\times 3 - 5}{(x + 2)^2} \:dx \\
+      &= \int \biggl( \frac{3}{x+2} - \frac{5}{(x+2)^2} \biggr) \:dx \quad\text{(部分分数分解)} \\
+      &= 3\log|x+2| + \frac{5}{x+2} + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      15.\quad \int_{-\frac{1}{2}}^{\frac{1}{2}} \sqrt{\frac{1-x}{1+x}} \:dx
+      &= \int_{\frac{\pi}{3}}^{\frac{\pi}{6}} -2\tan\theta \sin 2\theta \:d\theta \quad (x = \cos 2\theta)\\
+      &= \int_{\frac{\pi}{6}}^{\frac{\pi}{3}} 4\sin^2\theta \:d\theta \quad (\because \sin 2\theta = 2\sin\theta\cos\theta)\\
+      &= 2\int_{\frac{\pi}{6}}^{\frac{\pi}{3}} (1-\cos 2\theta) \:d\theta \\
+      &= \frac{\pi}{3}
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      16.\quad \int x^x(1+\log x) \:dx
+      &= x^x + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      17.\quad &I = \int_{0}^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \:dx,\:\:
+      J = \int_{0}^{\frac{\pi}{2}} \frac{\cos x}{\sin x + \cos x} \:dx\text{とおく。} \\ 
+      &\text{$J$に対して$x=\frac{\pi}{2}-t$とおくと，}
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      J 
+      &= \int_{\frac{\pi}{2}}^{0}\frac{\cos \biggl( \cfrac{\pi}{2} - t \biggr)}{\sin \biggl( \cfrac{\pi}{2} - t \biggr) + \cos \biggl( \cfrac{\pi}{2} - t \biggr)} \:dx \\
+      &= \int_{0}^{\frac{\pi}{2}} \frac{\sin t}{\sin t + \cos t} \:dt \\
+      &= I \quad\text{であり，}
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      &I + J
+      = \int_{0}^{\frac{\pi}{2}} \:dx = \frac{\pi}{2} \\
+      &\therefore I = \frac{\pi}{4}
+    \end{align*}
+  \end{fleqn}
+上の$I=J$の導出は$I-J=0$を示すことと同値なので次のようにもできる。\\
+別解：
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      I - J
+      &= \int_{0}^{\frac{\pi}{2}}\frac{\cos x - \sin x}{\sin x + \cos x}\:dx \\
+      &= [\log(\sin x + \cos x)]_{0}^{\frac{\pi}{2}} \\
+      &= 0 - 0 = 0 \\
+      \therefore I &= J
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      18.\quad \int \frac{dx}{e^x + 1} 
+      &= \int \frac{e^{-x}}{1+e^{-x}}\:dx\\
+      &= -\log(1+e^{-x}) + C
+    \end{align*}
+  \end{fleqn}
+  別解：
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \int \frac{dx}{e^x + 1}
+      &= \int \biggl( 1 - \frac{e^x}{e^x + 1} \biggr) \:dx \\
+      &= x - \log(1+e^x) + C \quad(= \log e^x - \log(1+e^x) + C = -\log(1+e^{-x}) + C) 
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      19.\quad \int \sqrt{e^x} + 1 \:dx
+      &= \int \biggl( e^{\frac{x}{2}} + 1 \biggr) \:dx \\
+      &= 2e^{\frac{x}{2}} + x + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      20.\quad \int \frac{dx}{\sqrt{x^2 + 1}}
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      t&=x + \sqrt{x^2 + 1}\text{とおくと}\\
+      dt
+      &= \biggl(1 + \frac{x}{\sqrt{x^2 + 1}}\biggr)\:dx\\
+      &= \frac{t}{\sqrt{x^2 + 1}}\:dx\:\:\text{より}
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      J 
+      &= \int \frac{dt}{t} \\
+      &= \log|t| + C \\
+      &= \log(x + \sqrt{x^2 + 1}) + C
+    \end{align*}
+  \end{fleqn}
+  
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      21.\quad \int \sqrt{x^2 + 1} \:dx
+      &= \int (x)'\sqrt{x^2+1}\:dx \\
+      &= x\sqrt{x^2 + 1} - \int \frac{x^2}{\sqrt{x^2+1}}\:dx \\
+      &= x\sqrt{x^2 + 1} - \int \sqrt{x^2 + 1} \:dx + \int \frac{dx}{\sqrt{x^2 + 1}} \\
+      \therefore \int \sqrt{x^2 + 1} \:dx 
+      &= x\sqrt{x^2 + 1} + \log(x + \sqrt{x^2 + 1}) + C \quad(\because \:20.)
+    \end{align*}
+  \end{fleqn}
+別解1：$t = x + \sqrt{x^2 + 1}\Leftrightarrow x = \cfrac{1}{2}\biggl(t-\cfrac{1}{t}\biggr)\:(t>0)$とおく。
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      &x^2 + 1 = \frac{1}{4}\biggl(t^2 - 2 + \frac{1}{t^2}\biggr) + 1 = \frac{1}{4}\biggl(t+\frac{1}{t}\biggr)^2 \\
+      &dx = \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\:dt \\
+      &\text{であるので，}
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \int \sqrt{x^2 + 1}\:dx
+      &= \int \frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\:dt \\
+      &= \int \frac{1}{4}\biggl(t+\frac{2}{t}+\frac{1}{t^3}\biggr)\:dt \\
+      &= \frac{1}{2}\cdot\frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot\frac{1}{2}\biggl(t-\frac{1}{t}\biggr)+\frac{1}{2}\log t + C \\
+      &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
+    \end{align*}
+  \end{fleqn}
+別解2：$(\log(x+\sqrt{x^2+1}))'=\cfrac{\raisebox{-3pt}{1}}{\sqrt{x^2 + 1}}$より，$t=\log(x+\sqrt{x^2+1})\Leftrightarrow x = \cfrac{\raisebox{-3pt}{$e^t-e^{-t}$}}{2}$とおく。
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \sqrt{x^2 + 1} &= \frac{e^t+e^{-t}}{2} \\
+      dx &= \frac{e^t+e^{-t}}{2}\:dt
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \int \sqrt{x^2 + 1}\:dx
+      &= \int \biggl(\frac{e^t+e^{-t}}{2}\biggr)^2\:dt \\
+      &= \frac{1}{8}(e^{2t}-e^{-2t}) + \frac{1}{2}t + C \\
+      &= \frac{1}{2}\cdot \frac{e^t+e^{-t}}{2}\cdot\frac{e^t-e^{-t}}{2} + \frac{1}{2}t + C \\
+      &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      22.\quad \int \frac{x}{\sqrt{x+1} + 1} \:dx
+      &= \int \frac{x(\sqrt{x+1}-1)}{(\sqrt{x+1}+1)(\sqrt{x+1}-1)} \:dx \\
+      &= \int (\sqrt{x+1}-1)\:dx \\
+      &= \frac{2}{3}(x+1)^{\frac{3}{2}} - x + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      23.\quad I = \int_{-1}^{1} \frac{x^2}{1 + e^x} \:dx 
+      &= \int_{1}^{-1}\frac{t^2}{1+e^{-t}}(-1)\:dt \quad(x = -t)\\
+      &= \int_{-1}^{1}\frac{t^2e^t}{1+e^t}\:dt \:(= J) \\
+      I + J
+      &= \int_{-1}^{1}t^2 \:dt \\
+      &= \frac{2}{3} \\
+      \therefore I = J &= \frac{1}{3}
+    \end{align*}
+  \end{fleqn}
+  \hspace*{25pt}$\longrightarrow$cf.)King Property
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      24.\quad I = \int e^x \sin x \:dx
+      &= e^x\sin x - \int e^x\cos x \:dx \\
+      &= e^x\sin x - e^x\cos x - \int e^x\sin x \:dx \\
+      &= e^x(\sin x - \cos x) - I \\
+      \therefore I = \frac{1}{2}e^x(\sin x - &\cos x) + C
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      25.\quad \int_{\alpha}^{\beta} (x-\alpha)^n (x-\beta) \: dx
+      &= \int_{\alpha}^{\beta} \biggl\{\frac{1}{n+1}(x-\alpha)^{n+1}\biggr\}'(x-\beta)\:dx \\
+      &= \bigg[\frac{1}{n+1}(x-\alpha)^{n+1}(x-\beta)\bigg]_{\alpha}^{\beta} - \int_{\alpha}^{\beta}\frac{1}{n+1}(x-\alpha)^{n+1}\:dx \\
+      &= 0 - \bigg[ \frac{1}{(n+1)(n+2)}(x-\alpha)^{n+2} \bigg]_{\alpha}^{\beta} \\
+      &= -\frac{1}{(n+1)(n+2)}(\beta-\alpha)^{n+2}
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      26.\quad I = \int_{0}^{\pi} \frac{x\sin x}{3 + \sin^2 x} \:dx
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \begin{align*}
+      \text{ある積分} J &= \int_{0}^{\pi}xf(\sin x)\:dx \:\text{に対して$x=\pi-t$とおくと} \\
+      J 
+      &= \int_{\pi}^{0}(\pi - t)f(\sin(\pi-t))(-1)\:dt \\
+      &= \int_{0}^{\pi}(\pi - x)f(\sin x)\:dx \\
+      &= \pi \int_{0}^{\pi}f(\sin x)\:dx - J \\
+      &\therefore J = \frac{\pi}{2}\int_{0}^{\pi}f(\sin x)\:dx
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[25pt]
+    \hspace*{25pt}よって，
+    \begin{align*}
+      I 
+      &= \frac{\pi}{2}\int_{0}^{\pi}\frac{\sin x}{3 + \sin^2x}\:dx \\
+      &= \frac{\pi}{2}\int_{0}^{\pi}\frac{\sin x}{3 + (1-\cos^2x)}\:dx \\
+      &= \frac{\pi}{2}\int_{1}^{-1}\frac{-1}{4-t^2}\:dt\:(\cos x = t) \\
+      &= \frac{\pi}{8}\int_{-1}^{1}\biggl( \frac{1}{2-t} + \frac{1}{2+t} \biggr) \:dt \\
+      &= \frac{\pi}{8}\biggl[ \log\frac{2+t}{2-t} \biggr]_{-1}^{1} \\
+      &= \frac{\pi}{8}\biggl( \log3 - \log\frac{1}{3} \biggr) \\
+      &= \frac{\pi}{4}\log3
+    \end{align*}
+  \end{fleqn}
+ 
+\end{document}

@@ -1,0 +1,308 @@
+\documentclass[autodetect-engine,ja=standard, 10.5pt, a4paper, titlepage]{bxjsarticle}
+% fleqn：数式を左詰めにする(titlepageの前に挿入可能)
+% titlepage：表紙を独立させる
+%\setlength{\mathindent}{50pt}
+%-------------------------------------------------------%
+
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{amsmath} % 数式用
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate} % 箇条書き
+\usepackage{comment} % コメントアウト
+\usepackage[super]{cite} % 参考文献 上付き
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs} % tableのmidrule
+\usepackage{multirow} % tableのmultirow
+\usepackage{float} % [H]で厳密に位置を固定
+\usepackage{nccmath} % 数式を左に動かす
+\usepackage{mathtools}
+\usepackage{empheq}
+\usepackage{accents} % \undertildeで下付きチルダ
+\usepackage{nccmath}
+\usepackage{amsthm}
+
+%-------------------------------------------------------%
+
+\pagestyle{plain} % empty：ページ番号削除
+
+%-------------------------------------------------------%
+
+% セクション・サブセクションの見出しのサイズ
+\titleformat*{\section}{\Large\bfseries} % サイズ・太字
+\titleformat*{\subsection}{\large\bfseries}
+
+%-------------------------------------------------------%
+
+\newcommand{\reference}[0]{\setlength{\hangindent}{18pt}\noindent}
+\renewcommand{\refeq}[1]{\eqref{#1}式}
+\newcommand{\reffig}[1]{図\ref{#1}}
+\newcommand{\reftable}[1]{表\ref{#1}}
+\newcommand{\degree}[0]{\mathrm{{}^\circ \hspace*{-0.5pt} C}}
+\renewcommand{\deg}[0]{\mathrm{{}^\circ}}
+\newcommand{\Vector}[1]{{\mbox{\boldmath$#1$}}}
+
+\newcommand{\refcite}[2]{\cite{#1}${}^{\text{#2}}$}
+\renewcommand{\citeform}[1]{#1)}
+\makeatletter % \usepackage以外で@を含むときはこれで囲む
+\renewcommand{\@biblabel}[1]{#1)}
+\makeatother
+
+%\numberwithin{equation}{section} % 式番号にセクションを併記する場合
+
+%**************************************************************
+\begin{document}
+%\parindent = 0pt % 常に字下げなし
+\centerline{\LARGE 数列と漸化式}
+\vskip.3cm
+\rightline{author\;:\;Yuta\;Suzuki}
+\vskip.5cm
+%twocolumn
+
+\section*{数列と漸化式の基本}
+
+\subsection*{漸化式}
+そもそも，公式を用いて簡単に解ける漸化式は次の3つに限られる。
+
+\begin{enumerate}[(i)]
+  \item $a_{n+1} = a_n + d$  \rightarrow 公差$d$の等差数列
+          \begin{fleqn}[20pt]
+            \begin{align}\label{eq:tousa}
+              \Rightarrow a_n = a_1 + (n-1)d
+            \end{align}
+          \end{fleqn}
+  \item $a_{n+1} = ra_n$     \rightarrow 公比$r$の等比数列
+          \begin{fleqn}[20pt]
+            \begin{align}\label{eq:touhi}
+              \Rightarrow a_n = a_1 r^{n-1}
+            \end{align}
+          \end{fleqn}
+  \item $a_{n+1} = a_n + b_n$\rightarrow 階差数列が$\{b_n\}$の数列$\{a_n\}$
+          \begin{fleqn}[20pt]
+            \begin{align}\label{eq:kaisa}
+              \Rightarrow (n\geqq 2 \text{のとき，})\:\:a_n = a_1 + \sum_{k=1}^{n-1}b_k
+            \end{align}
+          \end{fleqn}
+\end{enumerate}
+以下，\eqref{eq:tousa}の形を等差型，\eqref{eq:touhi}の形を等比型，\eqref{eq:kaisa}の形を階差型と呼ぶこととする。
+よって，この形以外のほぼすべての漸化式はなんとかしてこの形に帰着させることが目的であり，
+多くの場合は等比数列の形を導いて一般項を求めるということも覚えておくとよい。
+
+せっかくなので\eqref{eq:kaisa}の形だけはここで証明しておこう。\\
+\vskip.4\baselineskip
+\noindent(証明)\\
+$a_{n+1} = a_n + b_n \Leftrightarrow a_{n+1} - a_n = b_n$であるので，
+$n$を$n-1,n-2,\cdots,2,1$として足し合わせると
+  \begin{fleqn}[20pt]
+    \begin{align*}\label{}
+      &\begin{matrix}
+       & a_n     & - & a_{n-1} & = & b_{n-1} \\
+       & a_{n-1} & - & a_{n-2} & = & b_{n-2} \\
+       & a_{n-2} & - & a_{n-3} & = & b_{n-3} \\
+       &       & \vdots &    &\vdots &       \\
+       & a_3     & - & a_2     & = & b_2     \\
+    +) & a_2     & - & a_1     & = & b_1     \\
+    \hline
+       & a_n     & - & a_1     & = & b_{n-1} + b_{n-2} + \cdots + b_2 + b_1
+      \end{matrix}
+      \\
+      &\Leftrightarrow a_n = a_1 + \sum_{k=1}^{n-1}b_k \qquad \qed
+    \end{align*}
+  \end{fleqn}
+
+ここで，証明一行目において$n$が$n-1$以下のケースを考えることによってこの式を得ている。
+しかし，この変形ができるのは$n-1\geqq 1$すなわち$n\geqq 2$のときのみである。
+そのため，階差型においては条件$n\geqq 2$を忘れてはならない。
+すなわち，一般項を求めたとき，$n=1$でもその式が成り立っているか必ず確認し，
+成り立っていればそのように書き，成り立っていなければ場合分けして一般項を示す必要がある。
+詳しくは，典型例の演習の解答を参照。
+
+
+\subsection*{数列の和$S_n$}
+また，一般項$a_n$で表される数列について第一項から$\text{第}n \text{項}$までの和を$S_n$で表すことがある。
+すなわち
+  \begin{fleqn}[20pt]
+    \begin{align*}\label{}
+      S_n = \sum_{k=1}^{n}a_k
+    \end{align*}
+  \end{fleqn}
+であり。以下，特に断りがなければ$S_n$を数列$\{a_n\}$に対する和を表すものとする。
+
+\clearpage
+\section*{数列とその周辺}
+\noindent 次の値を求めよ。
+\begin{enumerate}[1.]
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}\label{}
+        \sum_{k=1}^{n}k
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}\label{}
+        \sum_{k=1}^{n}k^2
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        \sum_{k=1}^{n}k^3
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        \sum_{k=1}^{n}\cfrac{3}{k(k+2)}
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        \sum_{k=1}^{n}\cfrac{3}{\sqrt{k+2} + \sqrt{k}}
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        \sum_{k=1}^{n}\{(2k-1)\cdot 2^{k-1}\}
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        \cfrac{1}{1} + \cfrac{1}{1+2} + \cfrac{1}{1+2+3} + \cdots + \cfrac{1}{1+2+3+\cdots +(n-1)+n}
+      \end{align*}
+    \end{fleqn}
+  \item
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        1+\cfrac{2}{3}+\cfrac{3}{3^2}+\cdots+\cfrac{n}{3^{n-1}}
+      \end{align*}
+    \end{fleqn}
+\end{enumerate}
+
+\clearpage
+\section*{漸化式\:\:典型例}
+漸化式の問題はしばしば誘導がされる。
+そのため，何も誘導がなければ好きな方法で解けばよいが，
+誘導があったりするとそれに乗らなくてはならないということになる。
+典型例の演習を通して様々なパターンの漸化式の処理を学び，
+様々な問題に対応できるようにしよう。
+\begin{enumerate}[1.]
+
+  \item $a_1 = 2,\; a_{n+1} = a_n + 3$\\
+
+  \item $a_1 = 5,\; a_{n+1} = 7a_n$\\
+
+  \item $a_1 = 3,\; a_{n+1} = 3a_n -4$\\
+
+  \item $a_1 = 1,\; a_{n+1} = a_n + 2n$\\
+
+  \item $a_1 = 1,\; a_{n+1} = a_n + 3^n - 4n$\\
+
+  \item $a_1 = 1,\; a_2 = 2,\; a_{n+2} = a_{n+1} + 6a_n$\\
+
+  \item $a_1 = 2,\; a_{n+1} = 16a_n^5$\\
+
+  \item $a_1 = 1,\; a_{n+1} = 2a_n + n^2 -6$\\
+
+  \item $a_1 = 1,\; a_{n+1} = 4a_n + n\cdot 2^n$\\
+
+  \item $a_1 = 1,\; a_2 = 3,\; a_{n+2} = 4a_{n+1} - 4a_n$\\
+
+  \item $a_1 = 1,\; a_2 = 4,\; a_{n+2} = 4a_{n+1} - 3a_n - 2$\\
+
+  \item $a_1 = 1,\: a_{n+1} = \cfrac{a_n}{2a_n + 3}$\\
+
+  \item $a_1 = 3,\; a_{n+1} = \cfrac{3a_n-4}{a_n-2}$\\
+
+  \item $a_1 = 3,\; a_{n+1} = \cfrac{3a_n-4}{a_n-1}$\\
+
+  \item $a_1 = 1,\; a_{n+1}=(n+1)a_n$\\
+
+  \item $a_1 = 1,\; (n+2)a_{n+1}=na_n$\\
+
+  \item $a_1 = 1,\; na_{n+1}=2(n+1)a_n+n(n+1)$\\
+
+  \item $a_1 = 2,\; a_{n+1} = \cfrac{n+2}{n}a_n + 1$\\
+
+  \item $a_1 = 1,\; a_{n+1} = 2^{2n-2}(a_n)^2$\\
+
+  \item $S_n = 3a_n + 2n - 1$
+
+\end{enumerate}
+
+\clearpage
+\section*{漸化式\:\:応用編}
+
+\begin{enumerate}[1.]
+  \item
+  $n$を自然数として次の条件で定められた数列$\{a_n\}$について2通りの解き方を考えよう。\\ % (福井大 改 +α)
+
+    \begin{align*}\label{}
+      a_1 = 1,\:\: a_{n+1} = \frac{3}{n} (a_1 + a_2 + a_3 + \cdots + a_n)  \quad\cdots (*)
+    \end{align*}
+
+  \begin{enumerate}[(1)]
+    \item $a_2,\;a_3\;a_4$を計算せよ。\\
+    \item 一般項$\{a_n\}$を推定し，それが正しいことを数学的帰納法を用いて示せ。\\
+    \item 上の漸化式$(*)$について，$a_1 + a_2 + a_3 + \cdots + a_{n-1}$を$a_n$と$n$を用いて表せ。\\
+    \item $a_{n+1}$と$a_n$の関係を導いた上で，一般項$a_n$を$n$を用いて表せ。\\
+  \end{enumerate}
+\vskip1.5\baselineskip
+  \item
+  \begin{enumerate}[(1)]
+    \item 次の初項，二つの漸化式で与えられる数列$\{a_n\},\, \{b_n\}$を考える。\\
+      \begin{align*}\label{}
+        &a_1 = 5,\quad b_1 = 3\\
+        &a_{n+1} = 5a_n + 3b_n \\
+        &b_{n+1} = 3a_n + 5b_n \\
+      \end{align*}
+    2つの数列$\{a_n\pm b_n\}$を求め，一般項$a_n,\, b_n$を求めよ。\\
+
+    \item (1)を踏まえて次の初項，二つの漸化式で与えられる数列$\{p_n\},\, \{q_n\}$の一般項をそれぞれ求めよ。% (大阪医科大学)
+
+        \begin{align*}\label{}
+          &p_1 = 1,\quad q_1 = 4\\
+          &p_{n+1} = 2p_n + q_n \\
+          &q_{n+1} = 4p_n - q_n \\
+        \end{align*}
+      % ヒント：
+      % \ $\{p_n + t q_n\}$が等比数列となるような$t$を二つ求める。
+      % すなわち，\ $p_{n+1} + tq_{n+1} = s(p_n + t q_n) $を満たす$s,t$の組を二つ見つける。
+    \end{enumerate}
+
+\vskip1.5\baselineskip
+
+    \item
+    $n$を自然数，$x_1 = \sqrt{a}$として次の漸化式で与えられる数列$\{x_n\}$を考える。
+    \begin{align*}
+      x_{n+1} = \sqrt{x_n + a}
+    \end{align*}
+    すなわち，
+
+      \begin{align*}
+        x_2 = \sqrt{a + \sqrt{a}}, \qquad x_3 = \sqrt{a + \sqrt{a + \sqrt{a}}}, \qquad\dots
+      \end{align*}
+    である。
+    この数列が収束するかどうかを調べたい。
+    次の問いに答えよ。
+
+    \begin{enumerate}[(1)]
+      \item 数列$\{x_n\}\:(n\in \mathbb{N})$が収束すると仮定して，その極限値を求めよ。
+      \item 数列$\{x_n\}\:(n\in \mathbb{N})$が(1)で得た値に実際に収束することを示せ。
+    \end{enumerate}
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
