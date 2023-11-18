@@ -13,10 +13,7 @@ GitHub: https://github.com/suzuyuyuyu/
 Oct 1, 2023: 積分
 
 ## クレジット
-このリポジトリ内の資料は
-[Yuta Suzuki](https://github.com/suzuyuyuyu)
-によって作成され，ライセンスは
- [CC BY-NC-ND 4.0 DEED ](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja)
-([参考](https://www.kantei.go.jp/jp/singi/titeki2/digitalarchive_suisiniinkai/jitumusya/dai7/siryou4-2.pdf))
- に基づいています。  
-ただし，教育あるいは非営利目的であっても作成者の了承のない範囲では配布を禁止します。
+© 2023 [Yuta Suzuki](https://github.com/suzuyuyuyu). All Rights Reserved.
+
+教育あるいは非営利目的であっても作成者の了承のない範囲では作成された資料の配布を禁止します。
+ただし，資料中の問題のみを参照する場合はその限りではありません。
