@@ -10,7 +10,8 @@ E-mail: yuta.suzuki.q6[at]dc.tohoku.ac.jp ([at]は@に変更してください)
 GitHub: https://github.com/suzuyuyuyu/
 
 ## 主な変更
-Oct 1, 2023: 積分
+1 Oct. 2023: [積分](https://github.com/suzuyut4/handout/blob/main/maths/integral.pdf)
+23 Nov. 2023: [不等式](https://github.com/suzuyut4/handout/blob/main/maths/inequation.pdf)
 
 ## クレジット
 © 2023 [Yuta Suzuki](https://github.com/suzuyuyuyu). All Rights Reserved.
