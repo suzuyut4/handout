@@ -1,0 +1,550 @@
+\documentclass[a4paper]{ltjsarticle}
+
+% \usepackage[top=25truemm,bottom=20truemm,left=10truemm,right=10truemm]{geometry}
+
+\input{../asset/preamble.tex}
+
+\numberwithin{equation}{section} % 式番号にセクションを併記する場合
+\title{
+  {\large 数III 積分} \\
+  --- 解答編 ---
+}
+\author{\small 鈴木}
+\date{}
+
+
+%**************************************************************
+\begin{document}
+\maketitle
+以下，$C$を積分定数とする。
+
+% 1
+\begin{intprob}
+  \dm{
+      \int  \,dx
+      = x + C
+  }
+\end{intprob}
+
+% 2
+\begin{intprob}
+  \dm{
+      \int x^n \,dx
+      =
+      \begin{dcases*}
+        \log |x| + C \quad (n = -1)\\
+        \frac{1}{n+1}x^{n+1} + C \quad (n \neq -1)
+      \end{dcases*}
+  }
+\end{intprob}
+
+% 3
+\begin{intprob}
+\dm{
+    \int 2^x \,dx
+    = \frac{2^x}{\log 2} + C
+}
+\end{intprob}
+
+% 4
+\begin{intprob}
+  \dm{
+    \int \log x \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= x\log x - \int \,dx \\
+      &= x\log x - x + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 5
+\begin{intprob}
+  \dm{
+    \int x\log x \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \biggl(\frac{1}{2}x^2\biggr)' \log x \,dx \\
+      &= \frac{1}{2}x^2\log x - \int \frac{1}{2}x \,dx \\
+      &= \frac{1}{2}x^2\log x - \frac{1}{4}x^2 + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 6
+\begin{intprob}
+  \dm{
+    \int \sin 2x \sin 9x \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int -\frac{1}{2}(\cos 11x - \cos 7x)\,dx \\
+      &= -\frac{1}{22}\sin 11x + \frac{1}{14}\sin 7x + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 7
+\begin{intprob}
+  \dm{
+    \int \tan x \,dx
+    = -\log |\cos x| + C
+  }
+\end{intprob}
+
+% 8
+\begin{intprob}
+  \dm{
+    \int \frac{dx}{\sin x + 1}\\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \frac{(\sin x - 1)}{(\sin x + 1)(\sin x - 1)} \,dx \\
+      &= \int \frac{1}{\cos^2 x} - \frac{\sin x}{\cos^2 x} \,dx \\
+      &= \int \frac{1}{\cos^2 x} -\biggl( - \frac{(\cos x)'}{\cos^2 x} \biggr) \,dx \\
+      &= \tan x - \frac{1}{\cos x} + C
+    \end{aligned}
+  }
+\end{intprob}
+
+\begin{other*}
+  三角関数を含む分数関数の積分→$\disp t = \tan\frac{x}{2}$の置換
+  \flan{
+      &t = \tan\frac{x}{2}\text{とおくと}\\
+      &\tan x = \frac{2t}{1-t^2} \quad(\because\:\text{倍角の公式})\\
+      &\tan^2\frac{x}{2} = \frac{1 - \cos x}{1 + \cos x} \quad(\because\:\text{半角の公式}) \\
+      &\therefore \cos x = \frac{1 - t^2}{1 + t^2} \\
+      &\sin x = \tan x \cos x = \frac{2t}{1 + t^2} \\
+      &dt = \frac{dx}{2\cos^2\cfrac{x}{2}} = \frac{1 + t^2}{2}\,dx\Rightarrow dx = \frac{2}{1 + t^2}\,dt
+  }
+  を用います。
+  \flan{
+      \int \frac{dx}{\sin x + 1}
+      &= \int \frac{\cfrac{2}{1+t^2}}{\cfrac{2t}{1+t^2}+1} \,dt \\
+      &= \int \frac{2}{t^2 + 2t + 1}\,dt \\
+      &= \int \frac{2}{(t+1)^2}\,dt \\
+      &= -\frac{2}{t+1} + C = -\frac{2}{\tan\cfrac{x}{2} + 1} + C
+  }
+\end{other*}
+
+\begin{supple*}
+  先ほどの解答と別解の解答の形が異なっているように見えるかもしれませんが
+  実際、
+  \begin{gather*}
+    -\frac{2}{{\tan\cfrac{x}{2} + 1}}+1=\tan x - \frac{1}{\cos x}
+  \end{gather*}
+  の関係があります。気になる人はGeogebraなどのグラフ描画サイトで確認してみてください。
+  このときの$+1$は積分定数の分なので問題ありません。
+  $y$軸方向にある定数だけずれることは不定積分では気にしない（というか気にできない）わけです。
+  その許容が積分定数$C$の意味というかありがたさです。
+  \begin{spacing}{1.5}
+    ほかにも$\sin\theta\cos\theta$の積分も$t=\sin\theta$とおいて置換積分すれば
+    $\disp\frac{1}{2}\sin^2\theta+C$となったり、
+    $\sin$の倍角の公式を使って計算すれば$\disp-\frac{1}{4}\cos2\theta+C$
+    となったりします。
+    これも$\disp -\frac{1}{4}\cos2\theta + \frac{1}{4} = \frac{1}{2}\sin^2\theta$の
+    関係（半角の公式を変形したものです）があるので問題ないです。
+    このように三角関数の積分は解法によって違う形が出ることがありますが、
+    同じものを指しているかを三角関数の公式を使って計算して確かめてみるのも
+    練習になるかもしれません。
+  \end{spacing}
+\end{supple*}
+
+% 9
+\begin{intprob}
+  \dm{
+    \int \frac{dx}{\cos x} \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \frac{\cos x}{\cos^2 x} \,dx \\
+      &= \int \frac{\cos x}{1-\sin^2 x} \,dx \\
+      &= \int \frac{1}{2}\biggl(\frac{\cos x}{1-\sin x} + \frac{\cos x}{1 + \sin x}\biggr) \,dx \\
+      &= -\frac{1}{2}\log|1-\sin x| + \frac{1}{2}\log|1 + \sin x| + C \\
+      &= \frac{1}{2}\log \left|\frac{1 + \sin x}{1 - \sin x}\right| + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 10
+\begin{intprob}
+  \dm{
+    \int \frac{dx}{x^2 + 2x + 1} \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \frac{dx}{(x + 1)^2} \\
+      &= - \frac{1}{x+1} + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 11
+\begin{intprob}
+  \dm{
+    \int \frac{dx}{x^2 - 4x + 3} \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \frac{1}{2}\biggl( \frac{1}{x-3} - \frac{1}{x-1} \biggr) \,dx \\
+      &= \frac{1}{2}\log \left| \frac{x-3}{x-1} \right| + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 12
+\begin{intprob}
+  \dm{
+    \int_{-2}^{\sqrt{5}-2} \frac{dx}{x^2 + 4x + 9} \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int_{-2}^{\sqrt{5}-2} \frac{dx}{(x+2)^2 + 5} \\
+      &= \int_{0}^{\frac{\pi}{4}}\frac{\sqrt{5}}{5(1+\tan^2\theta)}\times \frac{1}{\cos^2\theta}\,d\theta \quad(x=\sqrt{5}\tan\theta-2)\\
+      &= \frac{\sqrt{5}}{20}\pi
+    \end{aligned}
+  }
+\end{intprob}
+
+\begin{supple*}
+  類題として次の問題も解いてみてください。
+  \begin{practice*}
+    次の積分\dm{\int_{-1}^{\sqrt{3}}\frac{dx}{x^2 + 4x + 5}}を求めよ。
+    \begin{ans*}
+    \flan{
+        &\int_{-1}^{\sqrt{3}}\frac{dx}{x^2 + 4x + 5} \\
+        &\qquad = \int_{-1}^{\sqrt{3}}\frac{dx}{(x+2)^2+1} \\
+        &\qquad = \int_{\frac{\pi}{4}}^{\frac{5}{12}\pi}\frac{1}{1+\tan^2\theta}\cdot\frac{1}{\cos^2\theta}\,d\theta \quad(x+2 = \tan\theta\text{\:とおいた})\\
+        &\qquad = \int_{\frac{\pi}{4}}^{\frac{5}{12}\pi}\,d\theta \\
+        &\qquad = \frac{5}{12}\pi - \frac{\pi}{4} \\
+        &\qquad = \frac{\pi}{6}
+      }
+    \end{ans*}
+    \begin{spacing}{1.5}
+      $\disp\tan\frac{{5}}{12}\pi = 2 + \sqrt{3}$はわからなかったかもしれませんが，知っておいて損はありません。
+      $\disp\frac{{\pi}}{12}，\frac{{\pi}}{8}$などは有名角に加えて導出はできるようにしましょう。
+      $\disp\frac{{\pi}}{12}=\frac{{\pi}}{3}-\frac{{\pi}}{4}$から加法定理です。
+      また，$\disp\frac{{\pi}}{8}$のように加法定理が使えなさそうな場合は
+      $\disp\frac{{\pi}}{8}=\frac{{\pi}}{4}\times\frac{{1}}{2}$から半角の公式を用いて導出します。
+      自分の手を動かして求めないとわからないこともあります。
+      例えば$\disp\frac{{\pi}}{8}$については半角の公式を用いるためその三角関数の2乗が求まるのでその平方根を求める必要があります。
+      そのとき，二重根号を外せるものとそうでないものがあるので注意してください。\\
+      https://mathsuke.jp/trigonometric-ratio/ \,が参考になります。
+% [] url
+      % \begin{equation*}
+      %   \text{$\sqrt{A\pm 2\sqrt{B}}$について$A^2-4B$が平方数$\Leftrightarrow$二重根号を外せる}
+      % \end{equation*}
+      % ということを覚えておいてもよいかもしれません。
+    \end{spacing}
+  \end{practice*}
+\end{supple*}
+
+% 13
+\begin{intprob}
+  \dm{
+    \int \frac{2x^2 + 12x + 7}{x^2 + 5x + 1} \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \biggl( 2 + \frac{2x + 5}{x^2 + 5x + 1} \biggr) \,dx \\
+      &= 2x + \log|x^2 + 5x + 1| + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 14
+\begin{intprob}
+  \dm{
+    \int \frac{3x + 1}{(x+2)^2} \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \frac{(x + 2)\times 3 - 5}{(x + 2)^2} \,dx \\
+      &= \int \biggl( \frac{3}{x+2} - \frac{5}{(x+2)^2} \biggr) \,dx \quad\text{(部分分数分解)} \\
+      &= 3\log|x+2| + \frac{5}{x+2} + C
+    \end{aligned}
+  }
+\end{intprob}
+
+\begin{itembox}[l]{分数関数（有理関数）の積分}
+  ここまでの問題のように、有理関数はいろいろな解法がありますのでここでまとめておきましょう。
+  \begin{enumerate}[label=\arabic*.]
+    \item 「分子の次数$<$分母の次数」となるように割る
+    \item 分母の微分が分子になっていないか確認する（なっていれば$\log$の形）
+    \item 分母の判別式$D$を調べて$D> 0$なら無理にでも因数分解して部分分数分解する
+    \item $D=0$なら部分分数分解や$(x+\alpha)^{-1}$の微分の公式の逆を使う
+    \item $D<0$なら平方完成して$\tan\theta$の置換
+  \end{enumerate}
+  分母として二次式を想定しているので判別式$D$が登場しています。
+  分母が三次式などでも結局は因数分解して部分分数分解してはそれぞれの項について
+  さらに検討するだけです。
+
+  また、部分分数分解は慣れないうち（というか自信がないならいつでも）は分子を$a$や$ax + b$のようにおいて、
+  通分して恒等式として解くのが良いです。
+  % 便利な部分分数分解の技として「ヘヴィサイドの展開定理」というものもあります。
+  % 簡単な計算で部分分数分解が求まりますがコツがあって考え方は簡単ではないです。
+
+  それから、誘導がある問題はもちろんそれに従ってください。
+\end{itembox}
+
+% 15
+% [] 別解
+\begin{intprob}
+  \dm{
+    \int_{-\frac{1}{2}}^{\frac{1}{2}} \sqrt{\frac{1-x}{1+x}} \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int_{\frac{\pi}{3}}^{\frac{\pi}{6}} -2\tan\theta \sin 2\theta \,d\theta \quad (x = \cos 2\theta\text{\:（$\tan$の半角の公式とみた）})\\
+      &= \int_{\frac{\pi}{6}}^{\frac{\pi}{3}} 4\sin^2\theta \,d\theta \quad (\because \sin 2\theta = 2\sin\theta\cos\theta)\\
+      &= 2\int_{\frac{\pi}{6}}^{\frac{\pi}{3}} (1-\cos 2\theta) \,d\theta \\
+      &= \frac{\pi}{3}
+    \end{aligned}
+  }
+\end{intprob}
+
+% 16
+\begin{intprob}
+  \dm{
+    \int x^x(1+\log x) \,dx
+    = x^x + C
+  }
+\end{intprob}
+
+% 17
+\begin{intprob}
+  \dm{
+    I = \int_{0}^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} \,dx,\:\:
+    J = \int_{0}^{\frac{\pi}{2}} \frac{\cos x}{\sin x + \cos x} \,dx
+  }とおく。 \\
+  $J$に対して$\disp x=\frac{\pi}{2}-t$とおくと，
+
+  \flan{
+      J
+      &= \int_{\frac{\pi}{2}}^{0}\frac{\cos \biggl( \cfrac{\pi}{2} - t \biggr)}{\sin \biggl( \cfrac{\pi}{2} - t \biggr) + \cos \biggl( \cfrac{\pi}{2} - t \biggr)} \,dx \\
+      &= \int_{0}^{\frac{\pi}{2}} \frac{\sin t}{\sin t + \cos t} \,dt \\
+      &= I
+  }
+  であり，
+  \flan{
+      &I + J
+      = \int_{0}^{\frac{\pi}{2}} \,dx = \frac{\pi}{2} \\
+      &\therefore I = \frac{\pi}{4}
+  }
+\end{intprob}
+
+上の$I=J$の導出は$I-J=0$を示すことと同値なので次のようにもできる。\\
+\begin{other*}
+\dm{
+    I - J \\
+    \hspace*{20pt}
+    \begin{aligned}
+      &= \int_{0}^{\frac{\pi}{2}}\frac{\cos x - \sin x}{\sin x + \cos x}\,dx \\
+      &= [\log(\sin x + \cos x)]_{0}^{\frac{\pi}{2}} \\
+      &= 0 - 0 = 0 \\
+      \therefore I &= J
+    \end{aligned}
+}
+\end{other*}
+
+% 18
+\begin{intprob}
+  \dm{
+      \int \frac{dx}{e^x + 1} \\
+      \hspace*{25pt}
+      \begin{aligned}
+        &= \int \frac{e^{-x}}{1+e^{-x}}\,dx\\
+        &= -\log(1+e^{-x}) + C
+      \end{aligned}
+  }
+  \begin{other*}
+    \dm{
+      \int \frac{dx}{e^x + 1} \\
+      \hspace*{25pt}
+      \begin{aligned}
+        &= \int \biggl( 1 - \frac{e^x}{e^x + 1} \biggr) \,dx \\
+        &= x - \log(1+e^x) + C \quad(= \log e^x - \log(1+e^x) + C = -\log(1+e^{-x}) + C)
+      \end{aligned}
+    }
+  \end{other*}
+\end{intprob}
+
+% 19
+\begin{intprob}
+  \dm{
+    \int \sqrt{e^x} + 1 \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int \biggl( e^{\frac{x}{2}} + 1 \biggr) \,dx \\
+      &= 2e^{\frac{x}{2}} + x + C
+    \end{aligned}
+  }
+\end{intprob}
+
+% 20
+\begin{intprob}
+  \dm{
+    \int \frac{dx}{\sqrt{x^2 + 1}}
+  }に対して
+  \dm{
+    t=x + \sqrt{x^2 + 1}}\text{とおくと}\\
+  \flan{
+    dt
+    &= \biggl(1 + \frac{x}{\sqrt{x^2 + 1}}\biggr)\,dx\\
+    &= \frac{t}{\sqrt{x^2 + 1}}\,dx\:\:\text{より} \\
+  % }
+  % \flan{
+    J
+    &= \int \frac{dt}{t} \\
+    &= \log|t| + C \\
+    &= \log(x + \sqrt{x^2 + 1}) + C
+  }
+
+\end{intprob}
+
+% 21
+\begin{intprob}
+  % []:x = \tan\thetaの置換
+  \dm{
+    \int \sqrt{x^2 + 1} \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &\qquad = \int (x)'\sqrt{x^2+1}\,dx \\
+      &\qquad = x\sqrt{x^2 + 1} - \int \frac{x^2}{\sqrt{x^2+1}}\,dx \\
+      &\qquad = x\sqrt{x^2 + 1} - \int \sqrt{x^2 + 1} \,dx + \int \frac{dx}{\sqrt{x^2 + 1}} \\
+      &\therefore \int \sqrt{x^2 + 1} \,dx
+      = x\sqrt{x^2 + 1} + \log(x + \sqrt{x^2 + 1}) + C \quad(\because \:20.)
+    \end{aligned}
+  }
+  \begin{other*}[1]
+    $\disp t = x + \sqrt{x^2 + 1}\Leftrightarrow x = \frac{1}{2}\biggl(t-\frac{1}{t}\biggr)\:(t>0)$とおく。
+    \flan{
+      &x^2 + 1 = \frac{1}{4}\biggl(t^2 - 2 + \frac{1}{t^2}\biggr) + 1 = \frac{1}{4}\biggl(t+\frac{1}{t}\biggr)^2 \\
+      &dx = \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\,dt \\
+    }
+    であるので，
+    \flan{
+      \int \sqrt{x^2 + 1}\,dx
+      &= \int \frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\,dt \\
+      &= \int \frac{1}{4}\biggl(t+\frac{2}{t}+\frac{1}{t^3}\biggr)\,dt \\
+      &= \frac{1}{2}\cdot\frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot\frac{1}{2}\biggl(t-\frac{1}{t}\biggr)+\frac{1}{2}\log t + C \\
+      &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
+    }
+  \end{other*}
+
+  \begin{other*}[2]
+  $\disp (\log(x+\sqrt{x^2+1}))'=\frac{\raisebox{-3pt}{1}}{\sqrt{x^2 + 1}}$より，$\disp t=\log(x+\sqrt{x^2+1})\Leftrightarrow x = \frac{e^t-e^{-t}}{2}$とおく。
+  \flan{
+      \sqrt{x^2 + 1} = \frac{e^t+e^{-t}}{2} \\
+      dx = \frac{e^t+e^{-t}}{2}\,dt
+  }
+  \flan{
+      \int \sqrt{x^2 + 1}\,dx
+      &= \int \biggl(\frac{e^t+e^{-t}}{2}\biggr)^2\,dt \\
+      &= \frac{1}{8}(e^{2t}-e^{-2t}) + \frac{1}{2}t + C \\
+      &= \frac{1}{2}\cdot \frac{e^t+e^{-t}}{2}\cdot\frac{e^t-e^{-t}}{2} + \frac{1}{2}t + C \\
+      &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
+  }
+  \end{other*}
+\end{intprob}
+
+% 22
+\begin{intprob}
+  \dm{
+      \int \frac{x}{\sqrt{x+1} + 1} \,dx \\
+      \hspace*{25pt}
+      \begin{aligned}
+        &= \int \frac{x(\sqrt{x+1}-1)}{(\sqrt{x+1}+1)(\sqrt{x+1}-1)} \,dx \\
+        &= \int (\sqrt{x+1}-1)\,dx \\
+        &= \frac{2}{3}(x+1)^{\frac{3}{2}} - x + C
+      \end{aligned}
+  }
+\end{intprob}
+
+% 23
+\begin{intprob}
+  \dm{
+      I = \int_{-1}^{1} \frac{x^2}{1 + e^x} \,dx \\
+      \hspace*{28pt}
+      \begin{aligned}
+        &= \int_{1}^{-1}\frac{t^2}{1+e^{-t}}(-1)\,dt \quad(x = -t)\\
+        &= \int_{-1}^{1}\frac{t^2e^t}{1+e^t}\,dt \:(= J\,\text{とおく}) \\
+      \end{aligned} \\
+      \hspace*{20pt}
+      \begin{aligned}
+        I + J
+        &= \int_{-1}^{1}t^2 \,dt \\
+        &= \frac{2}{3} \\
+      \end{aligned} \\
+      \quad \therefore I \:(= J) = \frac{1}{3}
+      }
+\end{intprob}
+
+\begin{confer*}
+  King Propertyという方法です。置換の常套手段ですから知っておいたほうがいいです。
+\end{confer*}
+
+% 24
+\begin{intprob}
+\dm{
+    I = \int e^x \sin x \,dx \\
+    \hspace*{28pt}
+    \begin{aligned}
+      &= e^x\sin x - \int e^x\cos x \,dx \\
+      &= e^x\sin x - e^x\cos x - \int e^x\sin x \,dx \\
+      &= e^x(\sin x - \cos x) - I \\
+    \end{aligned} \\
+    \quad \therefore I = \frac{1}{2}e^x(\sin x - \cos x) + C
+}
+\end{intprob}
+
+% 25
+\begin{intprob}
+\dm{
+    \int_{\alpha}^{\beta} (x-\alpha)^n (x-\beta) \,dx \\
+    \hspace*{25pt}
+    \begin{aligned}
+      &= \int_{\alpha}^{\beta} \biggl\{\frac{1}{n+1}(x-\alpha)^{n+1}\biggr\}'(x-\beta)\,dx \\
+      &= \bigg[\frac{1}{n+1}(x-\alpha)^{n+1}(x-\beta)\bigg]_{\alpha}^{\beta} - \int_{\alpha}^{\beta}\frac{1}{n+1}(x-\alpha)^{n+1}\,dx \\
+      &= 0 - \bigg[ \frac{1}{(n+1)(n+2)}(x-\alpha)^{n+2} \bigg]_{\alpha}^{\beta} \\
+      &= -\frac{1}{(n+1)(n+2)}(\beta-\alpha)^{n+2}
+    \end{aligned}
+  }
+\begin{confer*}
+  1/6公式の一般化みたいなものです。ただの部分積分に過ぎないことがわかると思います。
+\end{confer*}
+\end{intprob}
+
+% 26
+\newpage
+\begin{intprob}
+  \dm{
+      I = \int_{0}^{\pi} \frac{x\sin x}{3 + \sin^2 x} \,dx
+  }\\
+  \vskip.2\baselineskip
+  ある積分\dm{J = \int_{0}^{\pi}xf(\sin x)\,dx}に対して$x=\pi-t$とおくと
+  \flan{
+      J
+      &= \int_{\pi}^{0}(\pi - t)f(\sin(\pi-t))(-1)\,dt \\
+      &= \int_{0}^{\pi}(\pi - x)f(\sin x)\,dx \\
+      &= \pi \int_{0}^{\pi}f(\sin x)\,dx - J \\
+      &\therefore J = \frac{\pi}{2}\int_{0}^{\pi}f(\sin x)\,dx
+  }
+
+  よって、
+  \flan{    I
+      &= \frac{\pi}{2}\int_{0}^{\pi}\frac{\sin x}{3 + \sin^2x}\,dx \\
+      &= \frac{\pi}{2}\int_{0}^{\pi}\frac{\sin x}{3 + (1-\cos^2x)}\,dx \\
+      &= \frac{\pi}{2}\int_{1}^{-1}\frac{-1}{4-t^2}\,dt\:(\cos x = t) \\
+      &= \frac{\pi}{8}\int_{-1}^{1}\biggl( \frac{1}{2-t} + \frac{1}{2+t} \biggr) \,dt \\
+      &= \frac{\pi}{8}\biggl[ \log\frac{2+t}{2-t} \biggr]_{-1}^{1} \\
+      &= \frac{\pi}{8}\biggl( \log3 - \log\frac{1}{3} \biggr) \\
+      &= \frac{\pi}{4}\log3
+  }
+  \begin{supple*}
+    わざわざ上の積分$J$を導入する必要はありません。
+    ここで$J$を導入したのはあくまで一般的にも成り立つということに触れたかったためで、
+    実際は普通に$x = \pi - t$と置換積分して
+    \begin{gather*}
+      I = \pi\int_{0}^{\pi}\frac{\sin x}{3 + \sin^2x}\,dx -I
+    \end{gather*}
+    という関係を導いて解くのが良いでしょう。
+    King Propertyかな？と思って置換したら少し違ったみたいな感じでも良いです。
+
+    これが最初から解けていたらよくできていると思います。
+  \end{supple*}
+\end{intprob}
+
+
+\end{document}
