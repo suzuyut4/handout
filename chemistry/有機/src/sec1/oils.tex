@@ -1,0 +1,65 @@
+\subsection{油脂}
+
+\begin{enumerate}[label=$\cdot$]
+  \item グリセリンと高級脂肪酸のエステル
+  \eeg{
+    \ce{\chemfig{CH\utwosizebox(-[2]CH_2 - OH)(-[-2]CH_2 - OH) - OH} +
+    3\chemfig{HO - C(=[-2]O) -[,1.5] R_{1,2,3}} ->
+    \chemfig{CH\utwosizebox(-[2]CH_2 - OCOR_1)(-[-2]CH_2 - OCOR_3) - OCOR_2}
+    } 
+  }
+  \item 常温常圧で
+  \begin{fleqn}[0pt]
+    \begin{align*}
+      \begin{dcases*}
+        \text{固体\rightarrow 飽和脂肪酸「脂肪」} \\
+        \text{液体\rightarrow 不飽和脂肪酸「脂肪油」}
+      \end{dcases*}
+    \end{align*}
+  \end{fleqn}
+  \item 高級脂肪酸
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{ccccc}
+  \toprule
+    Cの数 & 示性式 & 名称 & 二重結合数 & 分子量 \\
+  \midrule
+    16 & \ce{C15H31COOH} & パルミチン酸 & 0 & 256 \\
+  \midrule
+    \multirow{4}{*}{18} & \ce{C17H35COOH} & ステアリン酸 & 0 & 284 \\
+     & \ce{C17H33COOH} & オレイン酸 & 1 & 282 \\
+     & \ce{C17H31COOH} & リノール酸 & 2 & 280 \\
+     & \ce{C17H29COOH} & リノレン酸 & 3 & 278 \\
+  \bottomrule
+  \end{tabular}\end{table}
+  \item 石けん
+  \begin{enumerate}[label=$-$]
+    \item 高級脂肪酸のナトリウム塩
+    \item 油脂をけん化して得られる
+    \eeg{
+      \ce{
+        \chemfig{CH\utwosizebox(-[2]CH_2 - OCOR_1)(-[-2]CH_2 - OCOR_3) - OCOR_2} + 3NaOH ->            
+        \chemfig{CH\utwosizebox(-[2]CH_2 - OH)(-[-2]CH_2 - OH) - OH} +
+        3\chemfig{R_{1,2,3}-[,1.4]COONa}
+      }
+    }
+    \begin{itembox}[l]{けん化価}
+      \quad{油脂\SI{1}{g}をけん化するのに必要な\ce{KOH}（または\ce{NaOH}）の質量(\si{mg})}
+        \begin{gather*}
+          s = \frac{1}{M} \times 3 \times m \times 10^3
+        \end{gather*}
+      \quad$M$：油脂の分子量，$m$：用いる塩基の分子量
+      \vskip3\baselineskip
+    \end{itembox}
+    \begin{itembox}[l]{ヨウ素価}
+      \quad{油脂\SI{100}{g}中の不飽和結合に付加できる\ce{I2}の質量(\si{g})}
+        \begin{gather*}
+          I = \frac{100}{M} \times n \times 254
+        \end{gather*}
+      \quad$n$：炭素間の不飽和度
+      \vskip3\baselineskip
+    \end{itembox}
+  \end{enumerate} 
+\end{enumerate}
+
+

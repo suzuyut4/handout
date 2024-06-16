@@ -1,0 +1,53 @@
+\subsection{アルカン\:\:\ce{C_{n}H_{2n+2}}\:(Alkane)}
+
+\begin{table}[H]\centering
+\begin{tabular}{ccl}
+\toprule
+  \ce{C}の数 & 名称 & \\
+\midrule
+  1 & メタン & \multirow{4}{*}{気体}\\
+  2 & エタン & \\
+  3 & プロパン & \\
+  4 & ブタン & \\
+\midrule
+  5 & ペンタン & \multirow{2}{*}{液体(油状)} \\
+  6 & ヘキサン & \\
+\bottomrule
+\end{tabular}\end{table}
+
+\begin{enumerate}[label=$\cdot$]
+  \item すべて単結合 \\
+  非共有電子対の価標で共有結合されている。
+  \item 水に不溶
+  \item 構造異性体がある\\
+  側鎖がついて枝分かれ構造をとる。
+  \eg{
+    \begin{matrix}
+      \ce{\chemfig{CH_3-CH_2-CH(-[-2]CH_3)-CH_2-CH_2-CH_3}} \\
+      \text{\raisebox{-10pt}{3-メチルヘキサン}}
+    \end{matrix}
+  }
+  \begin{screen}
+    \begin{gather*}
+      \begin{matrix}
+        \chemfig{-CH_3} & \chemfig{-CH_2-CH_3} & \chemfig{-CH_2-CH_2-CH_3} & \chemfig{CH_3 - CH(-[-2]) - CH_3} \\
+        \text{\raisebox{-7pt}{メチル基}} & 
+        \text{\raisebox{-7pt}{エチル基}} & 
+        \text{\raisebox{-7pt}{プロピル基}} & 
+        \text{\raisebox{-7pt}{イソプロピル基}} 
+      \end{matrix}
+    \end{gather*}
+  \end{screen}
+  \item 環状構造をとる
+\end{enumerate}
+
+\eg{
+\raisebox{-15pt}{\chemfig{
+  C?(-[:-84,0.8]H)(-[:-168,0.8]H) - C(-[:-12,0.8]H)(-[:-96,0.8]H) -[::72] C(-[:-24,0.8]H)(-[:60,0.8]H) -[::72] C(-[:48,0.8]H)(-[:132,0.8]H) -[::72] C?(-[:120,0.8]H)(-[:204,0.8]H)}
+}}
+あるいは
+\eeg{
+  \chemfig{C?H_2 -[::0,,2,1] CH_2 -[::72,,1,1] CH_2 -[::72,1.3,1,1] CH_2 -[::72,1.3,1,2] H_2C?}\qquad
+  \chemfig{[:18]*5(-----)}
+}
+とも描く。

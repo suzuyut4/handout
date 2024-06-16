@@ -1,0 +1,131 @@
+\documentclass[11pt, a4paper, titlepage]{ltjsarticle}
+%-------------------------------------------------------%
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{float}
+
+\usepackage{titlesec}
+\usepackage{caption}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{accents}
+\usepackage{nccmath}
+\usepackage{empheq}
+
+\usepackage{amsthm}
+
+\usepackage{siunitx}
+
+\usepackage[version=4]{mhchem}
+
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage[super]{cite}
+
+\usepackage{framed}
+
+%-------------------------------------------------------%
+
+\pagestyle{plain} % empty：ページ番号削除
+
+%-------------------------------------------------------%
+
+% セクション・サブセクションの見出しのサイズ
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+
+% 式番号にセクションを併記する場合
+\numberwithin{equation}{section}
+
+%-------------------------------------------------------%
+
+% \usepackage以外で@を含むときはこれで囲む
+\makeatletter
+
+\newcommand{\reference}[0]{\setlength{\hangindent}{18pt}\noindent}
+
+% 数式や図表のref
+\renewcommand{\refeq}[1]{\eqref{#1}式}
+\newcommand{\reffig}[1]{図\ref{#1}}
+\newcommand{\reftbl}[1]{表\ref{#1}}
+
+% よく使う単位
+\newcommand{\degreeC}[0]{\mathrm{{}^\circ \hspace*{-0.5pt} C}}
+\newcommand{\degree}[0]{\mathrm{{}^\circ}}
+
+% よく使う演算子
+\newcommand{\Vector}[1]{{\mbox{\boldmath$#1$}}}
+\newcommand{\tensor}[1]{\undertilde{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+\renewcommand{\d}[1]{\mathrm{d}#1}
+
+
+% 参考文献
+\newcommand{\refcite}[2]{\cite{#1}${}^{\text{#2}}$}
+\renewcommand{\citeform}[1]{#1)}
+\renewcommand{\@biblabel}[1]{#1)}
+
+
+% sectionの装飾
+\titleformat{\section}[block]
+{
+  % sectionとしたら絶対につく装飾
+  \newpage
+  {\colorbox{black}{\begin{picture}(0,10)\end{picture}}}
+  \hspace*{-8pt}
+  \raisebox{-3.05pt}{\begin{picture}(0,0)
+    \put(0,0){\color{black}\line(1,0){300}}
+  \end{picture}}
+}
+{
+  % section*では消える場所
+  \hspace{0pt}
+  {\normalfont \Large\bfseries 問\thesection }
+}{0pt}
+{
+  \normalfont \Large\bfseries 
+}
+[ 
+]
+
+% sectionを「問(番号)」
+% \renewcommand{\thesection}{\textbf{問\arabic{section}}}
+
+%subsubsectionを「問（番号）」
+\renewcommand{\thesubsubsection}{\textbf{問\arabic{subsubsection}}}
+
+
+% leftbar の定義
+\renewenvironment{leftbar}{%
+\def\FrameCommand{\hspace{10pt}\vrule width 2pt \hspace{10pt}}%
+\MakeFramed {\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+
+\newcounter{sectionCounter}
+\newcommand{\sectionCounter}{\stepcounter{sectionCounter}\thesectionCounter}
+
+\begin{document}
+
+\section*{はじめに}
+
+$\ce{H} = 1.0$，
+$\ce{Li} = $，
+$\ce{C} = $，
+$\ce{N} = $，
+$\ce{O} = $，
+$\ce{Cl} = $，
+$\ce{Co} = $，
+$\ce{Ag} = $，
+$\ce{Pd} = $，
+
+$R$，
+$F$，
+$N_{\rm{A}}$，
+
+\section{}\label{sec:1}
+
+\end{document}

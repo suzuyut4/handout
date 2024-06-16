@@ -1,0 +1,182 @@
+
+\pagestyle{plain} % empty：ページ番号削除
+
+%-------------------------------------------------------%
+
+% セクション・サブセクションの見出しのサイズ
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+
+
+% captionパッケージを用いないでも変更できるっぽい
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\tablename}{Table}
+\renewcommand{\thetable}{\arabic{table}}
+
+% 再帰的にコマンドを改変する方法
+% これによってrenewcommandで改変先のコマンドも使える
+% \let\origincaption\caption
+% \renewcommand{\caption}[1]{\origincaption{#1}}
+
+% 式番号にセクションを併記する場合
+\numberwithin{equation}{section}
+
+%-------------------------------------------------------%
+
+% \usepackage以外で@を含むときはこれで囲む
+\makeatletter
+
+\newcommand{\reference}[0]{\setlength{\hangindent}{18pt}\noindent}
+
+\newcommand{\yearr}[0]{\number\year}
+
+% 数式や図表のref
+\renewcommand{\refeq}[1]{\eqref{#1}式}
+\newcommand{\reffig}[1]{図\ref{#1}}
+\newcommand{\reftbl}[1]{表\ref{#1}}
+
+% よく使う単位
+\newcommand{\degreeC}[0]{\mathrm{{}^\circ \hspace*{-0.5pt} C}}
+\newcommand{\degree}[0]{\mathrm{{}^\circ}}
+
+% よく使う演算子
+\renewcommand{\Vector}[1]{{\mbox{\boldmath$#1$}}}
+\newcommand{\tensor}[1]{\undertilde{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+
+
+% 参考文献
+\newcommand{\refcite}[2]{\cite{#1}${}^{\text{#2}}$}
+\renewcommand{\citeform}[1]{#1)}
+\renewcommand{\@biblabel}[1]{#1)}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% sectionの装飾
+% あとはDists/chemistry/theoreticalChemistryを参照
+\titleformat{\section}[block]
+{\Large\bfseries \S \thesection}{}{0pt}
+{
+  \normalfont \Large\bfseries
+}[]
+
+\titleformat{\subsection}[block]
+{
+  % sectionとしたら絶対につく装飾
+  {\colorbox{black}{\begin{picture}(0,10)\end{picture}}}
+  \hspace*{-13pt}
+  \raisebox{-4.5pt}{\begin{picture}(0,0)
+    \put(0,0){\color{black}\line(1,0){300}}
+  \end{picture}}
+}
+{
+  % section*では消える場所
+  \hspace{0pt}
+  {\normalfont \large\bfseries }
+}{0pt}
+{
+  \normalfont \large\bfseries 
+}
+[ 
+]
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+% newenvironment
+% 
+% leftbar の定義
+\renewenvironment{leftbar}{%
+\def\FrameCommand{\hspace{10pt}\vrule width 2pt \hspace{10pt}}%
+\MakeFramed {\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+% その他のコマンドたち
+
+% 数式環境(displaystyle math)
+\newcommand{\dm}[1]{
+  $\displaystyle #1 $
+}
+
+% 数式環境alignをいちいち入力しなくてよい
+\newcommand{\sushiki}[1]{\begin{align}#1\end{align}}
+
+% 化学式をalignかつ左寄せにする
+\newcommand{\kagakushiki}[1]{\begin{fleqn}[0pt] \begin{align*} #1 \end{align*}\end{fleqn}}
+
+% 穴埋め用のbox
+% \renewcommand{\fbox}[0]{\:\raisebox{-2pt}{\framebox[1.5cm][c]{\rule{0pt}{1em}}}\:}
+
+
+% 問題環境用のコマンド(problem)
+\newcommand{\pb}[1]{
+  \begin{leftbar}#1\end{leftbar}
+}
+
+% 引用(インデントブロック)環境
+\newcommand{\blk}[1]{\begin{quote}#1\end{quote}}
+
+
+% カウンター
+% - 通し番号を\qcとして振れる
+% - \setcounter{qc}{0} とすれば1からカウントにリセットできる
+\newcounter{qc}
+\newcommand{\qc}{\stepcounter{qc}\theqc}
+
+
+% 定理スタイルの定義
+\newtheoremstyle{mystyle}
+  {\topsep}   % スペース上
+  {\topsep}   % スペース下
+  {\normalfont}  % 本文のフォント
+  {0pt}       % インデント
+  {\bfseries} % タイトルのフォント
+  {.}         % 句読点
+  {.5em}      % タイトルと本文のスペース
+  {}          % タイトルのスペース
+% 定理環境の作成
+\theoremstyle{mystyle}
+% newtheorem
+\newtheorem{proposition}{命題}
+\newtheorem{theorem}{定理}[section] % 章ごとに番号付け
+\newtheorem{lemma}[theorem]{補題} % 定理と同じ番号付け
+\newtheorem{corollary}{系}[section]
+\newtheorem*{appendix*}{補遺}
+\newtheorem*{supplement*}{補足}
+% \newtheorem*{eg*}{e.g.} % exempli gratia
+
+\newcommand{\supple}[1]{\begin{itembox}[l]{補足} #1\end{itembox}}
+\newcommand{\theme}[1]{\textbf{#1}}
+\newcommand{\supplement}[2]{\begin{itembox}[l]{補足: \:\theme{#1}} #2\end{itembox}}
+\setchemfig{atom sep=1.9em}
+
+\newsavebox{\mybox}      % ボックスレジスタ\myboxを新しく作成
+\sbox{\mybox}{e.g.}     % ボックスレジスタ\myboxに横ボックスを作成し、その中に"abcde"というテキストを配置
+\newcommand{\mysizebox}{\hspace{\wd\mybox}}
+\newsavebox{\twobox}
+\sbox{\twobox}{2} 
+\newcommand{\twosizebox}{\hspace{\wd\twobox}}
+\newsavebox{\empbox}
+\sbox{\empbox}{$_2$} 
+\newcommand{\utwosizebox}{\hspace{\wd\empbox}}
+
+% e.g.～
+\newcommand{\eg}[1]{
+  % \begin{fleqn}[0pt]\begin{align*} \text{e.g.} \end{align*}\end{fleqn}%
+  % \vskip-1\baselineskip
+  \begin{fleqn}[10pt] \begin{align*}\text{e.g.\quad} #1 \end{align*} \end{fleqn}%
+  % \vskip1\baselineskip
+}
+
+% (e.g.と同じ幅のスペース)～
+\newcommand{\eeg}[1]{
+  % \begin{fleqn}[0pt]\begin{align*} \text{e.g.} \end{align*}\end{fleqn}%
+  % \vskip-1\baselineskip
+  \begin{fleqn}[10pt] \begin{align*}\text{\hspace{\wd\mybox}\quad} #1 \end{align*} \end{fleqn}%
+  % \vskip1\baselineskip
+}

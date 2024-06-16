@@ -1,0 +1,235 @@
+% 構造式の定義
+% |==================================================================
+% | 引数なしコマンド
+% ベンゼン
+\newcommand{\benzene}{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(223,195)%
+\linethickness{.5pt}%
+\font\tenln=linew10%
+\put(0,96){\line(10,17){56}}%
+\put(54,191){\line(1,0){114}}%
+\put(166,191){\line(10,-17){56}}%
+\put(0,98){\line(10,-17){56}}%
+\put(54,5){\line(1,0){114}}%
+\put(166,5){\line(10,17){56}}%
+\put(23,98){\line(10,17){45}}%
+\put(155,173){\line(10,-17){45}}%
+\put(66,22){\line(1,0){90}}%
+\end{picture}}}}
+
+\newcommand{\benzenee}{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(223,195)%
+\linethickness{.5pt}%
+\font\tenln=linew10%
+\put(0,96){\line(10,17){56}}% hidariue soto
+\put(54,191){\line(1,0){114}}% ue
+\put(166,191){\line(10,-17){56}}%
+\put(0,98){\line(10,-17){56}}%
+\put(54,5){\line(1,0){114}}%
+\put(166,5){\line(10,17){56}}%
+\put(23,98){\line(10,17){45}}% hidariue naka
+\put(155,173){\line(10,-17){45}}%
+\put(66,22){\line(1,0){90}}%
+\end{picture}}}}
+
+% ナフタレン
+\newcommand{\naphthalene}{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(423,195)%
+\linethickness{.5pt}%
+\font\tenln=linew10%
+\put(2,56){\line(0,1){113}}% hidari
+\put(2,167){\line(173,100){97}}% hidariue
+\put(2,58){\line(173,-100){97}}% hidarishita
+\put(96,2){\line(173,100){97}}% migishita
+\put(192,56){\line(0,1){113}}% migi
+\put(97,222){\line(173,-100){97}}% migiue
+\put(22,157){\line(173,100){76}}% hidariue in
+\put(22,68){\line(173,-100){76}}% hidarishita in
+\put(173,69){\line(0,1){87}}% migi in
+% migi
+\put(192,167){\line(173,100){96}}% hidariue
+\put(286,222){\line(173,-100){97}}% migiue
+\put(192,56){\line(173,-100){96}}% hidarishita
+\put(286,2){\line(173,100){97}}% migishita
+\put(382,56){\line(0,1){111}}% migi
+\put(362,157){\line(-173,100){76}}% migiue in
+\put(362,68){\line(-173,-100){76}}% migishita in
+\end{picture}}}}
+
+% 横向きフェニル基 \phenyl
+\newcommand{\phenyl}{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(301,195)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(0,96){\line(10,17){56}}%
+  \put(54,191){\line(1,0){114}}%
+  \put(166,191){\line(10,-17){56}}%
+  \put(0,98){\line(10,-17){56}}%
+  \put(54,5){\line(1,0){114}}%
+  \put(166,5){\line(10,17){56}}%
+\put(23,98){\line(10,17){45}}%
+\put(155,173){\line(10,-17){45}}%
+\put(66,22){\line(1,0){90}}%
+\put(220,98){\line(1,0){80}}%
+\end{picture}}}}
+
+% パラ2置換体
+\newcommand{\para}{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(378,195)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(77,96){\line(100,173){57}}%
+  \put(132,192){\line(1,0){113}}%
+  \put(243,192){\line(100,-173){56}}%
+  \put(77,98){\line(10,-17){57}}%
+  \put(132,3){\line(1,0){113}}%
+  \put(243,3){\line(100,173){56}}%
+  \put(100,98){\line(100,173){45}}%
+  \put(232,173){\line(100,-173){45}}%
+  \put(143,22){\line(1,0){90}}%
+  \put(297,98){\line(1,0){80}}%
+  \put(0,98){\line(1,0){80}}%
+\end{picture}}}}
+
+
+% |==================================================================
+% |引数を持つものたち
+% オルト二置換体
+\newcommand{\ortho}[2]{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(270,225)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(2,56){\line(0,1){113}}%
+  \put(2,167){\line(173,100){97}}%
+  \put(2,58){\line(173,-100){95}}%
+  \put(96,2){\line(173,100){97}}%
+  \put(192,56){\line(0,1){113}}%
+  \put(97,222){\line(173,-100){97}}%
+  \put(22,157){\line(173,100){76}}%
+  \put(22,68){\line(173,-100){76}}%
+  \put(173,69){\line(0,1){87}}%
+  \put(192,167){\line(173,100){76}}%
+  \put(192,57){\line(173,-100){76}}%
+\end{picture}}%
+\nobreak\kern2pt\nobreak
+\setbox0\hbox{\raisebox{12pt}{\ce{#1}}}%
+\setbox1\hbox{\raisebox{-9pt}{\ce{#2}}}%
+\ifdim\wd0>\wd1\@tempdima=\wd0\else\@tempdima=\wd1\fi
+\nobreak\makebox[0pt][l]{\usebox0}\nobreak\makebox[\@tempdima][l]{\usebox1}}}
+
+% メタ二置換体
+\newcommand{\meta}[2]{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(270,310)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(2,56){\line(0,1){113}}%
+  \put(2,167){\line(173,100){97}}%
+  \put(2,58){\line(173,-100){95}}%
+  \put(96,2){\line(173,100){97}}%
+  \put(192,56){\line(0,1){113}}%
+  \put(97,222){\line(173,-100){97}}%
+  \put(22,157){\line(173,100){76}}%
+  \put(22,68){\line(173,-100){76}}%
+  \put(173,69){\line(0,1){87}}%
+  \put(192,57){\line(173,-100){76}}%
+  \put(97,220){\line(0,1){89}}%
+\end{picture}}%
+\nobreak\kern2pt\nobreak
+\setbox0\hbox{\kern-23pt\raisebox{26pt}{\ce{#1}}}%
+\setbox1\hbox{\raisebox{-9pt}{\ce{#2}}}%
+\ifdim\wd0>\wd1\@tempdima=\wd0\else\@tempdima=\wd1\fi
+\nobreak\makebox[0pt][l]{\usebox0}\nobreak\makebox[\@tempdima][l]{\usebox1}}}
+
+% ナフタレンメタ二置換体
+\newcommand{\naphmeta}[2]{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(423,195)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(2,56){\line(0,1){113}}% hidari
+  \put(2,167){\line(173,100){97}}% hidariue
+  \put(2,58){\line(173,-100){97}}% hidarishita
+  \put(96,2){\line(173,100){97}}% migishita
+  \put(192,56){\line(0,1){113}}% migi
+  \put(97,222){\line(173,-100){97}}% migiue
+  \put(22,157){\line(173,100){76}}% hidariue in
+  \put(22,68){\line(173,-100){76}}% hidarishita in
+\put(173,69){\line(0,1){87}}% migi in
+% migi
+\put(192,167){\line(173,100){96}}% hidariue
+\put(286,222){\line(173,-100){97}}% migiue
+\put(192,56){\line(173,-100){96}}% hidarishita
+\put(286,2){\line(173,100){97}}% migishita
+\put(382,56){\line(0,1){111}}% migi
+\put(362,157){\line(-173,100){76}}% migiue in
+\put(362,68){\line(-173,-100){76}}% migishita in
+% sotomukinoyatu
+\put(382,57){\line(173,-100){76}}%
+\put(286,220){\line(0,1){89}}%
+\end{picture}}
+\nobreak\kern2pt\nobreak
+\setbox0\hbox{\kern-23pt\raisebox{26pt}{\ce{#1}}}%
+\setbox1\hbox{\raisebox{-9pt}{\ce{#2}}}%
+\ifdim\wd0>\wd1\@tempdima=\wd0\else\@tempdima=\wd1\fi
+\nobreak\makebox[0pt][l]{\usebox0}\nobreak\makebox[\@tempdima][l]{\usebox1}
+}}
+
+% ナフタレンオルト二置換体
+\newcommand{\naphortho}[2]{{\unitlength.1pt%
+\raisebox{-7pt}{\begin{picture}(423,195)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(2,56){\line(0,1){113}}% hidari
+  \put(2,167){\line(173,100){97}}% hidariue
+  \put(2,58){\line(173,-100){97}}% hidarishita
+  \put(96,2){\line(173,100){97}}% migishita
+  \put(192,56){\line(0,1){113}}% migi
+  \put(97,222){\line(173,-100){97}}% migiue
+  \put(22,157){\line(173,100){76}}% hidariue in
+  \put(22,68){\line(173,-100){76}}% hidarishita in
+  \put(173,69){\line(0,1){87}}% migi in
+  % migi
+  \put(192,167){\line(173,100){96}}% hidariue
+  \put(286,222){\line(173,-100){97}}% migiue
+\put(192,56){\line(173,-100){96}}% hidarishita
+\put(286,2){\line(173,100){97}}% migishita
+\put(382,56){\line(0,1){111}}% migi
+\put(362,157){\line(-173,100){76}}% migiue in
+\put(362,68){\line(-173,-100){76}}% migishita in
+% sotomuki
+\put(382,167){\line(173,100){76}}%
+\put(382,57){\line(173,-100){76}}%
+\end{picture}}%
+\nobreak\kern2pt\nobreak
+\setbox0\hbox{\raisebox{12pt}{\kern3pt\ce{#1}}}%
+\setbox1\hbox{\raisebox{-9pt}{\kern3pt\ce{#2}}}%
+\ifdim\wd0>\wd1\@tempdima=\wd0\else\@tempdima=\wd1\fi
+\nobreak\makebox[0pt][l]{\usebox0}\nobreak\makebox[\@tempdima][l]{\usebox1}}}
+
+% |==================================================================
+
+% ケトンのつもりだったけどいらないかも
+% 横線もついてると思う
+\newcommand{\ketone}{{\unitlength.1pt%
+\raisebox{-21.5pt}{\begin{picture}(240,300)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(20,250){\line(1, 0){56}}%
+  \put(141,250){\makebox(0,0){\ce{C}}}%
+  \put(125,110){\line(0,1){70}}
+  \put(157,110){\line(0,1){70}}
+  \put(141,35){\makebox(0,0){\ce{O}}}
+  \put(200,250){\line(1,0){56}}
+\end{picture}
+}}}
+\newcommand{\CHOH}{{\unitlength.1pt%
+\raisebox{-21.5pt}{\begin{picture}(300,300)%
+  \linethickness{.5pt}%
+  \font\tenln=linew10%
+  \put(20,250){\line(1, 0){56}}%
+  \put(175,250){\makebox(0,0){\ce{CH}}}%
+  \put(135,110){\line(0,1){70}}
+  \put(175,35){\makebox(0,0){\ce{OH}}}
+  \put(270,250){\line(1,0){56}}
+\end{picture}
+}}}
+\makeatother

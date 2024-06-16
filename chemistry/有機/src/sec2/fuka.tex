@@ -1,0 +1,40 @@
+\subsection{\ce{H2O}・ハロゲン化水素・硫酸などの付加}
+\begin{screen}
+  \centerline{
+    HXの形で結合している分子は\ce{H2}やハロゲンのように不飽和結合に付加する。
+  }
+\end{screen}
+\eg{
+  \ce{\chemfig{CH_2 = CH_2} + HCl -> \chemfig{C(-[2]H)(-[4]H)(-[6]H) - C(-[0]H)(-[2]H)(-[6]Cl)}}
+}
+\eg{
+  \ce{\chemfig{CH_2 = CH_2} + H2O ->}
+  \ce{\chemfig{C(-[2]H)(-[4]H)(-[6]H) - C(-[0]H)(-[2]H)(-[6]OH)}}
+  \raisebox{5pt}{\tiny \hspace*{-94pt} 触媒}
+}
+\eg{
+  \ce{\chemfig{CH ~ CH} + HCl -> \chemfig{C(-[3]H)(-[5]H) = C(-[1]H)(-[-1]OH)} ->}
+  \ce{\chemfig{C(-[2]H)(-[4]H)(-[6]H)-C(=[6]O) - H}}
+  \raisebox{5pt}{\tiny \hspace*{-90pt} *}
+}
+*：ビニルアルコールのように\chemfig{C=C}結合に直接\ce{-OH}がついた形（エノール形）は不安定であるため，
+\ce{-OH}のH原子が隣のC原子移動し二重結合の位置を変えて安定なケトンやアルデヒド（ケト形）をつくる。
+\vskip2\baselineskip
+\begin{itembox}[l]{マルコフニコフ則}
+  アルケンなどにH-Xを付加するとき
+  \eg{
+    \ce{CH2 = CHCH3 + HCl}
+    &\ce{->}\chemfig{C(-[2]H)(-[4]H)(-[6]H) - C(-[2]H)(-[6]Cl) - C(-[0]H)(-[2]H)(-[6]H)}\quad\text{：2-クロロプロパン} \\
+    & \\
+    &\ce{->}\chemfig{C(-[2]H)(-[4]H)(-[6]Cl) - C(-[2]H)(-[6]H) - C(-[0]H)(-[2]H)(-[6]H)}\quad\text{：1-クロロプロパン}
+  }
+  のように複数の生成物が考えられることがある。このとき\\
+  \centerline{
+    「HはH原子を多くもつ方のC原子に，XはH原子の少ないC原子の方に結合しやすい。」
+  }\\
+  これをマルコフニコフ則という。
+\end{itembox}
+
+% \chemfig{CH_3-CH(-[2]CH_3)-CH_2-C(=[:60]O)-[:-60]O-H}
+% \chemfig{CH_3 - CH (-[2] CH (-CH_3) -[2] CH_3) - CH_3}
+% \chemfig{C(-[3]H)(-[5]H) = C}
