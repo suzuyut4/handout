@@ -1,0 +1,25 @@
+Zone.Identifier
+.DS_Store
+Thumbs.db
+
+*.sw[a-z]
+*.sw[a-z][a-z]
+
+*.md
+!README.md
+
+# tex中間ファイル
+*.fdb_latexmk
+*.aux
+*.log
+*.fls
+*.toc
+*.dvi
+
+bak/*
+
+難問題の*/
+
+index.html
+style/*
+script/*
