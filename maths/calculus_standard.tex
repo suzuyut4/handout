@@ -1,0 +1,111 @@
+\documentclass[a4paper]{ltjsarticle}
+
+\input{./src/packages.tex}
+\input{./src/macros.tex}
+\input{./src/styles.tex}
+
+\title{
+  {\Large 微分積分} \\
+  --- 標準問題 ---
+}
+\author{
+  Yuta Suzuki
+  \thanks{https://github.com/suzuyut4}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\prob{%
+  ${}$
+  \begin{enumerate}[label=(\arabic*)]
+    \item 間接的に定積分を求める方法としてKing Propertyという性質が知られている。\q{f(x)}が積分区間で連続であるとして、次の式を証明せよ。
+    \begin{align*}
+      \int_{a}^{b}f(x) dx = \int_{a}^{b}f(a+b-x)dx
+    \end{align*}
+    \item 次の定積分\q{I, J}を求めよ。\\
+    \begin{enumerate}[label=\arabic*.]
+      \item \q{I = \int_{0}^{\pi} \frac{x \sin x}{1+\cos^2 x}dx}
+      \item \q{J = \int_{0}^{\pi/4}\frac{x}{\sin 2x + 2\cos^2 x} dx}
+    \end{enumerate}
+  \end{enumerate}
+}
+
+\prob{%
+  ${}$
+  \begin{align*}
+    \text{双曲線関数：\quad}\sinh x = \frac{e^x - e^{-x}}{2},\quad \cosh x = \frac{e^x + e^{-x}}{2}
+  \end{align*}
+  を用いて、次の不定積分\q{I}を求めることを考える。
+  \begin{align*}
+    I = \int \sqrt{x^2 + 1} dx
+  \end{align*}
+  まず、被積分関数$y = \sqrt{x^2+1}$について考える。この関数は両辺を二乗して整理することで
+  \begin{align*}
+    y^2 - x^2 = 1
+  \end{align*}
+  という双曲線の一部であることがわかる。
+  また、双曲線関数について、一般に成り立つ性質
+  \begin{align*}
+    \cosh^2 x - \sinh^2 x = 1
+  \end{align*}
+  と比較して、\q{{x = \sinh t}}と置換することで不定積分を求めよう。
+
+
+  \begin{enumerate}[label=(\arabic*)]
+    \item 上のように置換したとき、$t$を$x$で表し、$dx$を$t$および$dt$で表せ。
+    \item 不定積分\q{\int \frac{dx}{\sqrt{x^2 + 1}}}を求めよ。
+    \item 以上の結果を踏まえて不定積分$I$を求めよ。% \footnote{素直には解けないので部分積分を利用するとよい。}
+  \end{enumerate}
+}
+
+
+\prob{%
+  連続関数$f(x)$がすべての実数$x$に対して
+  \begin{align*}
+    f(x) = (1-x)\cos x + x\sin x - \int_{0}^{x}e^{t-x}f(t) dt
+  \end{align*}
+  を満たすとき、次の問いに答えよ。
+
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(0)$の値を求めよ。また、$f'(x) = 2(x-1)\cos x$を示せ。
+    \item $f(x)$を求めよ。
+    \item 方程式$f(x)=0$が$0<x<\pi$の範囲でただ一つの解を持つことを示せ。
+    % \item (3)のただ一つの解を$\alpha$とする。曲線$y=f(x)$、$x\text{軸}$、$y\text{軸}$および$x=\pi$によって囲まれる部分のうち、
+          $0\leq x \leq \alpha$の面積を$S_{1}$、$\alpha\leq x \leq \pi$の面積を$S_{2}$とするとき、
+          $S_{1},S_{2}$の大小を判定せよ。
+  \end{enumerate}
+}
+
+
+\prob{%
+  点$\rm{P}(a,b)$は$xy\text{平面}$上の点とする。
+  点$\rm{P}$から曲線$y=x^3-x$に接線がちょうど2本だけひけ、この2本が直交するとき、点$\rm{P}$の座標を求めよ。
+}
+
+
+\prob{%
+  関数
+  \begin{align*}
+    f(x) = \int_{0}^{1} |2t^2 - 3xt + x^2| dt
+  \end{align*}
+
+  \begin{enumerate}[label=(\arabic*), itemsep=.2em]
+    \item \q{f(1)}を求めよ。
+    \item \q{1\leq x \leq 2}のとき、関数$f(x)$を求めよ。
+    \item \q{\int_{-1}^{3}f(x)dx}を求めよ。
+  \end{enumerate}
+}
+
+
+\prob{%
+  $e$を自然対数の底とする。$e\leq p < q$のとき、不等式
+  \begin{align*}
+    \log(\log q) - \log(\log p) < \frac{q-p}{e}
+  \end{align*}
+  が成り立つことを示せ。
+}
+
+\end{document}

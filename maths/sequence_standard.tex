@@ -1,0 +1,236 @@
+\documentclass[a4paper]{ltjsarticle}
+
+\input{./src/packages.tex}
+\input{./src/styles.tex}
+\input{./src/macros.tex}
+
+\title{
+  {\Large 数列と漸化式} \\
+  --- 標準編 ---
+}
+\author{
+  Yuta Suzuki
+  \thanks{https://github.com/suzuyut4}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\prob{%
+  $n$を自然数として次の条件で定められた数列$\{a_n\}$について2通りの解き方を考えよう。\\ % (福井大 改 +α)
+
+    \begin{gather}
+      a_1 = 1,\quad a_{n+1} = \frac{3}{n} (a_1 + a_2 + a_3 + \cdots + a_n)  \quad\cdots (*)
+    \end{gather}
+
+  \begin{enumerate}[label=(\arabic*), itemsep=2pt]
+    \item $a_2,\,a_3,\,a_4$を計算せよ。
+    \item 一般項$\{a_n\}$を推定し、それが正しいことを数学的帰納法を用いて示せ。
+    \item 上の漸化式$(*)$について、$a_1 + a_2 + a_3 + \cdots + a_{n-1}$を$a_n$と$n$を用いて表せ。
+    \item $a_{n+1}$と$a_n$の関係を導いた上で、一般項$a_n$を$n$を用いて表せ。
+  \end{enumerate}
+}
+
+\prob{%
+  ${}$
+  \begin{enumerate}[label=(\arabic*)]
+    \item 次の初項、二つの漸化式で与えられる数列$\{a_n\},\, \{b_n\}$を考える。\\
+
+        \begin{gather}
+          a_1 = 5,\quad b_1 = 3\\
+          a_{n+1} = 5a_n + 3b_n \\
+          b_{n+1} = 3a_n + 5b_n
+        \end{gather}
+
+    2つの数列$\{a_n\pm b_n\}$を求め、一般項$a_n,\, b_n$を求めよ。\\
+
+    \item (1)を踏まえて次の初項、二つの漸化式で与えられる数列$\{p_n\},\, \{q_n\}$の一般項をそれぞれ求めよ。% (大阪医科大学)
+
+        \begin{gather}
+          p_1 = 1,\quad q_1 = 4\\
+          p_{n+1} = 2p_n + q_n \\
+          q_{n+1} = 4p_n - q_n
+        \end{gather}
+
+      % ヒント：
+      % \ $\{p_n + t q_n\}$が等比数列となるような$t$を二つ求める。
+      % すなわち、\ $p_{n+1} + tq_{n+1} = s(p_n + t q_n) $を満たす$s,t$の組を二つ見つける。
+    \end{enumerate}
+}
+\prob{%
+  $n$を自然数、$x_1 = \sqrt{a}$として次の漸化式で与えられる数列$\{x_n\}$を考える。
+  \begin{gather}
+    x_{n+1} = \sqrt{x_n + a}
+  \end{gather}
+
+  すなわち、
+  \begin{gather}
+      x_2 = \sqrt{a + \sqrt{a}}, \qquad x_3 = \sqrt{a + \sqrt{a + \sqrt{a}}}, \qquad\dots
+  \end{gather}である。
+  この数列が収束するかどうかを調べたい。
+  次の問いに答えよ。
+
+  \begin{enumerate}[label=(\arabic*)]
+    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が収束すると仮定して、その極限値を求めよ。
+    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が(1)で得た値に実際に収束することを示せ。
+  \end{enumerate}
+}
+
+
+\prob{%
+  $n$を自然数とする。
+  次の漸化式で与えられる数列$\{a_{n}\}$を$n$を用いて表せ。
+  \begin{enumerate}[label=(\arabic*)]
+    \item \q{a_{1} = 3,\quad a_{n+1} = 3a_{n} - 4}
+    \item \q{a_{1} = 1,\quad a_{n+1} = 2a_{n} + n^2 - 6 }
+    \item \q{a_{1} = 1,\quad a_{n+1} = 4a_{n} + n\cdot 2^n }
+    \item \q{a_{1} = 1,\quad a_{2} = 3,\quad a_{n+2} = 4a_{n+1} - 4a_{n} }
+    \vspace{.2\baselineskip}
+    \item \q{a_{1} = 3,\quad a_{n+1} = \frac{3a_{n} - 4}{a_{n} - 2} }
+    \vspace{.2\baselineskip}
+    \item \q{a_{1} = 3,\quad a_{n+1} = \frac{3a_{n} - 4}{a_{n} - 1}}
+  \end{enumerate}
+}
+
+
+\prob{%
+  初項 $a_{1} = 1$ として，下の漸化式を解け。
+  \begin{enumerate}[label=(\arabic*)]
+    \item \q{a_{n+1} = (n+1) a_{n}}
+    \item \q{(n+2) a_{n+1} = n a_{n}}
+    \item \q{n a_{n+1} = 2 (n+1) a_{n} + n(n+1)}
+  \end{enumerate}
+}
+
+\prob{%
+  数列$\{a_{n}\}$を
+  \begin{align*}
+    a_{1} = 1,\quad a_{n+1} = \sqrt{\frac{3a_{n} + 4}{2a_{n} + 3}}
+  \end{align*}
+  と定める。以下の問いに答えよ。
+  \begin{enumerate}[label=(\arabic*)]
+    \item $n\geq 2$のとき，$a_{n}>1$ となることを示せ。
+    \vspace{.3\baselineskip}
+    \item \q{\alpha^2 = \frac{3\alpha + 4}{2\alpha + 3}}を満たす正の実数$\alpha$を求めよ。
+  \end{enumerate}
+  \begin{spacing}{1.2}
+    $\{a_{n}\}$がある値に収束するとき，\q{\lim_{n\to \infty}a_{n} = \lim_{n\to\infty}a_{n+1}}であるので，
+    その極限は$\alpha$である。
+    そこで，以下の手順で実際に$\alpha$に収束することを示そう。
+  \end{spacing}
+  \vspace{-.5\baselineskip}
+  \begin{enumerate}[label=(\arabic*), resume]
+    \item すべての自然数$n$に対して，$a_{n}<\alpha$となることを示せ。
+    \vspace{.3\baselineskip}
+    \item $0<r<1$を満たすある実数$r$に対して，
+    不等式\q{\frac{\alpha - a_{n+1}}{\alpha - a_{n}}\leq r}が成り立つことを示し，
+    極限\q{\lim_{n\to\infty}a_{n}}を求めよ。
+  \end{enumerate}
+}
+
+% -------------------------------------------------------%
+% 数列と漸化式とその周辺
+
+\prob{%
+  $n$が2以上の自然数のとき、次の不等式が成り立つことを証明せよ。
+  \begin{gather*}
+    \frac{1}{1^2} +
+    \frac{1}{2^2} +
+    \frac{1}{3^2} + \dots\dots + \frac{1}{n^2} < 2 - \frac{1}{n}
+  \end{gather*}
+}
+
+\prob{%
+  数列$\{a_{n}\}$を、
+  $a_{1} = 1,~a_{2} = 2\cos\grt\cdot a_{n} - a_{n-1}(n\geq 2)$で定める。
+  このとき、$\disp a_{n} = \frac{\sin n\grt}{\sin\grt}(n\geq 1)$
+  となることを示せ。
+}
+
+\prob{%
+  さいころを101回振るとき、1の目は何回出る確率が最大か。
+}
+
+\prob{%
+  一辺の長さが1の正方形ABCDの上を次の規則で反時計回りに動く点Qを考える。
+  さいころを振って偶数の目が出れば、出た目の長さだけ順次正方形の周上を移動させ、
+  奇数の目が出れば移動させない。
+  Qは最初Aにあったとする。
+  さいころを$n$回振ったあとで、QがCにある確率を$p_{n}$とする。
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*), itemsep=0pt]
+    \item $p_{1},p_{2}$を求めよ。
+    \item $p_{n+1}$と$p_{n}$との間に成り立つ関係式を求めよ。
+    \item $p_{n}$を$n$の式で表せ。
+  \end{enumerate}
+}
+
+\prob{%
+  先頭車両から順に1から$n$までの番号のついた$n$両編成の列車がある。
+  ただし、$n\geq 2$とする。
+  各車両を赤色、青色、黄色のいずれか1色で塗るとき、隣り合った車両の少なくとも一方が赤色となるような色の塗り方は何通りか。
+}
+
+\prob{%
+  どの目も出る確率が等しいさいころを1つ用意し、
+  次のように左から順に文字を書く。
+  さいころを投げ、出た目が$1,~2,~3$のときは文字列AAを書き、
+  $4$のときは文字Bを、$5$のときは文字Cを、$6$のときは文字Dを書く。
+  更に繰り返しさいころを投げ、同じ規則に従って、$\rm{AA},~\rm{B},~\rm{C},~\rm{D}$
+  をすでにある文字列の右側につなげて書いていく。
+  例えば、さいころを5回投げ、その出た目が順に$2,~5,~6,~3,~4$であったとすると、
+  得られる文字列はAACDAABとなる。
+  このとき、左から4番目の文字はD、5番目の文字はAである。
+
+  $n$を正の整数とする。
+  $n$回さいころを投げ文字列を作るとき、
+  文字列の左から$n$番目の文字がAとなる確率を求めよ。
+}
+
+% 駿台模試
+\prob{%
+  \begin{spacing}{1.2}
+    平行な三直線$l_{1},~l_{2},~l_{3}$の各々に$n$個の点$A_{n},~B_{n},~C_{n}$をとる。
+    いま$j(=1,2,\cdots ,n)$に対し確率$\disp \frac{1}{2}$で$A_{j},~C_{j}$の一方を選び
+    $B_{j}$と結ぶとき、$l_{1}$の始点$X$から$l_{1},~l_{2},~l_{3}$の終点$\rm{P},~\rm{Q},~\rm{R}$
+    へあみだくじを以下のルールで行う。
+  \end{spacing}
+
+  \begin{itembox}[l]{ルール}
+    \begin{enumerate}[label=\bullet, itemsep=0pt]
+      \item 縦の直線に沿って進む。
+      \item 縦に進むうえで横の線分に接触したらその線分に沿って進む。
+      \item 上の2つを繰り返し$\rm{P},~\rm{Q},~\rm{R}$のいずれかに到達するまで行う。
+    \end{enumerate}
+  \end{itembox}
+  $\rm{P},~\rm{Q}$に到達する確率をそれぞれ$n$を用いて表せ。
+}
+
+% -------------------------------------------------------%
+
+% 東大2024
+\prob{%
+  座標平面上を次の規則\ref*{item:2024Tokyo_1-1}、\ref*{item:2024Tokyo_1-2}に従って
+  1秒ごとに動く点Pを考える。
+  \begin{enumerate}[label=(\roman*), ref=(\roman*), itemsep=0pt]
+    \item\label{item:2024Tokyo_1-1}最初に、$\rm{P}$は点$(2,~1)$にいる。
+    \item\label{item:2024Tokyo_1-2}ある時刻でPが点$(a,~b)$にいるとき、その1秒後にはPは
+    \begin{enumerate}[label=\bullet, itemsep=5pt, topsep=5pt]
+      \item 確率\dm{\frac{1}{3}}で$x$軸に関して$(a,~b)$と対称な点
+      \item 確率\dm{\frac{1}{3}}で$y$軸に関して$(a,~b)$と対称な点
+      \item 確率\dm{\frac{1}{6}}で直線$y=x$に関して$(a,~b)$と対称な点
+      \item 確率\dm{\frac{1}{6}}で直線$y=-x$に関して$(a,~b)$と対称な点
+    \end{enumerate}
+    にいる。
+  \end{enumerate}
+  以下の問いに答えよ。ただし、\ref*{item:2024Tokyo_1}については、結論のみを書けばよい。
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*), itemsep=0pt]
+    \item\label{item:2024Tokyo_1} Pがとりうる点の座標をすべて求めよ。
+    \item $n$を正の整数とする。最初から$n$秒後にPが点$(2,~1)$にいる確率と、
+    最初から$n$秒後にPが点$(-2,~-1)$にいる確率にいる確率は等しいことを示せ。
+    \item $n$を正の整数とする。最初から$n$秒後にPが点$(2,~1)$にいる確率を求めよ。
+  \end{enumerate}
+}
+
+\end{document}

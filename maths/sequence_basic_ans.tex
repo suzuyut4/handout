@@ -1,13 +1,20 @@
 \documentclass[a4paper]{ltjsarticle}
 
-\input{../asset/preamble.tex}
+\input{./src/packages.tex}
+\input{./src/styles.tex}
+\input{./src/macros.tex}
 
 \title{
-  数列と漸化式 \\
-  {\Large ---解答編---}
+  {\Large 数列と漸化式} \\
+  --- 基本編 解答 ---
 }
-\author{\normalsize 鈴木}
+\author{
+  Yuta Suzuki
+  \thanks{https://github.com/suzuyut4}
+}
 \date{}
+
+\newcommand{\flan}[1]{\begin{fleqn}[20pt]\begin{align*} #1 \end{align*}\end{fleqn}}
 
 %**************************************************************
 \begin{document}
@@ -23,19 +30,25 @@
 \begin{enumerate}[label=(\roman*)]
   \item
   $a_{n+1} = a_n + d$  \rightarrow\, 公差$d$の等差数列
-  \fla{
+  \begin{fleqn}[20pt]
+    \begin{align}
       \Rightarrow a_n = a_1 + (n-1)d \label{eq:tousa}
-    }
+    \end{align}
+  \end{fleqn}
   \item
   $a_{n+1} = ra_n$     \rightarrow\, 公比$r$の等比数列
-  \fla{
+  \begin{fleqn}[20pt]
+    \begin{align}
       \Rightarrow a_n = a_1 r^{n-1} \label{eq:touhi}
-    }
+    \end{align}
+  \end{fleqn}
   \item
   $a_{n+1} = a_n + b_n$\rightarrow\, 階差数列が$\{b_n\}$の数列$\{a_n\}$
-  \fla{
+  \begin{fleqn}[20pt]
+    \begin{align}
       \Rightarrow n\geqq 2 \text{のとき、}\:a_n = a_1 + \sum_{k=1}^{n-1}b_k \label{eq:kaisa}
-    }
+    \end{align}
+  \end{fleqn}
 \end{enumerate}
 以下、\eqref{eq:tousa}の形を等差型、\eqref{eq:touhi}の形を等比型、\eqref{eq:kaisa}の形を階差型
 と呼ぶことにします。
@@ -47,7 +60,8 @@
 $a_{n+1} = a_n + b_n \Leftrightarrow a_{n+1} - a_n = b_n$であるので、
 $n\geqq 2$のとき$n$を$n-1,n-2,\cdots,2,1$として足し合わせると
 {\newcommand{\dl}[1]{\raisebox{-2pt}{$#1$}}
-\flan{
+\begin{fleqn}[20pt]
+  \begin{align*}
     &\begin{matrix}
       & a_n     & - & a_{n-1} & = & b_{n-1} \\
       & a_{n-1} & - & a_{n-2} & = & b_{n-2} \\
@@ -60,7 +74,8 @@ $n\geqq 2$のとき$n$を$n-1,n-2,\cdots,2,1$として足し合わせると
     \end{matrix}
     \\
     &\Leftrightarrow a_n = a_1 + \sum_{k=1}^{n-1}b_k \qquad \qed
-}
+  \end{align*}
+\end{fleqn}
 }
 \end{prf*}
 
@@ -69,13 +84,17 @@ $n\geqq 2$のとき$n$を$n-1,n-2,\cdots,2,1$として足し合わせると
 そのため、階差型においては条件$n\geqq 2$を忘れてはいけません。
 すなわち、一般項を求めたとき、$n=1$でもその式が成り立っているか必ず確認し、
 成り立っていればそのように書き、成り立っていなければ場合分けして一般項を示す必要があります。
-解答の書き方など詳しくは、基本編の演習で確認してください。
+解答の書き方など詳しくは、\ref*{sec:basic_of_recurrenceformula}漸化式 基本編で確認してください。
 
 
 \subsection{数列の和$S_n$}
 一般項$a_n$で表される数列について第一項から第$n$項までの和を$S_n$で表すことがあります。
 すなわち
-\flan{S_n = \sum_{k=1}^{n}a_k}
+\begin{fleqn}[20pt]
+  \begin{align*}
+    S_n = \sum_{k=1}^{n}a_k
+  \end{align*}
+\end{fleqn}
 です。以下、特に断りがなければ$S_n$を数列$\{a_n\}$に対する和を表すものとします。
 
 \newpage
@@ -203,7 +222,7 @@ ${}$
 
 
 \newpage
-\section{漸化式 基本編}
+\section{漸化式 基本編}\label{sec:basic_of_recurrenceformula}
 
 漸化式の問題はしばしば誘導がされます。
 そのため、何も誘導がなければ好きな方法で解けばいいですが、
@@ -343,7 +362,7 @@ ${}$
   }
 
   \vskip.3\baselineskip
-  この問題は上のような解法が最もよいと思われるが、次の誘導がされる場合がある。
+  この問題は上のような解法が最もよいと思われるが、次の誘導がされる場合があります。
   \begin{practice*}
     $b_n = a_{n+1} - a_n$ とおいたときの$b_n$の漸化式を導き、さらに
     $c_n = b_{n+1} - b_n$とおいたときの$c_n$を求めることで$a_n$の一般項を求めよ。 \\
@@ -660,391 +679,4 @@ ${}$
 
 \end{enumerate}\end{ans*}\end{question*}
 
-\clearpage
-\section{漸化式 演習編}
-
-\begin{enumerate}[label=\arabic*.]
-  \item
-  $n$を自然数として次の条件で定められた数列$\{a_n\}$について2通りの解き方を考えよう。 % (福井大 改 +α)
-
-    \begin{align*}
-      a_1 = 1,\:\: a_{n+1} = \frac{3}{n} (a_1 + a_2 + a_3 + \cdots + a_n)  \quad\cdots (*)
-    \end{align*}
-
-  \begin{enumerate}[label=(\arabic*)]
-    \item $a_2,\;a_3\;a_4$を計算せよ。
-    \flan{a_2 = 3,\: a_3 = 6,\:a_4 = 10}
-    \vskip.5\baselineskip
-    \item 一般項$\{a_n\}$を推定し、それが正しいことを数学的帰納法を用いて示せ。
-    %* 推定のコツ：素因数分解、定数倍してみる
-    %* 帰納法の種類：普通・前二つ仮定・それより前全部仮定(・無限降下法)
-    \flan{
-      &2\times a_1 = 2 = 1\times 2\\
-      &2\times a_2 = 6 = 2\times 3 \\
-      &2\times a_3 = 12 = 3\times 4 \\
-      &2\times a_4 = 20 = 4\times 5
-    }
-    であるので$\disp a_n = \frac{n(n+1)}{2}\cdots (\rm{I})$であると推定できる。 \\
-    \begin{enumerate}[label=(\roman*)]
-      \item $n = 1$のとき
-      \flan{
-        a_1 = 1 = \frac{2\times 1}{2}
-      }
-      より、これは(1)を満たす。
-      \item ある自然数$k$に対して、$n \leqq k$で(1)が成り立つとき、
-      $\disp a_i = \frac{i(i+1)}{2}\quad(i\leqq k) \:\: \cdots (\rm{II})$である。\\
-      また、与えられた漸化式$(*)$を用いると
-      \flan{
-        a_{k+1}
-        &= \frac{3}{k}(a_1 + \cdots + a_k) \\
-        &= \frac{3}{k}\sum_{i=1}^{k}a_i \\
-        &= \frac{3}{k}\sum_{i=1}^{k}\frac{i(i+1)}{2} \quad (\because (\rm{II}))\\
-        &= \frac{3}{2k}\sum_{i=1}^{k}(i^2 + i) \\
-        &= \frac{3}{2k}\left( \frac{k(k+1)(2k+1)}{6} + \frac{k(k+1)}{2} \right) \\
-        &= \frac{k^2+3k+2}{2} \\
-        &= \frac{(k+1)(k+2)}{2}
-      }
-      より、$n = k + 1$でも$(\rm{I})$が成り立つ。
-    \end{enumerate}
-
-    (i),(ii)より数学的帰納法からすべての自然数$n$に対して$a_n = \cfrac{n(n+1)}{2}$である。
-    \vskip1\baselineskip
-    \begin{other*}
-      普通の数学的帰納法で示すパターンです。 \\
-      (ii)\:\: ある自然数$k$に対して、$(\rm{I})$が成り立つとき
-      \flan{
-        a_k = \frac{3}{k-1}(a_1 + a_2 + \cdots + a_{k-1}) = \frac{k(k+1)}{2} \quad \cdots (2)
-      }
-      であるので、漸化式$(*)$は
-      \flan{
-        a_{k+1}
-        &= \frac{3}{k}(a_1 + a_2 + \cdots + a_k) = \frac{3}{k}(a_1 + a_2 + \cdots + a_{k-1}) + \frac{3a_k}{k} \\
-        &= \frac{k-1}{k}\left\{ \frac{3}{k-1}(a_1 + a_2 + \cdots + a_{k-1}) \right\} + \frac{3a_k}{k} \\
-        &= \frac{k-1}{k}\cdot a_k + \frac{3a_k}{k} \qquad (\because (2))\\
-        &= \frac{k+2}{k}a_k = \frac{k+2}{k}\cdot \frac{k(k+1)}{2} \\
-        &= \frac{(k+1)(k+2)}{2}
-      }
-      より、$n = k + 1$でも$(\rm{I})$が成り立つ。
-    \end{other*}
-
-    \vskip1\baselineskip
-    \begin{supple*}
-      数学的帰納法は主に次の3パターンがあります。
-      \vskip.5\baselineskip
-      \begin{enumerate}[label=(\roman*)]
-        \item $n=1$で示して「$n=k$で成り立つ$\Rightarrow$$n=k+1$で成り立つ」を示す。
-        \item $n=1$と$n=2$で示して「$n=k,k+1$で成り立つ$\Rightarrow$$n=k+2$で成り立つ」を示す。
-        \item $n=1$で示して「$n\leqq k$で成り立つ$\Rightarrow$$n=k+1$で成り立つ」を示す。
-      \end{enumerate}
-      \vskip.5\baselineskip
-      上の問題では(i),(iii)を用いて示す方法を述べたため、ついでに(ii)の使い所も示しておきましょう。
-
-      \begin{practice*}
-        $x,y\in \mathbb{R}$について、$x+y,xy$がいずれも偶数であるとする。
-        このとき、$n\in \mathbb{N}$に対して$x^n+y^n$も偶数となることを示せ。
-        \begin{ans*}
-          $x+y$,$xy$が偶数であるので$l,m\in \mathbb{Z}$を用いて
-          \flan{
-            x+y = 2l,\, xy = 2m
-          }
-          と表せる。
-          \begin{enumerate}[label=(\roman*)]
-            \item
-              $n=1$のとき
-              $x^1+y^1=x+y=2l$より$x^n+y^n$は偶数である。
-            \item
-              $n=2$のとき
-              $x^2+y^2=(x+y)^2-2xy=4l^2-4m=2(2l^2-2m)$より、 \\
-              $x^n+y^n$は偶数である。
-            \item
-              $n=k,\,k+1\:(k\in \mathbb{N})$のときに成り立つと仮定すると
-              \flan{
-                &x^k + y^k = 2x_k \:\:(x_k \in \mathbb{Z})\\
-                &x^{k+1} + y^{k+1} = 2x_{k+1} \:\:(x_{k+1} \in \mathbb{Z})\\
-              }
-              である。このとき、
-              \flan{
-                x^{k+2} + y^{k+2}
-                &= (x+y)(x^{k+1} + y^{k+1}) - xy^{k+1} - x^{k+1}y \\
-                &= 2l \cdot2x_{k+1} - 2m\cdot x_k \\
-                &= 2(2lx_{k+1} - mx_{k})
-              }
-              より$n=k+2$のときも偶数。
-          \end{enumerate}
-          (i),(ii),(iii)より数学的帰納法から$x+y,xy$がいずれも偶数であるとき、
-          すべての自然数$n$に対して$x^n+y^n$も偶数である。
-        \end{ans*}
-      \end{practice*}
-    \end{supple*}
-
-    \item 上の漸化式$(*)$について、$a_1 + a_2 + a_3 + \cdots + a_{n-1}$を$a_n$と$n$を用いて表せ。\\
-    $(*)$より
-      \flan{
-        &a_n = \frac{3}{n-1}(a_1 + a_2 + \cdots + a_{n-1}) \\
-        &\Rightarrow a_1 + a_2 + \cdots + a_{n-1} = \frac{(n-1)\;a_n}{3}
-      }
-
-    \item $a_{n+1}$と$a_n$の関係を導いた上で、一般項$a_n$を$n$を用いて表せ。\\
-    (3)より、$(*)$は
-    \flan{
-      a_{n+1}
-      &= \frac{3}{n}(a_1 + a_2 + \cdots + a_{n-1}) + \frac{3}{n}a_n \\
-      &= \frac{3}{n}\frac{(n-1)\;a_n}{3} + \frac{3}{n}a_n \\
-      &= \frac{n+2}{n}a_n
-    }
-    両辺を$(n+1)(n+2)$でわることにより
-    \flan{
-      &\frac{a_{n+1}}{(n+2)(n+1)} = \frac{a_n}{(n+1)n} \:\: \touhi \\
-      & \Rightarrow \frac{a_n}{(n+1)n} = \frac{a_1}{2\times 1} = \frac{1}{2} \\
-      & \therefore a_n = \frac{n(n+1)}{2}
-    }
-  \end{enumerate}
-
-\clearpage
-
-  \item
-  \begin{enumerate}[label=(\arabic*)]
-    \item 次の初項、二つの漸化式で与えられる数列$\{a_n\},\, \{b_n\}$を考える。
-      \begin{align*}
-        &a_1 = 5,\quad b_1 = 3\\
-        &\begin{dcases*}
-          a_{n+1} = 5a_n + 3b_n \cdots (\rm{i}) \\
-          b_{n+1} = 3a_n + 5b_n \cdots (\rm{ii})
-        \end{dcases*}
-      \end{align*}
-    2つの数列$\{a_n\pm b_n\}$を求め、一般項$a_n,\, b_n$を求めよ。\\
-
-    (i)、(ii)式を足し合わせたものと引いたものを考えると
-      \flan{
-          \begin{dcases*}
-            a_{n+1} + b_{n+1} = 8(a_n + b_n) \\
-            a_{n+1} - b_{n+1} = 2(a_n - b_n) \:\: \touhi
-          \end{dcases*}
-        }
-    となる。$a_1+b_1 = 8$、$a_1-b_1 = 2$より、
-      \flan{
-          \begin{dcases*}
-          a_n + b_n = 8^n \\
-          a_n - b_n = 2^n
-          \end{dcases*}
-        }
-    この2式から
-      \flan{
-          \begin{dcases*}
-          a_n = \frac{8^n+2^n}{2} \\
-          b_n = \frac{8^n-2^n}{2}
-          \end{dcases*}
-        }
-
-
-    \item (1)を踏まえて次の初項、二つの漸化式で与えられる数列$\{p_n\},\, \{q_n\}$の一般項をそれぞれ求めよ。% (大阪医科大学)
-      \begin{align*}
-        &p_1 = 1,\quad q_1 = 4\\
-        &\begin{dcases*}
-          p_{n+1} = 2p_n + q_n \\
-          q_{n+1} = 4p_n - q_n
-        \end{dcases*}
-      \end{align*}
-      % ヒント：
-      % \ $\{p_n + t q_n\}$が等比数列となるような$t$を二つ求める。
-      % すなわち、\ $p_{n+1} + tq_{n+1} = s(p_n + t q_n) $を満たす$s,t$の組を二つ見つける。
-      数列$\{p_n + t q_n\}$が等比数列となるとき、この漸化式は
-      \flan{
-          p_{n+1} + tq_{n+1}
-          &= (2 + 4t)p_n + (1 - t)q_n \\
-          &= (2 + 4t)\biggl(p_n + \frac{1-t}{2+4t}q_n\biggr)
-        }
-      であるので
-      \flan{
-          t = \frac{1 - t}{2 + 4t} \\
-          \therefore t = -1 ,\,\frac{1}{4}
-        }
-      よって、数列$\{p_n + t q_n\}$に関する漸化式は
-      \flan{
-          \begin{dcases*}
-            p_{n+1} - q_{n+1} = -2(q_n + q_n) \\
-            p_{n+1} + \frac{1}{4}q_{n+1} = 3\biggl(p_n + \frac{1}{4}q_n\biggr)
-          \end{dcases*}
-        }
-      と書ける。
-      $p_1 = 1,\,q_1 = 4$より、
-      \flan{
-          \begin{dcases*}
-            p_n - q_n
-            = (p_1 - q_1) (-2)^{n-1}
-            = -3(-2)^{n-1} \\
-            p_n + \frac{1}{4}q_n
-            = \biggl(p_1 + \frac{1}{4}q_1\biggr)\cdot 3^{n-1}
-            = 2\cdot 3^{n-1}
-          \end{dcases*}
-        }
-      であるので、差をとって
-      \flan{
-          p_n + \frac{1}{4}q_n &  - (p_n - q_n) \\
-          &= \frac{5}{4}q_n \\
-          &= 2\cdot 3^{n-1} + 3(-2)^{n-1} \\
-        }
-      ゆえに、
-      \flan{
-          q_n &= \frac{8\cdot 3^{n-1} + 12(-2)^{n-1}}{5} \\
-          p_n &= 3(-2)^{n-1} + q_n = \frac{8\cdot 3^{n-1} - 3 (-2)^{n-1}}{5}
-        }
-      \begin{other*}
-        $\{p_{n}\},\,\{q_{n}\}$のうち、一方を消去する方針でも解けます。
-
-        与えられた漸化式の第一式より
-        \flan{
-            q_n = p_{n+1} - 2p_{n}\quad(\eqa q_{n+1} = p_{n+2} - 2p_{n+1})
-        }
-        これを第二式に代入して整理すると
-        \flan{
-            p_{n+2} - p_{n+1} - 6p_{n} = 0
-        }
-        この漸化式は
-        \flan{
-            &\begin{dcases*}
-              p_{n+2} - 3p_{n+1} = -2(p_{n+1} - 3p_{n}) \\
-              p_{n+2} + 2p_{n+1} =  3(p_{n+1} + 2p_{n})
-            \end{dcases*} \\
-            &\begin{dcases*}
-              p_{n+1} - 3p_{n} = 3(-2)^{n-1} \\
-              p_{n+1} + 2p_{n} = 8\cdot3^{n-1}
-            \end{dcases*} \\
-        }
-        ゆえに、
-        \flan{
-            p_n = \frac{8\cdot 3^{n-1} - 3\cdot 2^{n-1}}{5}
-        }
-        漸化式の第一式より
-        \flan{
-            q_n = p_{n+1} - 2p_{n} = \frac{8\cdot 3^{n-1} + 12(-2)^{n-1}}{5}
-        }
-      \end{other*}
-  \end{enumerate}
-
-\clearpage
-
-  \item
-  $n$を自然数、$x_1 = \sqrt{a}$として次の漸化式で与えられる数列$\{x_n\}$を考える。
-  \begin{align*}
-    x_{n+1} = \sqrt{x_n + a}\quad\cdots \rm{(i)}
-  \end{align*}
-  すなわち、
-  \begin{align*}
-    x_2 = \sqrt{a + \sqrt{a}}, \qquad x_3 = \sqrt{a + \sqrt{a + \sqrt{a}}}, \qquad\dots
-  \end{align*}
-  である。
-  この数列が収束するかどうかを調べたい。
-  次の問いに答えよ。
-  \vskip.5\baselineskip
-  \begin{enumerate}[label=(\arabic*)]
-    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が収束すると仮定して、その極限値を求めよ。
-    \vskip.5\baselineskip
-    $x_n \to \gra(>0)\:(n\to\infty)$とおくと(i)において両辺に$n\to\infty$の極限を考えて
-    \flan{
-      \gra = \sqrt{\gra + a}\quad\cdots \rm{(ii)}
-    }
-    この両辺を2乗して整理すれば
-    \flan{
-      &\gra^2 - \gra - a = 0\\
-      &\Leftrightarrow \gra = \frac{1 + \sqrt{1 + 4a}}{2}\quad(\because \gra>0)
-    }
-    \vskip.5\baselineskip
-    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が(1)で得た値に実際に収束することを示せ。
-    \vskip.5\baselineskip
-    まず、(ii)式より
-
-    \flan{
-      &\gra^2 = a + \gra\\
-      &\Rightarrow a - \gra^2 = -\gra \quad\cdots\rm{(iii)}
-    }
-    であるので、
-    \flan{
-      |x_n - \gra|
-      &= \left|\frac{x_n^2 - \gra^2}{x_n + \gra}\right|\\
-      &= \left|\frac{x_{n-1} + a - \gra^2}{x_n + \gra}\right|\\
-      &= \left|\frac{x_{n-1} - \gra}{x_n + \gra}\right|\quad(\because \rm{(iii)})\\
-      &= \frac{1}{x_n + \gra} |x_{n-1} - \gra|\\
-      &\leqq \frac{1}{\gra} |x_{n-1} - \gra|\quad(\because x_n > 0)\\
-      &= \cdots\\
-      &= \frac{1}{\gra^{n-1}}|x_1 - \gra|
-    }
-    すなわち、
-    \flan{
-      (0 \leqq) |x_n - \gra| \leqq \frac{1}{\gra^{n-1}}|x_1 - \gra|\quad \cdots \rm{(iv)}
-    }
-    ここで、$a>0$より$\gra$は、
-    \flan{
-      \gra = \frac{1 + \sqrt{4a + 1}}{2} > \frac{1 + 1}{2} = 1
-    }
-    であるので、(iv)式について辺々に対して$n\to\infty$の極限を考えれば最右辺が
-    \flan{
-      \lim_{n\to\infty}\frac{1}{\gra^{n-1}}|x_1 - \gra| = 0
-    }
-    となることから、はさみうちの原理から
-    \flan{
-      \lim_{n\to\infty}|x_n - \gra| = 0
-    }
-    である。\\
-    ゆえに、たしかに数列$\{x_n\}$は(1)で求めた値$\gra$に収束する。
-    \end{enumerate}
-
-    \vskip1\baselineskip
-    \begin{supple*}
-      比較的難しい問題ではあるがこのパターンは入試によく出るため覚えておく必要があります。 \\
-      一般項が求まりそうにない数列の収束を示すのにははさみうちの原理を用いることを
-      前提とした式変形をしていくのが最もよくある解法です。
-      このとき、そもそも極限の収束とは
-      \flan{
-        \lim_{x\to a}f(x) = L \Leftrightarrow \lim_{x\to a}|f(x) - L| = 0
-      }
-      であることを思い出せば、$0\leqq |x_n - \gra| \leqq L(n)$であり、
-      \dm{\lim_{n\to\infty}L(n)=0}であるような不等式を見つけるという方針は自然でしょう。
-
-      すなわち、
-      \flan{
-          a_{n+1} = f(a_n)
-      }
-      のような漸化式の問題での解法は
-      \begin{enumerate}[label=\arabic*.]
-        \item 極限の予想
-        \item 収束の証明
-      \end{enumerate}
-      の順です。\\
-      1の極限の予想は比較的簡単で、極限が存在するとき、数列の添字にかかわらずある値に収束することがいえる
-      （つまり\dm{\lim_{n\to\infty} a_n = \lim_{n\to\infty} a_{n+1}}）
-      のでその値を文字で置いたうえで
-      漸化式からただの方程式として求めればいいです。
-      ただし、複数の解をもつ場合はそれが極限の候補に過ぎないため
-      実際にどれに収束するかはグラフや条件から絞る必要があります。 \\
-      2は慣れないうちは難しく感じられるかもしれません。
-      しかし、先ほども述べたように目標が
-      \flan{
-        |a_{n+1} - \gra| = r|a_n - \gra| \quad\text{かつ}\quad |r|<1
-      }
-      となるような関係(漸化不等式という)を導くことであるとわかっていれば、$a_{n+1}$と$a_n$、$\gra$をつなぐ関係式は
-      漸化式とその極限をとった式($\gra = f(\gra)$)しかないのだから、それらの和や差をとって
-      \flan{
-        &a_{n+1} - \gra = f(a_n) - f(\gra)\\
-        &\Rightarrow a_{n+1} - \gra = \bsq \,(a_n - \gra)
-      }
-      として、$|\bsq| \leqq r < 1$となるような定数$r$を見つけてやればよいとわかる。
-      もちろん、$r = |\bsq|$としてもよい。
-      \vskip1\baselineskip
-      さて、以上を踏まえれば本問題の漸化不等式は次のように求めることもできる。\\
-      \begin{other*}
-        (i),(ii)の両辺について差を取れば
-        \flan{
-          x_{n+1} - \gra
-          &= \sqrt{a + x_n} - \sqrt{a + \gra}\\
-          &= \frac{1}{\sqrt{a + x_n} + \sqrt{a + \gra}}(x_n - \gra)
-        }
-        ここで、$\sqrt{a + x_n}\geqq 0$だから
-        \flan{
-          &\sqrt{a + x_n} + \sqrt{a + \gra} \geqq \sqrt{a + \gra} = \gra\quad(\because \rm{(iii)}) \\
-          &\therefore |x_{n+1} - \gra|\leqq \frac{1}{\gra}|x_n - \gra|
-        }
-      \end{other*}
-    \end{supple*}
-  \end{enumerate}
 \end{document}

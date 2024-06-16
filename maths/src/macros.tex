@@ -1,0 +1,165 @@
+% newcommand
+
+% sequence type
+\newcommand{\stype}[1]{\text{\hspace*{4pt}$\langle\text{\hspace*{.8pt}\raisebox{-.7pt}{#1}\hspace*{.8pt}}\rangle$\hspace*{4pt}}}
+\newcommand{\tousa}{\stype{等差型}}
+\newcommand{\touhi}{\stype{等比型}}
+\newcommand{\kaisa}{\stype{階差型}}
+\newcommand{\kaihi}{\stype{階比型}}
+\newcommand{\kaihitousa}{\stype{階比・等差型}}
+\newcommand{\tokusyukai}{\stype{特殊解型}}
+\newcommand{\sankoukan}{\stype{三項間漸化式}}
+\newcommand{\jisuusoui}{\stype{次数相違型}}
+\newcommand{\sisu}{\stype{指数型}}
+\newcommand{\sankoukanjuukai}{\stype{三項間漸化式（重解）}}
+\newcommand{\sankoukanteisuukou}{\stype{三項間漸化式（定数項あり）}}
+\newcommand{\bunsugyakusutikan}{\stype{分数型（逆数置換）}}
+\newcommand{\bunsutokusei}{\stype{分数型（特性方程式）}}
+\newcommand{\bunsujuukai}{\stype{分数型（重解）}}
+
+
+% -------------------------------------------------------%
+
+\makeatletter
+
+% 数式や図表のref
+\renewcommand{\refeq}[1]{\eqref{#1}式}
+\newcommand{\reffig}[1]{図\ref{#1}}
+\newcommand{\reftbl}[1]{表\ref{#1}}
+
+% よく使う単位
+\newcommand{\degC}[0]{\mathrm{{}^\circ \hspace*{-0.5pt} C}}
+\renewcommand{\deg}[0]{\mathrm{{}^\circ}}
+
+% よく使う演算子
+\newcommand{\tensor}[1]{\undertilde{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+
+
+\numberwithin{equation}{section}
+
+% その他の環境
+\newcommand{\dm}[1]{$\displaystyle #1 $}
+\newcommand{\q}[1]{${\displaystyle #1}$}
+
+\newcommand{\disp}{\displaystyle}
+
+% -------------------------------------------------------%
+
+% よく使う記号
+
+% =================================
+% 太字行列・ベクトル
+\newcommand{\bA}{\bm{A}}
+\newcommand{\bB}{\bm{B}}
+\newcommand{\bE}{\bm{E}}
+\newcommand{\bC}{\bm{C}}
+\newcommand{\bD}{\bm{D}}
+\newcommand{\bH}{\bm{H}}
+\newcommand{\bI}{\bm{I}}
+\newcommand{\bL}{\bm{L}}
+\newcommand{\bU}{\bm{U}}
+\newcommand{\bP}{\bm{P}}
+\newcommand{\bQ}{\bm{Q}}
+
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+\newcommand{\ba}{{\bm{a}}}
+\newcommand{\bb}{{\bm{b}}}
+\newcommand{\bc}{{\bm{c}}}
+\newcommand{\bd}{{\bm{d}}}
+\newcommand{\be}{{\bm{e}}}
+\newcommand{\bg}{{\bm{g}}}
+
+\newcommand{\bbm}{{\bm{m}}}
+\newcommand{\bn}{{\bm{n}}}
+
+\newcommand{\bp}{{\bm{p}}}
+
+\newcommand{\bt}{{\bm{t}}}
+
+\newcommand{\bx}{{\bm{x}}}
+\newcommand{\by}{{\bm{y}}}
+\newcommand{\bz}{{\bm{z}}}
+
+\newcommand{\bu}{{\bm{u}}}
+\newcommand{\bv}{{\bm{v}}}
+\newcommand{\bw}{{\bm{w}}}
+
+% bold zero vector
+\newcommand{\bzv}{\bm{0}}
+
+% =================================
+% ギリシャ文字
+\newcommand{\ve}{\varepsilon}
+\newcommand{\vp}{\varphi}
+
+\newcommand{\gra}{{\alpha}}
+\newcommand{\grg}{{\gamma}}
+\newcommand{\grd}{{\delta}}
+\newcommand{\grt}{{\theta}}
+\newcommand{\grk}{{\kappa}}
+\newcommand{\grl}{{\lambda}}
+\newcommand{\grs}{{\sigma}}
+\newcommand{\gro}{{\omega}}
+\newcommand{\grp}{{\phi}}
+
+
+\newcommand{\grG}{{\Gamma}}
+\newcommand{\grL}{{\Lambda}}
+
+% =================================
+% 略記号
+\newcommand{\tm}{\times}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\eqa}{\Leftrightarrow} % equivalent arrowのつもり
+
+% -------------------------------------------------------%
+
+
+% -------------------------------------------------------%
+
+
+% 虚部の「ℑ」を更新（像として使いたい）
+\renewcommand{\Im}{\operatorname{Im}}
+
+% -------------------------------------------------------%
+
+% 二項演算子
+\renewcommand{\parallel}{\mathbin{/\!/}}
+
+% 床関数（ガウス関数）
+\newcommand{\flr}[1]{\lfloor #1 \rfloor} % ふつーの床関数
+\newcommand{\gflr}[1]{\left[ #1 \right]} % ガウス記号を使った床関数
+
+% -------------------------------------------------------%
+
+% 演算子
+\newcommand{\ppar}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\d}{\partial}
+\newcommand{\pd}{\partial}
+
+% -------------------------------------------------------%
+% ベクトル
+\renewcommand{\vec}[1]{\begin{Bmatrix}#1\end{Bmatrix}}
+% 行列
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} % [A]
+\newcommand{\Bmat}[1]{\begin{Bmatrix}#1\end{Bmatrix}} % {A}
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}} % (A)
+\newcommand{\vmat}[1]{\begin{vmatrix}#1\end{vmatrix}} % |A|
+
+% ロピタル
+\newcommand{\lhopital}{L'H\^{o}pital}
+% 集合
+\newcommand{\Dset}[1]{\left\{ #1 \right\}}
+% 集合の{(x,y)|x<0}みたいに書くときの縦線
+\newcommand{\relmiddle}{\mathrel{}\middle| \mathrel{}}
+
+% 内積
+\newcommand{\ip}[1]{\langle#1\rangle}
+
+% 記号
+\newcommand{\bsq}{\raisebox{-1.2pt}{\blacksquare}}

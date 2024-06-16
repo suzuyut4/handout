@@ -1,0 +1,990 @@
+\documentclass[a4paper]{ltjsarticle}
+
+\input{./src/packages.tex}
+\input{./src/styles.tex}
+\input{./src/macros.tex}
+
+\title{
+  {\Large 数列と漸化式} \\
+  --- 標準編 解答 ---
+}
+\author{
+  Yuta Suzuki
+  \thanks{https://github.com/suzuyut4}
+}
+\date{}
+
+\newcommand{\flan}[1]{\begin{fleqn}[20pt]\begin{align*} #1 \end{align*}\end{fleqn}}
+
+\begin{document}
+
+\maketitle
+
+\prob{%
+  $n$を自然数として次の条件で定められた数列$\{a_n\}$について2通りの解き方を考えよう。 % (福井大 改 +α)
+
+  \begin{gather*}
+    a_1 = 1,\quad a_{n+1} = \frac{3}{n} (a_1 + a_2 + a_3 + \cdots + a_n)  \quad\cdots (*)
+  \end{gather*}
+
+  \begin{enumerate}[label=(\arabic*), itemsep=2pt]
+    \item $a_2,\,a_3,\,a_4$を計算せよ。
+    \item 一般項$\{a_n\}$を推定し、それが正しいことを数学的帰納法を用いて示せ。
+    \item 上の漸化式$(*)$について、$a_1 + a_2 + a_3 + \cdots + a_{n-1}$を$a_n$と$n$を用いて表せ。
+    \item $a_{n+1}$と$a_n$の関係を導いた上で、一般項$a_n$を$n$を用いて表せ。
+  \end{enumerate}
+}
+\begin{ans*}
+${}$
+\begin{enumerate}[label=(\arabic*)]
+  \item $a_2,\;a_3\;a_4$を計算せよ。
+  \flan{a_2 = 3,\: a_3 = 6,\:a_4 = 10}
+  \vskip.5\baselineskip
+  \item 一般項$\{a_n\}$を推定し、それが正しいことを数学的帰納法を用いて示せ。
+  %* 推定のコツ：素因数分解、定数倍してみる
+  %* 帰納法の種類：普通・前二つ仮定・それより前全部仮定(・無限降下法)
+  \flan{
+    &2\times a_1 = 2 = 1\times 2\\
+    &2\times a_2 = 6 = 2\times 3 \\
+    &2\times a_3 = 12 = 3\times 4 \\
+    &2\times a_4 = 20 = 4\times 5
+  }
+  であるので$\disp a_n = \frac{n(n+1)}{2}\cdots (\rm{I})$であると推定できる。 \\
+  \begin{enumerate}[label=(\roman*)]
+    \item $n = 1$のとき
+    \flan{
+      a_1 = 1 = \frac{2\times 1}{2}
+    }
+    より、これは(I)を満たす。
+    \item ある自然数$k$に対して、$n \leqq k$で(1)が成り立つとき、
+    $\disp a_i = \frac{i(i+1)}{2}\quad(i\leqq k) \:\: \cdots (\rm{II})$である。\\
+    また、与えられた漸化式$(*)$を用いると
+    \flan{
+      a_{k+1}
+      &= \frac{3}{k}(a_1 + \cdots + a_k) \\
+      &= \frac{3}{k}\sum_{i=1}^{k}a_i \\
+      &= \frac{3}{k}\sum_{i=1}^{k}\frac{i(i+1)}{2} \quad (\because (\rm{II}))\\
+      &= \frac{3}{2k}\sum_{i=1}^{k}(i^2 + i) \\
+      &= \frac{3}{2k}\left( \frac{k(k+1)(2k+1)}{6} + \frac{k(k+1)}{2} \right) \\
+      &= \frac{k^2+3k+2}{2} \\
+      &= \frac{(k+1)(k+2)}{2}
+    }
+    より、$n = k + 1$でも$(\rm{I})$が成り立つ。
+  \end{enumerate}
+
+  (i),(ii)より数学的帰納法からすべての自然数$n$に対して$a_n = \cfrac{n(n+1)}{2}$である。
+  \vskip1\baselineskip
+  \begin{other*}
+    普通の数学的帰納法で示すパターンです。 \\
+    (ii)\:\: ある自然数$k$に対して、$(\rm{I})$が成り立つとき
+    \flan{
+      a_k = \frac{3}{k-1}(a_1 + a_2 + \cdots + a_{k-1}) = \frac{k(k+1)}{2} \quad \cdots \text{(II)}
+    }
+    であるので、漸化式$(*)$は
+    \flan{
+      a_{k+1}
+      &= \frac{3}{k}(a_1 + a_2 + \cdots + a_k) = \frac{3}{k}(a_1 + a_2 + \cdots + a_{k-1}) + \frac{3a_k}{k} \\
+      &= \frac{k-1}{k}\left\{ \frac{3}{k-1}(a_1 + a_2 + \cdots + a_{k-1}) \right\} + \frac{3a_k}{k} \\
+      &= \frac{k-1}{k}\cdot a_k + \frac{3a_k}{k} \qquad (\because (2))\\
+      &= \frac{k+2}{k}a_k = \frac{k+2}{k}\cdot \frac{k(k+1)}{2} \\
+      &= \frac{(k+1)(k+2)}{2}
+    }
+    より、$n = k + 1$でも$(\rm{I})$が成り立つ。
+  \end{other*}
+
+  \vskip1\baselineskip
+  \begin{supple*}
+    数学的帰納法は主に次の3パターンがあります。
+    \vskip.5\baselineskip
+    \begin{enumerate}[label=(\roman*)]
+      \item $n=1$で示して「$n=k$で成り立つ$\Rightarrow$$n=k+1$で成り立つ」を示す。
+      \item $n=1$と$n=2$で示して「$n=k,k+1$で成り立つ$\Rightarrow$$n=k+2$で成り立つ」を示す。
+      \item $n=1$で示して「$n\leqq k$で成り立つ$\Rightarrow$$n=k+1$で成り立つ」を示す。
+    \end{enumerate}
+    \vskip.5\baselineskip
+    上の問題では(i),(iii)を用いて示す方法を述べたため、ついでに(ii)の使い所も示しておきましょう。
+
+    \begin{practice*}
+      $x,y\in \mathbb{R}$について、$x+y,\,xy$がいずれも偶数であるとする。
+      このとき、$n\in \mathbb{N}$に対して$x^n+y^n$も偶数となることを示せ。
+      \begin{ans*}
+        $x+y,\,xy$が偶数であるので$l,\,m\in \mathbb{Z}$を用いて
+        \flan{
+          x+y = 2l,\, xy = 2m
+        }
+        と表せる。
+        \begin{enumerate}[label=(\roman*)]
+          \item
+            $n=1$のとき
+            $x^1+y^1=x+y=2l$より$x^n+y^n$は偶数である。
+          \item
+            $n=2$のとき
+            $x^2+y^2=(x+y)^2-2xy=4l^2-4m=2(2l^2-2m)$より、 \\
+            $x^n+y^n$は偶数である。
+          \item
+            $n=k,\,k+1\:(k\in \mathbb{N})$のときに成り立つと仮定すると
+            \flan{
+              &x^k + y^k = 2x_k \:\:(x_k \in \mathbb{Z})\\
+              &x^{k+1} + y^{k+1} = 2x_{k+1} \:\:(x_{k+1} \in \mathbb{Z})\\
+            }
+            である。このとき、
+            \flan{
+              x^{k+2} + y^{k+2}
+              &= (x+y)(x^{k+1} + y^{k+1}) - xy^{k+1} - x^{k+1}y \\
+              &= 2l \cdot2x_{k+1} - 2m\cdot x_k \\
+              &= 2(2lx_{k+1} - mx_{k})
+            }
+            より$n=k+2$のときも偶数。
+        \end{enumerate}
+        (i),(ii),(iii)より数学的帰納法から$x+y,xy$がいずれも偶数であるとき、
+        すべての自然数$n$に対して$x^n+y^n$も偶数である。
+      \end{ans*}
+    \end{practice*}
+  \end{supple*}
+
+  \item 上の漸化式$(*)$について、$a_1 + a_2 + a_3 + \cdots + a_{n-1}$を$a_n$と$n$を用いて表せ。\\
+  $(*)$より
+    \flan{
+      &a_n = \frac{3}{n-1}(a_1 + a_2 + \cdots + a_{n-1}) \\
+      &\Rightarrow a_1 + a_2 + \cdots + a_{n-1} = \frac{(n-1)\;a_n}{3}
+    }
+
+  \item $a_{n+1}$と$a_n$の関係を導いた上で、一般項$a_n$を$n$を用いて表せ。\\
+  (3)より、$(*)$は
+  \flan{
+    a_{n+1}
+    &= \frac{3}{n}(a_1 + a_2 + \cdots + a_{n-1}) + \frac{3}{n}a_n \\
+    &= \frac{3}{n}\frac{(n-1)\;a_n}{3} + \frac{3}{n}a_n \\
+    &= \frac{n+2}{n}a_n
+  }
+  両辺を$(n+1)(n+2)$でわることにより
+  \flan{
+    &\frac{a_{n+1}}{(n+2)(n+1)} = \frac{a_n}{(n+1)n} \:\: \touhi \\
+    & \Rightarrow \frac{a_n}{(n+1)n} = \frac{a_1}{2\times 1} = \frac{1}{2} \\
+    & \therefore a_n = \frac{n(n+1)}{2}
+  }
+\end{enumerate}
+\end{ans*}
+
+
+\clearpage
+\prob{%
+  ${}$
+  \begin{enumerate}[label=(\arabic*)]
+    \item 次の初項、二つの漸化式で与えられる数列$\{a_n\},\, \{b_n\}$を考える。\\
+
+        \begin{gather}
+          a_1 = 5,\quad b_1 = 3\\
+          a_{n+1} = 5a_n + 3b_n \\
+          b_{n+1} = 3a_n + 5b_n
+        \end{gather}
+
+    2つの数列$\{a_n\pm b_n\}$を求め、一般項$a_n,\, b_n$を求めよ。\\
+
+    \item (1)を踏まえて次の初項、二つの漸化式で与えられる数列$\{p_n\},\, \{q_n\}$の一般項をそれぞれ求めよ。% (大阪医科大学)
+
+        \begin{gather}
+          p_1 = 1,\quad q_1 = 4\\
+          p_{n+1} = 2p_n + q_n \\
+          q_{n+1} = 4p_n - q_n
+        \end{gather}
+
+      % ヒント：
+      % \ $\{p_n + t q_n\}$が等比数列となるような$t$を二つ求める。
+      % すなわち、\ $p_{n+1} + tq_{n+1} = s(p_n + t q_n) $を満たす$s,t$の組を二つ見つける。
+    \end{enumerate}
+}
+\begin{ans*}
+  ${}$
+\begin{enumerate}[label=(\arabic*)]
+  \item 次の初項、二つの漸化式で与えられる数列$\{a_n\},\, \{b_n\}$を考える。
+    \begin{align*}
+      &a_1 = 5,\quad b_1 = 3\\
+      &\begin{dcases*}
+        a_{n+1} = 5a_n + 3b_n \cdots (\rm{i}) \\
+        b_{n+1} = 3a_n + 5b_n \cdots (\rm{ii})
+      \end{dcases*}
+    \end{align*}
+  2つの数列$\{a_n\pm b_n\}$を求め、一般項$a_n,\, b_n$を求めよ。\\
+
+  (i)、(ii)式を足し合わせたものと引いたものを考えると
+    \flan{
+      \begin{dcases*}
+        a_{n+1} + b_{n+1} = 8(a_n + b_n) \\
+        a_{n+1} - b_{n+1} = 2(a_n - b_n) \:\: \touhi
+      \end{dcases*}
+    }
+  となる。$a_1+b_1 = 8$、$a_1-b_1 = 2$より、
+    \flan{
+        \begin{dcases*}
+        a_n + b_n = 8^n \\
+        a_n - b_n = 2^n
+        \end{dcases*}
+      }
+  この2式から
+    \flan{
+        \begin{dcases*}
+        a_n = \frac{8^n+2^n}{2} \\
+        b_n = \frac{8^n-2^n}{2}
+        \end{dcases*}
+      }
+
+
+  \item (1)を踏まえて次の初項、二つの漸化式で与えられる数列$\{p_n\},\, \{q_n\}$の一般項をそれぞれ求めよ。% (大阪医科大学)
+    \begin{align*}
+      &p_1 = 1,\quad q_1 = 4\\
+      &\begin{dcases*}
+        p_{n+1} = 2p_n + q_n \\
+        q_{n+1} = 4p_n - q_n
+      \end{dcases*}
+    \end{align*}
+    % ヒント：
+    % \ $\{p_n + t q_n\}$が等比数列となるような$t$を二つ求める。
+    % すなわち、\ $p_{n+1} + tq_{n+1} = s(p_n + t q_n) $を満たす$s,t$の組を二つ見つける。
+    数列$\{p_n + t q_n\}$が等比数列となるとき、この漸化式は
+    \flan{
+        p_{n+1} + tq_{n+1}
+        &= (2 + 4t)p_n + (1 - t)q_n \\
+        &= (2 + 4t)\biggl(p_n + \frac{1-t}{2+4t}q_n\biggr)
+      }
+    であるので
+    \flan{
+        t = \frac{1 - t}{2 + 4t} \\
+        \therefore t = -1 ,\,\frac{1}{4}
+      }
+    よって、数列$\{p_n + t q_n\}$に関する漸化式は
+    \flan{
+        \begin{dcases*}
+          p_{n+1} - q_{n+1} = -2(q_n + q_n) \\
+          p_{n+1} + \frac{1}{4}q_{n+1} = 3\biggl(p_n + \frac{1}{4}q_n\biggr)
+        \end{dcases*}
+      }
+    と書ける。
+    $p_1 = 1,\,q_1 = 4$より、
+    \flan{
+        \begin{dcases*}
+          p_n - q_n
+          = (p_1 - q_1) (-2)^{n-1}
+          = -3(-2)^{n-1} \\
+          p_n + \frac{1}{4}q_n
+          = \biggl(p_1 + \frac{1}{4}q_1\biggr)\cdot 3^{n-1}
+          = 2\cdot 3^{n-1}
+        \end{dcases*}
+      }
+    であるので、差をとって
+    \flan{
+        p_n + \frac{1}{4}q_n &  - (p_n - q_n) \\
+        &= \frac{5}{4}q_n \\
+        &= 2\cdot 3^{n-1} + 3(-2)^{n-1} \\
+      }
+    ゆえに、
+    \flan{
+        q_n &= \frac{8\cdot 3^{n-1} + 12(-2)^{n-1}}{5} \\
+        p_n &= 3(-2)^{n-1} + q_n = \frac{8\cdot 3^{n-1} - 3 (-2)^{n-1}}{5}
+      }
+    \begin{other*}
+      $\{p_{n}\},\,\{q_{n}\}$のうち、一方を消去する方針でも解けます。
+
+      与えられた漸化式の第一式より
+      \flan{
+          q_n = p_{n+1} - 2p_{n}\quad(\eqa q_{n+1} = p_{n+2} - 2p_{n+1})
+      }
+      これを第二式に代入して整理すると
+      \flan{
+          p_{n+2} - p_{n+1} - 6p_{n} = 0
+      }
+      この漸化式は
+      \flan{
+          &\begin{dcases*}
+            p_{n+2} - 3p_{n+1} = -2(p_{n+1} - 3p_{n}) \\
+            p_{n+2} + 2p_{n+1} =  3(p_{n+1} + 2p_{n})
+          \end{dcases*} \\
+          &\begin{dcases*}
+            p_{n+1} - 3p_{n} = 3(-2)^{n-1} \\
+            p_{n+1} + 2p_{n} = 8\cdot3^{n-1}
+          \end{dcases*} \\
+      }
+      ゆえに、
+      \flan{
+          p_n = \frac{8\cdot 3^{n-1} - 3\cdot 2^{n-1}}{5}
+      }
+      漸化式の第一式より
+      \flan{
+          q_n = p_{n+1} - 2p_{n} = \frac{8\cdot 3^{n-1} + 12(-2)^{n-1}}{5}
+      }
+    \end{other*}
+\end{enumerate}
+\end{ans*}
+
+
+\clearpage
+\prob{%
+  $n$を自然数、$x_1 = \sqrt{a}$として次の漸化式で与えられる数列$\{x_n\}$を考える。
+  \begin{gather}
+    x_{n+1} = \sqrt{x_n + a}
+  \end{gather}
+
+  すなわち、
+  \begin{gather}
+      x_2 = \sqrt{a + \sqrt{a}}, \qquad x_3 = \sqrt{a + \sqrt{a + \sqrt{a}}}, \qquad\dots
+  \end{gather}である。
+  この数列が収束するかどうかを調べたい。
+  次の問いに答えよ。
+
+  \begin{enumerate}[label=(\arabic*)]
+    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が収束すると仮定して、その極限値を求めよ。
+    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が(1)で得た値に実際に収束することを示せ。
+  \end{enumerate}
+}
+\begin{ans*}
+  ${}$
+\begin{enumerate}[label=(\arabic*)]
+  \item
+  $x_n \to \gra(>0)\:(n\to\infty)$とおくと(i)において両辺に$n\to\infty$の極限を考えて
+  \flan{
+    \gra = \sqrt{\gra + a}\quad\cdots \rm{(ii)}
+  }
+  この両辺を2乗して整理すれば
+  \flan{
+    &\gra^2 - \gra - a = 0\\
+    &\Leftrightarrow \gra = \frac{1 + \sqrt{1 + 4a}}{2}\quad(\because \gra>0)
+  }
+  \vskip.5\baselineskip
+
+  \item
+  まず、(ii)式より
+
+  \flan{
+    &\gra^2 = a + \gra\\
+    &\Rightarrow a - \gra^2 = -\gra \quad\cdots\rm{(iii)}
+  }
+  であるので、
+  \flan{
+    |x_n - \gra|
+    &= \left|\frac{x_n^2 - \gra^2}{x_n + \gra}\right|\\
+    &= \left|\frac{x_{n-1} + a - \gra^2}{x_n + \gra}\right|\\
+    &= \left|\frac{x_{n-1} - \gra}{x_n + \gra}\right|\quad(\because \rm{(iii)})\\
+    &= \frac{1}{x_n + \gra} |x_{n-1} - \gra|\\
+    &\leqq \frac{1}{\gra} |x_{n-1} - \gra|\quad(\because x_n > 0)\\
+    &= \cdots\\
+    &= \frac{1}{\gra^{n-1}}|x_1 - \gra|
+  }
+  すなわち、
+  \flan{
+    (0 \leqq) |x_n - \gra| \leqq \frac{1}{\gra^{n-1}}|x_1 - \gra|\quad \cdots \rm{(iv)}
+  }
+  ここで、$a>0$より$\gra$は、
+  \flan{
+    \gra = \frac{1 + \sqrt{4a + 1}}{2} > \frac{1 + 1}{2} = 1
+  }
+  であるので、(iv)式について辺々に対して$n\to\infty$の極限を考えれば最右辺が
+  \flan{
+    \lim_{n\to\infty}\frac{1}{\gra^{n-1}}|x_1 - \gra| = 0
+  }
+  となることから、はさみうちの原理から
+  \flan{
+    \lim_{n\to\infty}|x_n - \gra| = 0
+  }
+  である。\\
+  ゆえに、たしかに数列$\{x_n\}$は(1)で求めた値$\gra$に収束する。
+\end{enumerate}
+
+\begin{supple*}
+  比較的難しい問題ではありますがこのパターンは入試によく出るため覚えておく必要があります。 \\
+  一般項が求まりそうにない数列の収束を示すのにははさみうちの原理を用いることを
+  前提とした式変形をしていくのが最もよくある解法です。
+  このとき、そもそも極限の収束とは
+  \flan{
+    \lim_{x\to a}f(x) = L \Leftrightarrow \lim_{x\to a}|f(x) - L| = 0
+  }
+  であることを思い出せば、$0\leqq |x_n - \gra| \leqq L(n)$であり、
+  \dm{\lim_{n\to\infty}L(n)=0}であるような不等式を見つけるという方針は自然でしょう。
+
+  すなわち、
+  \flan{
+      a_{n+1} = f(a_n)
+  }
+  のような漸化式の問題での解法は
+  \begin{enumerate}[label=\arabic*.]
+    \item 極限の予想
+    \item 収束の証明
+  \end{enumerate}
+  の順です。\\
+  1の極限の予想は比較的簡単で、極限が存在するとき、数列の添字にかかわらずある値に収束することがいえる
+  （つまり\dm{\lim_{n\to\infty} a_n = \lim_{n\to\infty} a_{n+1}}）
+  のでその値を文字で置いたうえで
+  漸化式からただの方程式として求めればいいです。
+  ただし、複数の解をもつ場合はそれが極限の候補に過ぎないため
+  実際にどれに収束するかはグラフや条件から絞る必要があります。 \\
+  2は慣れないうちは難しく感じられるかもしれません。
+  しかし、先ほども述べたように目標が
+  \flan{
+    |a_{n+1} - \gra| = r|a_n - \gra| \quad\text{かつ}\quad |r|<1
+  }
+  となるような関係(漸化不等式という)を導くことであるとわかっていれば、$a_{n+1}$と$a_n$、$\gra$をつなぐ関係式は
+  漸化式とその極限をとった式($\gra = f(\gra)$)しかないのだから、それらの和や差をとって
+  \flan{
+    &a_{n+1} - \gra = f(a_n) - f(\gra)\\
+    &\Rightarrow a_{n+1} - \gra = \bsq \,(a_n - \gra)
+  }
+  として、$|\bsq| \leqq r < 1$となるような定数$r$を見つけてやればよいとわかります。
+  もちろん、$r = |\bsq|$としてもよいです。
+  \vskip1\baselineskip
+  さて、以上を踏まえれば本問題の漸化不等式は次のように求めることもできます。\\
+  \begin{other*}
+    (i),(ii)の両辺について差を取れば
+    \flan{
+      x_{n+1} - \gra
+      &= \sqrt{a + x_n} - \sqrt{a + \gra}\\
+      &= \frac{1}{\sqrt{a + x_n} + \sqrt{a + \gra}}(x_n - \gra)
+    }
+    ここで、$\sqrt{a + x_n}\geqq 0$だから
+    \flan{
+      &\sqrt{a + x_n} + \sqrt{a + \gra} \geqq \sqrt{a + \gra} = \gra\quad(\because \rm{(iii)}) \\
+      &\therefore |x_{n+1} - \gra|\leqq \frac{1}{\gra}|x_n - \gra|
+    }
+  \end{other*}
+\end{supple*}
+\end{ans*}
+
+
+\clearpage
+\prob{%
+  $n$を自然数とする。
+  次の漸化式で与えられる数列$\{a_{n}\}$を$n$を用いて表せ。
+  \begin{enumerate}[label=(\arabic*)]
+    \item \q{a_{1} = 3,\quad a_{n+1} = 3a_{n} - 4}
+    \item \q{a_{1} = 1,\quad a_{n+1} = 2a_{n} + n^2 - 6 }
+    \item \q{a_{1} = 1,\quad a_{n+1} = 4a_{n} + n\cdot 2^n }
+    \item \q{a_{1} = 1,\quad a_{2} = 3,\quad a_{n+2} = 4a_{n+1} - 4a_{n} }
+    \vspace{.2\baselineskip}
+    \item \q{a_{1} = 3,\quad a_{n+1} = \frac{3a_{n} - 4}{a_{n} - 2} }
+    \vspace{.2\baselineskip}
+    \item \q{a_{1} = 3,\quad a_{n+1} = \frac{3a_{n} - 4}{a_{n} - 1}}
+  \end{enumerate}
+}
+
+
+\clearpage
+\prob{%
+  初項 $a_{1} = 1$ として、下の漸化式を解け。
+  \begin{enumerate}[label=(\arabic*)]
+    \item \q{a_{n+1} = (n+1) a_{n}}
+    \item \q{(n+2) a_{n+1} = n a_{n}}
+    \item \q{n a_{n+1} = 2 (n+1) a_{n} + n(n+1)}
+  \end{enumerate}
+}
+
+\clearpage
+\prob{%
+  数列$\{a_{n}\}$を
+  \begin{align*}
+    a_{1} = 1,\quad a_{n+1} = \sqrt{\frac{3a_{n} + 4}{2a_{n} + 3}}
+  \end{align*}
+  と定める。以下の問いに答えよ。
+  \begin{enumerate}[label=(\arabic*)]
+    \item $n\geq 2$のとき、$a_{n}>1$ となることを示せ。
+    \vspace{.3\baselineskip}
+    \item \q{\alpha^2 = \frac{3\alpha + 4}{2\alpha + 3}}を満たす正の実数$\alpha$を求めよ。
+  \end{enumerate}
+  \begin{spacing}{1.2}
+    $\{a_{n}\}$がある値に収束するとき、\q{\lim_{n\to \infty}a_{n} = \lim_{n\to\infty}a_{n+1}}であるので、
+    その極限は$\alpha$である。
+    そこで、以下の手順で実際に$\alpha$に収束することを示そう。
+  \end{spacing}
+  \vspace{-.5\baselineskip}
+  \begin{enumerate}[label=(\arabic*), resume]
+    \item すべての自然数$n$に対して、$a_{n}<\alpha$となることを示せ。
+    \vspace{.3\baselineskip}
+    \item $0<r<1$を満たすある実数$r$に対して、
+    不等式\q{\frac{\alpha - a_{n+1}}{\alpha - a_{n}}\leq r}が成り立つことを示し、
+    極限\q{\lim_{n\to\infty}a_{n}}を求めよ。
+  \end{enumerate}
+}
+
+% -------------------------------------------------------%
+% 数列と漸化式とその周辺
+
+\clearpage
+\prob{%
+  $n$が2以上の自然数のとき、次の不等式が成り立つことを証明せよ。
+  \begin{gather*}
+    \frac{1}{1^2} +
+    \frac{1}{2^2} +
+    \frac{1}{3^2} + \dots\dots + \frac{1}{n^2} < 2 - \frac{1}{n}
+  \end{gather*}
+}
+数学的帰納法を用いて示します。
+
+\begin{ans*}
+  ${}$
+  \begin{gather*}
+    \frac{1}{1^2} +
+    \frac{1}{2^2} +
+    \frac{1}{3^2} + \dots\dots + \frac{1}{n^2} < 2 - \frac{1}{n} \quad\cdots\rm{(*)}
+  \end{gather*}
+  \begin{enumerate}[label=(\roman*), ref=(\roman*), itemsep=0pt]
+    \item $n=2$のとき、
+    \begin{gather*}
+      \frac{1}{1} + \frac{1}{4} < 2 - \frac{1}{2}
+    \end{gather*}
+    であるので確かに$(*)$は成り立つ。
+    \item $n=k\:(k\geq 2)$のとき、$(*)$が成り立つと仮定すると
+    \begin{gather*}
+      \frac{1}{1^2} +
+      \frac{1}{2^2} +
+      \frac{1}{3^2} + \dots\dots + \frac{1}{k^2} < 2 - \frac{1}{k} \quad\cdots\rm{(**)}
+    \end{gather*}
+    である。このとき、$(**)$の両辺に$\disp \frac{1}{(k+1)^{2}}$を加えて
+    \begin{align*}
+      \frac{1}{1^2} +
+      \frac{1}{2^2} +
+      \frac{1}{3^2} + \dots\dots + \frac{1}{k^2} + \frac{1}{(k+1)^{2}}
+      &< 2 - \frac{1}{k} + \frac{1}{(k+1)^{2}} \\
+      &< 2 - \frac{1}{k} + \frac{1}{k(k+1)} \quad (\because (k+1)^{2} > k(k+1)) \\
+      &= 2 - \frac{1}{k+1}
+    \end{align*}
+    であるので$n=k+1$のときも$(*)$は成り立つ。
+  \end{enumerate}
+  ゆえに、数学的帰納法により、すべての自然数$n$に対して$(*)$が成り立つ。
+\end{ans*}
+
+
+\clearpage
+\prob{%
+  数列$\{a_{n}\}$を、
+  $a_{1} = 1,~a_{2} = 2\cos\grt,~a_{n+1} = 2\cos\grt\cdot a_{n} - a_{n-1}(n\geq 2)$で定める。
+  このとき、$\disp a_{n} = \frac{\sin n\grt}{\sin\grt}(n\geq 1)$
+  となることを示せ。
+}
+この問題も数学的帰納法を用いて示します。
+
+\begin{ans*}
+  ${}$
+  \begin{gather*}
+    a_{n} = \frac{\sin n\grt}{\sin\grt} \quad\cdots\rm{(*)}
+  \end{gather*}
+  について考える。
+  \begin{enumerate}[label=(\roman*), ref=(\roman*), itemsep=0pt]
+    \item $n=1$のとき、$\disp a_{1} = \frac{\sin\grt}{\sin\grt}=1$であるので、$(*)$は成り立つ。
+    \item $n=2$のとき、$\disp a_{2} = 2\cos\grt = \frac{\sin 2\grt}{\sin\grt}$であるので、$(*)$は成り立つ。
+    \item $n=k,\,k+1\:(k\in\bbN)$のとき、$\disp a_{k} = \frac{\sin k\grt}{\sin\grt},\,a_{k+1} = \frac{\sin (k+1)\grt}{\sin\grt}$であると仮定すると
+    \begin{align*}
+      a_{k+2}
+      &= 2\cos\grt\cdot a_{k+1} - a_{k} \\
+      &= 2\cos\grt\cdot \frac{\sin (k+1)\grt}{\sin\grt} - \frac{\sin k\grt}{\sin\grt} \\
+      &= \frac{ 2\sin\{ (k+2)\grt - \grt \}\cos\grt - \sin \{ (k+2)\grt - 2\grt \}}{\sin\grt} \\
+      &= \frac{
+        2\sin(k+2)\grt \cdot \cos^{2}\grt
+        - 2\cos(k+2)\grt \cdot \sin\grt\cos\grt
+        - \sin(k+2)\grt \cdot \cos 2\grt
+        + \cos(k+2)\grt \cdot \sin 2\grt
+      }{
+        \sin\grt
+      } \\
+      &= \frac{
+        \sin(k+2)\grt \cdot (1+\cos 2\grt)
+        - \cos(k+2)\grt \cdot \sin2\grt
+        - \sin(k+2)\grt \cdot \cos 2\grt
+        + \cos(k+2)\grt \cdot \sin 2\grt
+      }{
+        \sin\grt
+      } \\
+      &= \frac{\sin (k+2)\grt}{\sin\grt}
+      \end{align*}
+    であるので、$n=k+2$のときも与えられた式が成り立つ。
+  \end{enumerate}
+  以上より、数学的帰納法により、すべての自然数$n$に対して$\disp a_{n} = \frac{\sin n\grt}{\sin\grt}$が成り立つ。
+\end{ans*}
+
+
+\clearpage
+\prob{%
+  さいころを101回振るとき、1の目は何回出る確率が最大か。
+}
+\begin{ans*}
+  ${}$
+  $n$を0以上101以下の整数とし、
+  101回振って1の目が$n$回出る確率を$p_{n}$とする。
+  このとき、
+  \begin{gather*}
+    p_{n} = {}_{101}\rm{C}_{n} \biggl(\frac{1}{6}\biggr)^{n}\biggl(\frac{5}{6}\biggr)^{101-n}
+  \end{gather*}
+  であるので、$p_{n}$と$p_{n+1}$の比は
+  \begin{gather*}
+    \frac{p_{n+1}}{p_{n}}
+    = \frac{\cfrac{101!}{(n+1)! (100-n)!}}{\cfrac{101!}{n!(101-n)!}} \frac{1}{6} \cdot \frac{6}{5}
+    = \frac{101-n}{5(n+1)}
+  \end{gather*}
+  となる。
+  $\disp\frac{p_{n+1}}{p_{n}} > 1$とすると$101 - n > 5n + 5$より、$n < 16$。
+  よって、
+  \begin{fleqn}[20pt]
+    \begin{align*}
+      \frac{p_{n+1}}{p_{n}} > 1 \text{のとき、$n < 16$}\\
+      \frac{p_{n+1}}{p_{n}} = 1 \text{のとき、$n = 16$}\\
+      \frac{p_{n+1}}{p_{n}} < 1 \text{のとき、$n > 16$}
+    \end{align*}
+  \end{fleqn}
+  であるので、
+  \begin{gather*}
+    p_{0} < p_{1} < \dots < p_{15} < p_{16} = p_{17} > p_{18} > \dots > p_{101}
+  \end{gather*}
+  1の目が出る確率が最大となるのは$16,\,17$回のときである。
+\end{ans*}
+
+\clearpage
+\prob{%
+  一辺の長さが1の正方形ABCDの上を次の規則で反時計回りに動く点Qを考える。
+  さいころを振って偶数の目が出れば、出た目の長さだけ順次正方形の周上を移動させ、
+  奇数の目が出れば移動させない。
+  Qは最初Aにあったとする。
+  さいころを$n$回振ったあとで、QがCにある確率を$p_{n}$とする。
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*), itemsep=0pt]
+    \item $p_{1},\,p_{2}$を求めよ。
+    \item $p_{n+1}$と$p_{n}$との間に成り立つ関係式を求めよ。
+    \item $p_{n}$を$n$の式で表せ。
+  \end{enumerate}
+}
+
+\begin{ans*}
+  ${}$
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*), itemsep=0pt]
+    \item $\disp p_{1} = \frac{1}{3},\, p_{2} = \frac{4}{9}$
+    \item $n+1$回目にCにあるのは
+    \begin{itemize}[label=\textbullet, itemsep=0pt]
+      \item $n$回目にAにいて、$n+1$回目に2または6の目が出たとき
+      \item $n$回目にCにいて、$n+1$回目に2,\,6以外の目が出たとき
+    \end{itemize}
+    のいずれかでこれらは互いに排反。
+    また、点QはかならずAかCのいずれかの点にあるので点Aにある確率は$1-p_{n}$である。
+
+    したがって、
+    \begin{gather*}
+      p_{n+1} = \frac{1}{3}(1-p_{n}) + \frac{2}{3}p_{n} = \frac{1}{3}p_{n} + \frac{1}{3}
+    \end{gather*}
+
+    \item 得られた漸化式より
+    \begin{gather*}
+      p_{n+1} = \frac{1}{3}p_{n} + \frac{1}{3} \Longleftrightarrow
+      p_{n+1} - \frac{1}{2} = \frac{1}{3}\biggl(p_{n} - \frac{1}{2}\biggr)
+    \end{gather*}
+    であるので、
+    \begin{gather*}
+      p_{n} - \frac{1}{2} = \biggl(\frac{1}{3}\biggr)^{n-1}\biggl(p_{1} - \frac{1}{2}\biggr)
+    \end{gather*}
+    また、$\disp p_{1} = \frac{1}{3}$から
+    \begin{gather*}
+      p_{n} = \frac{1}{2} - \frac{1}{2} \biggl(\frac{1}{3}\biggr)^{n}
+    \end{gather*}
+  \end{enumerate}
+\end{ans*}
+\begin{supple*}
+  問題設定が「正方形ABCD」ではなく「正三角形ABC」となっていた場合はどうなるでしょうか？
+\end{supple*}
+
+\clearpage
+\prob{%
+  先頭車両から順に1から$n$までの番号のついた$n$両編成の列車がある。
+  ただし、$n\geq 2$とする。
+  各車両を赤色、青色、黄色のいずれか1色で塗るとき、隣り合った車両の少なくとも一方が赤色となるような色の塗り方は何通りか。
+}
+\begin{ans*}
+  ${}$
+  $n$を2以上の自然数として$n$両編成のときの塗り方を$a_{n}$通りとする。
+
+  $n\geq 4$のとき、
+  \begin{itemize}
+    \item 1両目が赤のとき、2両目以降の塗り方は$a_{n-1}$通り。
+    \item 1両目が赤でない（青または黄）とき、2両目が赤色で3両目以降の塗り方は$a_{n-2}$通り。
+  \end{itemize}
+  したがって、$n\geq 4$のとき、
+  \begin{gather*}
+    a_{n} = a_{n-1} + 2a_{n-2} \quad \cdots\rm{(*)} \\
+    a_{2} = 5,\,a_{3} = 11
+  \end{gather*}
+  である。$(*)$より、
+  \begin{align*}
+    \begin{dcases}
+      a_{n} - 2a_{n-1} = -(a_{n-1} - 2a_{n-2}) &\cdots\rm{(i)} \\
+      a_{n} + a_{n-1} = 2(a_{n-1} + a_{n-2}) &\cdots\rm{(ii)}
+    \end{dcases}
+  \end{align*}
+  であるので、$\rm{(i)}$より、
+  \begin{gather*}
+    a_{n+1} - 2a_{n}
+    = (a_{3} - 2a_{2}) \cdot (-1)^{n-2}
+    = (-1)^{n}
+  \end{gather*}
+  $\rm{(ii)}$より、
+  \begin{gather*}
+    a_{n+1} + a_{n}
+    = (a_{3} + a_{2}) \cdot 2^{n-2}
+    = 2^{n+2}
+  \end{gather*}
+
+  以上より、$\disp a_{n} = \frac{2^{n+2} - (-1)^{n}}{3} = \frac{2^{n+2} + (-1)^{n+1}}{3}$
+
+  これは$n=2,\,3$のときも成立するので、求める場合の数は
+  \begin{gather*}
+    a_{n} = \frac{2^{n+2} + (-1)^{n+1}}{3}
+  \end{gather*}
+\end{ans*}
+% \begin{other*}
+%   $n-1$両編成のうち、
+%   $n-1$両目が赤の塗り方を$b_{n-1}$通り、
+%   $n-1$両目が青または黄の塗り方を$c_{n-1}$通りとすると、
+%   $n$両目を追加するとき、
+%   \begin{gather*}
+%     b_{n} = b_{n-1} + c_{n-1},\quad c_{n} = b_{n-1}
+%   \end{gather*}
+%   であり、求める場合の数は$b_{n}+c_{n}$である。
+% \end{other*}
+
+\clearpage
+\prob{%
+  どの目も出る確率が等しいさいころを1つ用意し、
+  次のように左から順に文字を書く。
+  さいころを投げ、出た目が$1,~2,~3$のときは文字列AAを書き、
+  $4$のときは文字Bを、$5$のときは文字Cを、$6$のときは文字Dを書く。
+  更に繰り返しさいころを投げ、同じ規則に従って、$\rm{AA},~\rm{B},~\rm{C},~\rm{D}$
+  をすでにある文字列の右側につなげて書いていく。
+  例えば、さいころを5回投げ、その出た目が順に$2,~5,~6,~3,~4$であったとすると、
+  得られる文字列はAACDAABとなる。
+  このとき、左から4番目の文字はD、5番目の文字はAである。
+
+  $n$を正の整数とする。
+  $n$回さいころを投げ文字列を作るとき、
+  文字列の左から$n$番目の文字がAとなる確率を求めよ。
+}
+\begin{ans*}
+  ${}$
+  $n$回さいころを投げて左から$n$番目がAとなる確率を$p_{n}$とすると、
+  左から$n$番目がAとなるのは$n\geq 2$として
+  \begin{itemize}
+    \item 1回目に1,\,2,\,3が出て、$n-2$回投げて$n-2$番目がA
+    \item 1回目に4,\,5,\,6が出て、$n-1$回投げて$n-1$番目がA
+  \end{itemize}
+  のいずれか。
+
+  よって、
+  \begin{gather*}
+    p_{n} = \frac{1}{2}p_{n-2} + \frac{1}{2}p_{n-1}
+    \Longleftrightarrow p_{n} + \frac{1}{2}p_{n-1} = p_{n-1} + \frac{1}{2}p_{n-2}
+  \end{gather*}
+  であるので、
+  \begin{gather*}
+    p_{n} - p_{n-1} = p_{2} + \frac{1}{2} p_{n-2} = 1
+  \end{gather*}
+
+  よって、
+  \begin{gather*}
+    p_{n} + \frac{1}{2} p_{n-1} = 1
+    \Longleftrightarrow p_{n} - \frac{2}{3} = -\frac{1}{2}\biggl( p_{n-1} - \frac{2}{3} \biggr) \\
+    p_{n} - \frac{2}{3} = \frac{1}{12} \biggl(-\frac{1}{2}\biggr)^{n-2} \quad (\because p_{2} = \frac{3}{4}) \\
+    \therefore p_{n} = \frac{2}{3} + \frac{1}{3} \biggl(-\frac{1}{2}\biggr)^{n}
+  \end{gather*}
+  また、これは$n=1$のときも成立する。
+\end{ans*}
+
+
+% 駿台模試
+\clearpage
+\prob{%
+  \begin{spacing}{1.2}
+    平行な三直線$l_{1},~l_{2},~l_{3}$の各々に$n$個の点$A_{n},~B_{n},~C_{n}$をとる。
+    いま$j(=1,2,\cdots ,n)$に対し確率$\disp \frac{1}{2}$で$A_{j},~C_{j}$の一方を選び
+    $B_{j}$と結ぶとき、$l_{1}$の始点$X$から$l_{1},~l_{2},~l_{3}$の終点$\rm{P},~\rm{Q},~\rm{R}$
+    へあみだくじを以下のルールで行う。
+  \end{spacing}
+
+  \begin{itembox}[l]{ルール}
+    \begin{itemize}[itemsep=0pt]
+      \item 縦の直線に沿って進む。
+      \item 縦に進むうえで横の線分に接触したらその線分に沿って進む。
+      \item 上の2つを繰り返し$\rm{P},~\rm{Q},~\rm{R}$のいずれかに到達するまで行う。
+    \end{itemize}
+  \end{itembox}
+  $\rm{P},~\rm{Q}$に到達する確率をそれぞれ$n$を用いて表せ。
+}
+
+\begin{ans*}
+  ${}$
+  終点P,~Q,~Rに到達する確率をそれぞれ$p_{n},\,q_{n},\,r_{n}$とする。
+  このとき、$\disp p_{1} = \frac{1}{2},\,q_{1} = \frac{1}{2},\,r_{1} = 0$であり、
+  $p_{n} + q_{n} + r_{n} = 1$である。
+
+  $n-1$本だけ線が引かれていて$n$本目の引き方を選ぶときのPに到達する場合は % 確率$p_{n}$は
+  \begin{itemize}
+    \item $n-1$個目の点を通過した時点では$l_{1}$にあって、$n$本目で$C_{n}$を選んだ場合
+    \item $n-1$個目の点を通過した時点では$l_{2}$にあって、$n$本目で$A_{n}$を選んだ場合
+  \end{itemize}
+  のいずれかである。
+  同様に、Qに到達する場合は % 確率$q_{n}$は
+  \begin{itemize}
+    \item $n-1$個目の点を通過した時点では$l_{1}$にあって、$n$本目で$A_{n}$を選んだ場合
+    \item $n-1$個目の点を通過した時点では$l_{3}$にあって、$n$本目で$C_{n}$を選んだ場合
+  \end{itemize}
+  のいずれかである。
+  よって、漸化式は$n\geq 2$のとき、
+  \begin{gather*}
+    \begin{dcases}
+      p_{n} = \frac{1}{2}p_{n-1} + \frac{1}{2}q_{n-1} \\[.5em]
+      q_{n} = \frac{1}{2}p_{n-1} + \frac{1}{2}r_{n-1} \\[.5em]
+      p_{n} + q_{n} + r_{n} = 1
+    \end{dcases}
+  \end{gather*}
+  であるので、$r_{n}$を消去して
+  \begin{gather*}
+    \begin{dcases}
+      p_{n} = \frac{1}{2}p_{n-1} + \frac{1}{2}q_{n-1} \\[.5em]
+      q_{n} = \frac{1}{2}(1-q_{n-1})
+    \end{dcases}
+  \end{gather*}
+
+  これを解いて（過程は省略）
+  \begin{align*}
+    &p_{n} = \biggl(\frac{1}{2}\biggr)^{n+1} + \frac{1}{6}\biggl(-\frac{1}{2}\biggr)^{n} + \frac{1}{3} \\
+    &q_{n} = \frac{1}{3}\biggl\{ 1 - \biggl( -\frac{1}{2} \biggr)^{n} \biggr\}
+  \end{align*}
+\end{ans*}
+
+
+
+
+% -------------------------------------------------------%
+
+% 東大2024
+\clearpage
+\prob{%
+  座標平面上を次の規則\ref*{item:2024Tokyo_1-1}、\ref*{item:2024Tokyo_1-2}に従って
+  1秒ごとに動く点Pを考える。
+  \begin{enumerate}[label=(\roman*), ref=(\roman*), itemsep=0pt]
+    \item\label{item:2024Tokyo_1-1}最初に、$\rm{P}$は点$(2,~1)$にいる。
+    \item\label{item:2024Tokyo_1-2}ある時刻でPが点$(a,~b)$にいるとき、その1秒後にはPは
+    \begin{enumerate}[label=\bullet, itemsep=5pt, topsep=5pt]
+      \item 確率\dm{\frac{1}{3}}で$x$軸に関して$(a,~b)$と対称な点
+      \item 確率\dm{\frac{1}{3}}で$y$軸に関して$(a,~b)$と対称な点
+      \item 確率\dm{\frac{1}{6}}で直線$y=x$に関して$(a,~b)$と対称な点
+      \item 確率\dm{\frac{1}{6}}で直線$y=-x$に関して$(a,~b)$と対称な点
+    \end{enumerate}
+    にいる。
+  \end{enumerate}
+  以下の問いに答えよ。ただし、\ref*{item:2024Tokyo_1}については、結論のみを書けばよい。
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*), itemsep=0pt]
+    \item\label{item:2024Tokyo_1} Pがとりうる点の座標をすべて求めよ。
+    \item $n$を正の整数とする。最初から$n$秒後にPが点$(2,~1)$にいる確率と、
+    最初から$n$秒後にPが点$(-2,~-1)$にいる確率にいる確率は等しいことを示せ。
+    \item $n$を正の整数とする。最初から$n$秒後にPが点$(2,~1)$にいる確率を求めよ。
+  \end{enumerate}
+}
+
+\begin{ans*}
+  ${}$
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*), itemsep=0pt]
+    \item 動点Pがとりうる点の座標は次の8点である。
+    \begin{figure}[H]\centering
+      \begin{tikzpicture}[scale=1.5]
+        \draw[->] (-2.5,0) -- (2.5,0) node[below] {$x$};
+        \draw[->] (0,-2.5) -- (0,2.5) node[left] {$y$};
+        \fill (0,0) circle (1pt) node[below left] {\hspace*{-25pt}{\small $O$}};
+        \draw[domain=-2:2,smooth,variable=\x,black] plot ({\x},{\x}) node[above right] {$y=x$};
+        \draw[domain=-2:2,smooth,variable=\x,black] plot ({\x},{-\x}) node[below right, anchor=mid west] {{$y=-x$}};
+        \fill (1,2) circle (1pt) node[above right] {$(1,~2)$};
+        \fill (-1,2) circle (1pt) node[above right] {$(-1,~2)$};
+        \fill (1,-2) circle (1pt) node[below right] {$(1,~-2)$};
+        \fill (-1,-2) circle (1pt) node[below left] {$(-1,~-2)$};
+        \fill (2,1) circle (1pt) node[above right] {$(2,~1)$};
+        \fill (-2,1) circle (1pt) node[above left] {$(-2,~1)$};
+        \fill (2,-1) circle (1pt) node[below right] {$(2,~-1)$};
+        \fill (-2,-1) circle (1pt) node[below left] {$(-2,~-1)$};
+      \end{tikzpicture}
+    \end{figure}
+    \item\label{item:Tokyo_2024_2} A(2,\,1)とし、そこから反時計回りに各点をA,~B,~C,~D,~E,~F,~G,~Hとする。
+    また、$n$秒後にA,~B,~C,~D,~E,~F,~G,~Hにいる確率をそれぞれ
+    $a_{n},~b_{n},~c_{n},~d_{n},~e_{n},~f_{n},~g_{n},~h_{n}$とする。
+    ただし、0秒後にAにいるので、
+    \begin{gather*}
+      a_{0} = 1,\,b_{0} = c_{0} = d_{0} = e_{0} = f_{0} = g_{0} = h_{0} = 0
+    \end{gather*}
+    このとき、$n$を0以上の整数として、$n+1$秒後にAにいる確率$a_{n+1}$は
+    \begin{align*}
+      a_{n+1}
+      = \frac{1}{6}b_{n} + \frac{1}{3}d_{n} + \frac{1}{6}f_{n} + \frac{1}{3}h_{n} \\
+    \end{align*}
+    また、$n+1$秒後にEにいる確率$e_{n+1}$も
+    \begin{align*}
+      e_{n+1}
+      = \frac{1}{6}b_{n} + \frac{1}{3}d_{n} + \frac{1}{6}f_{n} + \frac{1}{3}h_{n}
+    \end{align*}
+    であるので、$a_{n+1} = e_{n+1}~(n = 0,\,1,\dots)$である。
+    よって、$n$を自然数として$a_{n} = e_{n}$であるので最初から$n$秒後にPが点$(2,~1)$にいる確率と、
+    最初から$n$秒後にPが点$(-2,~-1)$にいる確率にいる確率は等しい。
+
+    \item $n = 1,\,2,\,3,\dots$に対して\ref*{item:Tokyo_2024_2}と同様にして
+    \begin{gather*}
+      b_{n} = f_{n},\,c_{n} = g_{n},\,d_{n} = h_{n}
+    \end{gather*}
+    また、
+    \begin{gather*}
+      a_{0} = 1,\,b_{0} = c_{0} = d_{0} = e_{0} = f_{0} = g_{0} = h_{0} = 0
+    \end{gather*}
+    を考えると、
+    $n=0,\,1,\,2,\dots$のとき、
+    \begin{align*}
+      a_{n+1}
+      &= \frac{1}{6}b_{n} + \frac{1}{3}d_{n} + \frac{1}{6}f_{n} + \frac{1}{3}h_{n} \\
+      &= \frac{1}{3}b_{n} + \frac{2}{3}d_{n} \\
+      c_{n+1}
+      &= \frac{1}{3}b_{n} + \frac{1}{6}d_{n} + \frac{1}{3}f_{n} + \frac{1}{6}h_{n} \\
+      &= \frac{2}{3}b_{n} + \frac{1}{3}d_{n}
+    \end{align*}
+    $n=1,\,2,\,3,\dots$のとき、
+    \begin{align*}
+      b_{n+1}
+      &= \frac{1}{6}a_{n} + \frac{1}{3}c_{n} + \frac{1}{6}e_{n} + \frac{1}{3}g_{n} \\
+      &= \frac{1}{3}a_{n} + \frac{2}{3}c_{n} \\
+      d_{n+1}
+      &= \frac{1}{3}a_{n} + \frac{1}{6}c_{n} + \frac{1}{3}e_{n} + \frac{1}{6}g_{n} \\
+      &= \frac{2}{3}a_{n} + \frac{1}{3}c_{n}
+    \end{align*}
+    よって、$n=1,\,2,\,3,\dots$のとき、
+    \begin{gather*}
+      a_{n+2} + c_{n+2} = b_{n+1} + d_{n+1} = a_{n} + c_{n} \\
+      a_{n+2} - c_{n+2} = -\frac{1}{3}(b_{n+1} - d_{n+1}) = \frac{1}{9}(a_{n} - c_{n})
+    \end{gather*}
+
+    \begin{enumerate}[label=(\Roman*), ref=(\Roman*), itemsep=0pt]
+      \item $n$が奇数のとき、
+      \begin{align*}
+        &a_{n} + c_{n} = a_{1} + c_{1} = 0 \\
+        &a_{n} - c_{n} = \biggl(\frac{1}{9}\biggr)^{\frac{n-1}{2}}(a_{1} - c_{1}) = 0
+      \end{align*}
+      であるので、$a_{n} (= c_{n}) = 0$
+      \item $n$が偶数のとき、
+      \begin{gather*}
+        \disp a_{2} = \biggl(\frac{1}{3}\biggr)^{2} \tm 2 + \biggl(\frac{1}{6}\biggr)^{2} \tm 2 = \frac{5}{18} \\
+        \disp c_{2} = \frac{1}{3} \tm \frac{1}{6} \tm 4 = \frac{2}{9}
+      \end{gather*}
+      であるので、
+      \begin{align*}
+        &a_{n} + c_{n} = a_{2} + c_{2} = \frac{1}{2} \\
+        &a_{n} - c_{n} = \biggl(\frac{1}{9}\biggr)^{\frac{n-2}{2}}(a_{2} - c_{2}) = \frac{1}{2}\biggl(\frac{1}{3}\biggr)^{n}
+      \end{align*}
+      よって、
+      \begin{gather*}
+        a_{n} = \frac{1}{4}\biggl\{ 1 + \biggl( \frac{1}{3} \biggr)^{n} \biggr\}
+      \end{gather*}
+    \end{enumerate}
+    以上より、求める確率$a_{n}$は
+    \begin{gather*}
+      a_{n} =
+      \begin{dcases}
+        0 & (n\text{が奇数}) \\
+        \frac{1}{4}\biggl\{ 1 + \biggl( \frac{1}{3} \biggr)^{n} \biggr\} & (n\text{が偶数})
+      \end{dcases}
+    \end{gather*}
+  \end{enumerate}
+\end{ans*}
+
+\end{document}

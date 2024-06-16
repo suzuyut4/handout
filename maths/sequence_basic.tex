@@ -1,12 +1,17 @@
 \documentclass[a4paper]{ltjsarticle}
 
-\input{../asset/preamble.tex}
+\input{./src/packages.tex}
+\input{./src/macros.tex}
+\input{./src/styles.tex}
 
 \title{
-  数列と漸化式 \\
-  {\Large ---問題編---}
+  {\Large 数列と漸化式} \\
+  --- 基本編 ---
 }
-\author{{\normalsize 鈴木}}
+\author{
+  Yuta Suzuki
+  \thanks{https://github.com/suzuyut4}
+}
 \date{}
 
 
@@ -23,19 +28,25 @@
 \begin{enumerate}[label=(\roman*)]
   \item
   $a_{n+1} = a_n + d$  \rightarrow 公差$d$の等差数列
-  \fla{
+  \begin{fleqn}[20pt]
+    \begin{align}
       \Rightarrow a_n = a_1 + (n-1)d \label{eq:tousa}
-    }
+    \end{align}
+  \end{fleqn}
   \item
   $a_{n+1} = ra_n$     \rightarrow 公比$r$の等比数列
-  \fla{
+  \begin{fleqn}[20pt]
+    \begin{align}
       \Rightarrow a_n = a_1 r^{n-1} \label{eq:touhi}
-    }
+    \end{align}
+  \end{fleqn}
   \item
   $a_{n+1} = a_n + b_n$\rightarrow 階差数列が$\{b_n\}$の数列$\{a_n\}$
-  \fla{
+  \begin{fleqn}[20pt]
+    \begin{align}
       \Rightarrow (n\geqq 2 \text{のとき、})\:\:a_n = a_1 + \sum_{k=1}^{n-1}b_k \label{eq:kaisa}
-    }
+    \end{align}
+  \end{fleqn}
 \end{enumerate}
 以下、\eqref{eq:tousa}の形を等差型、\eqref{eq:touhi}の形を等比型、\eqref{eq:kaisa}の形を階差型
 と呼ぶことにします。
@@ -46,8 +57,10 @@
 \begin{prf*}
 $a_{n+1} = a_n + b_n \Leftrightarrow a_{n+1} - a_n = b_n$であるので、
 $n$を$n-1,n-2,\cdots,2,1$として足し合わせると
+
 {\newcommand{\dl}[1]{\raisebox{-2pt}{$#1$}}
-\flan{
+\begin{fleqn}[20pt]
+  \begin{align*}
     &\begin{matrix}
       & a_n     & - & a_{n-1} & = & b_{n-1} \\
       & a_{n-1} & - & a_{n-2} & = & b_{n-2} \\
@@ -60,7 +73,8 @@ $n$を$n-1,n-2,\cdots,2,1$として足し合わせると
     \end{matrix}
     \\
     &\Leftrightarrow a_n = a_1 + \sum_{k=1}^{n-1}b_k \qquad \qed
-}
+  \end{align*}
+\end{fleqn}
 }
 \end{prf*}
 
@@ -69,49 +83,45 @@ $n$を$n-1,n-2,\cdots,2,1$として足し合わせると
 そのため、階差型においては条件$n\geqq 2$を忘れてはいけません。
 すなわち、一般項を求めたとき、$n=1$でもその式が成り立っているか必ず確認し、
 成り立っていればそのように書き、成り立っていなければ場合分けして一般項を示す必要があります。
-解答の書き方など詳しくは、基本編で確認してください。
+解答の書き方など詳しくは、\ref*{sec:basic_of_recurrenceformula}漸化式 基本編で確認してください。
 
 
 \subsection{数列の和$S_n$}
 一般項$a_n$で表される数列について第一項から第$n$項までの和を$S_n$で表すことがあります。
 すなわち
-\flan{S_n = \sum_{k=1}^{n}a_k}
+\begin{fleqn}[20pt]
+  \begin{align*}
+    S_n = \sum_{k=1}^{n}a_k
+  \end{align*}
+\end{fleqn}
 です。以下、特に断りがなければ$S_n$を数列$\{a_n\}$に対する和を表すものとします。
 
 \clearpage
 \section{数列とその周辺}
 \begin{question*}
   次の値を$n$を用いて表せ。
-\begin{enumerate}[label=\arabic*.]
+\begin{enumerate}[label=\arabic*., itemsep=.5em]
   \item
     \dm{\sum_{k=1}^{n}k}
-    \vskip.5\baselineskip
   \item
     \dm{\sum_{k=1}^{n}k^2}
-    \vskip.5\baselineskip
   \item
     \dm{\sum_{k=1}^{n}k^3}
-    \vskip.5\baselineskip
   \item
     \dm{\sum_{k=1}^{n}\frac{3}{k(k+2)}}
-    \vskip.5\baselineskip
   \item
     \dm{\sum_{k=1}^{n}\frac{3}{\sqrt{k+2} + \sqrt{k}}}
-    \vskip.5\baselineskip
   \item
     \dm{\sum_{k=1}^{n}\{(2k-1)\cdot 2^{k-1}\}}
-    \vskip.5\baselineskip
   \item
     \dm{\frac{1}{1} + \frac{1}{1+2} + \frac{1}{1+2+3} + \cdots + \frac{1}{1+2+\cdots +k} + \cdots + \frac{1}{1+2+3+\cdots +(n-1)+n}}
-    \vskip.5\baselineskip
   \item
     \dm{1+\frac{2}{3}+\frac{3}{3^2} + \cdots + \frac{k}{3^{k-1}} + \cdots + \frac{n}{3^{n-1}}}
-    \vskip.5\baselineskip
 \end{enumerate}
 \end{question*}
 
 \clearpage
-\section{漸化式 基本編}
+\section{漸化式 基本編}\label{sec:basic_of_recurrenceformula}
 
 \begin{question*}
   次の式を満たす数列$\{a_n\}$を$n$を用いて表せ。
@@ -159,77 +169,5 @@ $n$を$n-1,n-2,\cdots,2,1$として足し合わせると
 
 \end{enumerate}
 \end{question*}
-
-
-\clearpage
-\section{漸化式 演習編}
-ここでは、入試問題（二次試験）レベルの数列の問題を扱います。
-少々難しい問題もありますが、ぜひ取り組んでみてください。
-
-\begin{question*}
-次の問いに答えよ。
-\begin{enumerate}[label=\arabic*.]
-  \item %@ 問1
-  $n$を自然数として次の条件で定められた数列$\{a_n\}$について2通りの解き方を考えよう。\\ % (福井大 改 +α)
-
-    \al{
-      a_1 = 1,\:\: a_{n+1} = \frac{3}{n} (a_1 + a_2 + a_3 + \cdots + a_n)  \quad\cdots (*)
-    }
-
-  \begin{enumerate}[label=(\arabic*)]
-    \item $a_2,\;a_3,\;a_4$を計算せよ。\\
-    \item 一般項$\{a_n\}$を推定し、それが正しいことを数学的帰納法を用いて示せ。\\
-    \item 上の漸化式$(*)$について、$a_1 + a_2 + a_3 + \cdots + a_{n-1}$を$a_n$と$n$を用いて表せ。\\
-    \item $a_{n+1}$と$a_n$の関係を導いた上で、一般項$a_n$を$n$を用いて表せ。\\
-  \end{enumerate}
-
-\vskip1.5\baselineskip
-
-  \item %@ 問2
-  \begin{enumerate}[label=(\arabic*)]
-    \item 次の初項、二つの漸化式で与えられる数列$\{a_n\},\, \{b_n\}$を考える。\\
-      \al{
-        &a_1 = 5,\quad b_1 = 3\\
-        &a_{n+1} = 5a_n + 3b_n \\
-        &b_{n+1} = 3a_n + 5b_n \\
-      }
-    2つの数列$\{a_n\pm b_n\}$を求め、一般項$a_n,\, b_n$を求めよ。\\
-
-    \item (1)を踏まえて次の初項、二つの漸化式で与えられる数列$\{p_n\},\, \{q_n\}$の一般項をそれぞれ求めよ。% (大阪医科大学)
-
-        \al{
-          &p_1 = 1,\quad q_1 = 4\\
-          &p_{n+1} = 2p_n + q_n \\
-          &q_{n+1} = 4p_n - q_n \\
-        }
-      % ヒント：
-      % \ $\{p_n + t q_n\}$が等比数列となるような$t$を二つ求める。
-      % すなわち、\ $p_{n+1} + tq_{n+1} = s(p_n + t q_n) $を満たす$s,t$の組を二つ見つける。
-    \end{enumerate}
-\vskip1.5\baselineskip
-  \item %@ 問3
-  $n$を自然数、$x_1 = \sqrt{a}$として次の漸化式で与えられる数列$\{x_n\}$を考える。
-  \al{
-    x_{n+1} = \sqrt{x_n + a}
-  }
-  すなわち、
-  \al{
-    x_2 = \sqrt{a + \sqrt{a}}, \qquad x_3 = \sqrt{a + \sqrt{a + \sqrt{a}}}, \qquad\dots
-  }
-  である。
-  この数列が収束するかどうかを調べたい。
-  次の問いに答えよ。
-
-  \begin{enumerate}[label=(\arabic*)]
-    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が収束すると仮定して、その極限値を求めよ。
-    \item 数列$\{x_n\}\:(n\in \mathbb{N})$が(1)で得た値に実際に収束することを示せ。
-  \end{enumerate}
-
-\end{enumerate}
-\end{question*}
-
-
-
-
 
 \end{document}

@@ -1,0 +1,127 @@
+% -------------------------------------------------------%
+% set styles and environments
+% -------------------------------------------------------%
+
+\pagestyle{plain}
+
+% -------------------------------------------------------%
+
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+
+% -------------------------------------------------------%
+
+% 数式番号にセクション番号を併記する
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{section}
+\makeatother
+
+% -------------------------------------------------------%
+
+% 定理スタイルの定義
+\newtheoremstyle{mystyle}
+  {\topsep}   % スペース上
+  {\topsep}   % スペース下
+  {\normalfont}  % 本文のフォント
+  {0pt}       % インデント
+  {\bfseries} % タイトルのフォント
+  {.}         % タイトルあとの句読点
+  {.5em}      % タイトルと本文のスペース
+  {\thmname{#1}\thmnumber{#2}\thmnote{#3}} % タイトルのスタイル
+% 定理環境の作成
+\theoremstyle{mystyle}
+\newtheorem*{question*}{問題}
+\newtheorem{problem}{} % 問題番号のみ
+\newtheorem*{ans*}{解答}
+\newtheorem*{practice*}{例題}
+\newtheorem*{other*}{別解}
+\newtheorem*{supple*}{補足}
+\newtheorem*{append*}{補遺}
+\newtheorem*{prf*}{証明}
+
+% -------------------------------------------------------%
+% % 不等式のため
+\newtheoremstyle{inequationmystyle}
+  {\topsep}   % スペース上
+  {\topsep}   % スペース下
+  {\normalfont}  % 本文のフォント
+  {0pt}       % インデント
+  {} % タイトルのフォント
+  {}         % タイトルあとの句読点
+  {3pt}      % タイトルと本文のスペース
+  {【\,\textbf{\thmname{#1}}\thmnumber{#2}\,】\thmnote{#3}} % タイトルのスタイル
+% 定理環境の作成
+\theoremstyle{inequationmystyle}
+\newtheorem*{syoumei*}{証明}
+\newtheorem*{kai*}{解}
+\newtheorem*{rei*}{例}
+
+
+% -------------------------------------------------------%
+
+\newtheoremstyle{problemstyle}
+  {}   % スペース上
+  {}   % スペース下
+  {\normalfont}  % 本文のフォント
+  {0pt}       % インデント
+  {} % タイトルのフォント
+  {}         % タイトルあとの句読点
+  {.5em}      % タイトルと本文のスペース
+  {\thmname{#1}\thmnumber{(#2)}\thmnote{#3}} % タイトルのスタイル
+\theoremstyle{problemstyle}
+\newtheorem{myprob}{}
+
+% -------------------------------------------------------%
+
+\newtheoremstyle{intproblemstyle}{20pt}{10pt}{\normalfont}{0pt}{}{}{.5em}
+{\thmname{#1}\thmnumber{#2.\hspace*{5pt}}\thmnote{#3}} % タイトルのスタイル
+\theoremstyle{intproblemstyle}
+\newtheorem{intprob}{} % 積分
+
+% -------------------------------------------------------%
+
+\newtheoremstyle{cfstyle}{}{}{\normalfont}{0pt}{\itshape}{}{.5em}
+{\thmname{#1}\thmnumber{#2}\thmnote{#3}} % タイトルのスタイル
+\theoremstyle{cfstyle}
+\newtheorem*{confer*}{cf.} % 積分
+
+% -------------------------------------------------------%
+
+% (1)のような環境。セクションごとに
+\newtheoremstyle{lineupstyle}
+  {}   % スペース上
+  {}   % スペース下
+  {\normalfont}  % 本文のフォント
+  {0pt}       % インデント
+  {} % タイトルのフォント
+  {}         % タイトルあとの句読点
+  {6pt}      % タイトルと本文のスペース
+  {\thmname{#1}\thmnumber{(#2)}\thmnote{\textbf{#3}}} % タイトルのスタイル
+\theoremstyle{lineupstyle}
+\newtheorem{lineup}{}[section]
+\makeatletter
+\@addtoreset{lineup}{section} % lineupカウンターがsectionが更新されるたびにリセットされる
+\makeatother
+\renewcommand{\thelineup}{\arabic{lineup}}
+
+% -------------------------------------------------------%
+
+% 問題文の左の線の定義
+\renewenvironment{leftbar}{%
+\def\FrameCommand{\hspace{10pt}\vrule width 1.2pt \hspace{10pt}}%
+\MakeFramed {\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+
+% subsubsectionを太字の「問1」表示にする
+\renewcommand{\thesubsubsection}{\large\textbf{問\arabic{subsubsection}}}
+
+\newcommand{\prob}[1]{%
+  \begin{question*}%
+    ${}$%
+    \vspace{-.5\baselineskip}%
+    \begin{leftbar}%
+      #1%
+    \end{leftbar}%
+  \end{question*}%
+}

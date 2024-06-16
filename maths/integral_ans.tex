@@ -1,17 +1,21 @@
 \documentclass[a4paper]{ltjsarticle}
 
-% \usepackage[top=25truemm,bottom=20truemm,left=10truemm,right=10truemm]{geometry}
+%-------------------------------------------------------%
 
-\input{../asset/preamble.tex}
+\input{./src/packages.tex}
+\input{./src/styles.tex}
+\input{./src/macros.tex}
 
-\numberwithin{equation}{section} % 式番号にセクションを併記する場合
+% \numberwithin{equation}{section} % 式番号にセクションを併記する場合
 \title{
-  {\large 数III 積分} \\
+  {\Large 数III 積分} \\
   --- 解答編 ---
 }
-\author{\small 鈴木}
+\author{
+  Yuta Suzuki
+  \thanks{https://github.com/suzuyut4}
+}
 \date{}
-
 
 %**************************************************************
 \begin{document}
@@ -107,22 +111,26 @@
 
 \begin{other*}
   三角関数を含む分数関数の積分→$\disp t = \tan\frac{x}{2}$の置換
-  \flan{
+  \begin{fleqn}[20pt]
+    \begin{align*}
       &t = \tan\frac{x}{2}\text{とおくと}\\
       &\tan x = \frac{2t}{1-t^2} \quad(\because\:\text{倍角の公式})\\
       &\tan^2\frac{x}{2} = \frac{1 - \cos x}{1 + \cos x} \quad(\because\:\text{半角の公式}) \\
       &\therefore \cos x = \frac{1 - t^2}{1 + t^2} \\
       &\sin x = \tan x \cos x = \frac{2t}{1 + t^2} \\
       &dt = \frac{dx}{2\cos^2\cfrac{x}{2}} = \frac{1 + t^2}{2}\,dx\Rightarrow dx = \frac{2}{1 + t^2}\,dt
-  }
+    \end{align*}
+  \end{fleqn}
   を用います。
-  \flan{
+  \begin{fleqn}[20pt]
+    \begin{align*}
       \int \frac{dx}{\sin x + 1}
       &= \int \frac{\cfrac{2}{1+t^2}}{\cfrac{2t}{1+t^2}+1} \,dt \\
       &= \int \frac{2}{t^2 + 2t + 1}\,dt \\
       &= \int \frac{2}{(t+1)^2}\,dt \\
       &= -\frac{2}{t+1} + C = -\frac{2}{\tan\cfrac{x}{2} + 1} + C
-  }
+    \end{align*}
+  \end{fleqn}
 \end{other*}
 
 \begin{supple*}
@@ -205,14 +213,16 @@
   \begin{practice*}
     次の積分\dm{\int_{-1}^{\sqrt{3}}\frac{dx}{x^2 + 4x + 5}}を求めよ。
     \begin{ans*}
-    \flan{
+    \begin{fleqn}[20pt]
+      \begin{align*}
         &\int_{-1}^{\sqrt{3}}\frac{dx}{x^2 + 4x + 5} \\
         &\qquad = \int_{-1}^{\sqrt{3}}\frac{dx}{(x+2)^2+1} \\
         &\qquad = \int_{\frac{\pi}{4}}^{\frac{5}{12}\pi}\frac{1}{1+\tan^2\theta}\cdot\frac{1}{\cos^2\theta}\,d\theta \quad(x+2 = \tan\theta\text{\:とおいた})\\
         &\qquad = \int_{\frac{\pi}{4}}^{\frac{5}{12}\pi}\,d\theta \\
         &\qquad = \frac{5}{12}\pi - \frac{\pi}{4} \\
         &\qquad = \frac{\pi}{6}
-      }
+      \end{align*}
+    \end{fleqn}
     \end{ans*}
     \begin{spacing}{1.5}
       $\disp\tan\frac{{5}}{12}\pi = 2 + \sqrt{3}$はわからなかったかもしれませんが，知っておいて損はありません。
@@ -310,18 +320,22 @@
   }とおく。 \\
   $J$に対して$\disp x=\frac{\pi}{2}-t$とおくと，
 
-  \flan{
+  \begin{fleqn}[20pt]
+    \begin{align*}
       J
       &= \int_{\frac{\pi}{2}}^{0}\frac{\cos \biggl( \cfrac{\pi}{2} - t \biggr)}{\sin \biggl( \cfrac{\pi}{2} - t \biggr) + \cos \biggl( \cfrac{\pi}{2} - t \biggr)} \,dx \\
       &= \int_{0}^{\frac{\pi}{2}} \frac{\sin t}{\sin t + \cos t} \,dt \\
       &= I
-  }
+    \end{align*}
+  \end{fleqn}
   であり，
-  \flan{
+  \begin{fleqn}[20pt]
+    \begin{align*}
       &I + J
       = \int_{0}^{\frac{\pi}{2}} \,dx = \frac{\pi}{2} \\
       &\therefore I = \frac{\pi}{4}
-  }
+    \end{align*}
+  \end{fleqn}
 \end{intprob}
 
 上の$I=J$の導出は$I-J=0$を示すことと同値なので次のようにもできる。\\
@@ -379,18 +393,21 @@
   }に対して
   \dm{
     t=x + \sqrt{x^2 + 1}}\text{とおくと}\\
-  \flan{
-    dt
-    &= \biggl(1 + \frac{x}{\sqrt{x^2 + 1}}\biggr)\,dx\\
-    &= \frac{t}{\sqrt{x^2 + 1}}\,dx\:\:\text{より} \\
-  % }
-  % \flan{
-    J
-    &= \int \frac{dt}{t} \\
-    &= \log|t| + C \\
-    &= \log(x + \sqrt{x^2 + 1}) + C
-  }
-
+  \begin{fleqn}[20pt]
+    \begin{align*}
+      dt
+      &= \biggl(1 + \frac{x}{\sqrt{x^2 + 1}}\biggr)\,dx\\
+      &= \frac{t}{\sqrt{x^2 + 1}}\,dx\:\:\text{より} \\
+    \end{align*}
+  \end{fleqn}
+  \begin{fleqn}[20pt]
+    \begin{align*}
+      J
+      &= \int \frac{dt}{t} \\
+      &= \log|t| + C \\
+      &= \log(x + \sqrt{x^2 + 1}) + C
+    \end{align*}
+  \end{fleqn}
 \end{intprob}
 
 % 21
@@ -409,33 +426,42 @@
   }
   \begin{other*}[1]
     $\disp t = x + \sqrt{x^2 + 1}\Leftrightarrow x = \frac{1}{2}\biggl(t-\frac{1}{t}\biggr)\:(t>0)$とおく。
-    \flan{
-      &x^2 + 1 = \frac{1}{4}\biggl(t^2 - 2 + \frac{1}{t^2}\biggr) + 1 = \frac{1}{4}\biggl(t+\frac{1}{t}\biggr)^2 \\
-      &dx = \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\,dt \\
-    }
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        &x^2 + 1 = \frac{1}{4}\biggl(t^2 - 2 + \frac{1}{t^2}\biggr) + 1 = \frac{1}{4}\biggl(t+\frac{1}{t}\biggr)^2 \\
+        &dx = \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\,dt \\
+      \end{align*}
+    \end{fleqn}
     であるので，
-    \flan{
-      \int \sqrt{x^2 + 1}\,dx
-      &= \int \frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\,dt \\
-      &= \int \frac{1}{4}\biggl(t+\frac{2}{t}+\frac{1}{t^3}\biggr)\,dt \\
-      &= \frac{1}{2}\cdot\frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot\frac{1}{2}\biggl(t-\frac{1}{t}\biggr)+\frac{1}{2}\log t + C \\
-      &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
-    }
+    \begin{fleqn}[20pt]
+      \begin{align*}
+        \int \sqrt{x^2 + 1}\,dx
+        &= \int \frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot \frac{1}{2}\biggl(1+\frac{1}{t^2}\biggr)\,dt \\
+        &= \int \frac{1}{4}\biggl(t+\frac{2}{t}+\frac{1}{t^3}\biggr)\,dt \\
+        &= \frac{1}{2}\cdot\frac{1}{2}\biggl(t+\frac{1}{t}\biggr)\cdot\frac{1}{2}\biggl(t-\frac{1}{t}\biggr)+\frac{1}{2}\log t + C \\
+        &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
+      \end{align*}
+    \end{fleqn}
   \end{other*}
 
   \begin{other*}[2]
   $\disp (\log(x+\sqrt{x^2+1}))'=\frac{\raisebox{-3pt}{1}}{\sqrt{x^2 + 1}}$より，$\disp t=\log(x+\sqrt{x^2+1})\Leftrightarrow x = \frac{e^t-e^{-t}}{2}$とおく。
-  \flan{
+  \begin{fleqn}[20pt]
+    \begin{align*}
       \sqrt{x^2 + 1} = \frac{e^t+e^{-t}}{2} \\
       dx = \frac{e^t+e^{-t}}{2}\,dt
-  }
-  \flan{
+    \end{align*}
+  \end{fleqn}
+
+  \begin{fleqn}[20pt]
+    \begin{align*}
       \int \sqrt{x^2 + 1}\,dx
       &= \int \biggl(\frac{e^t+e^{-t}}{2}\biggr)^2\,dt \\
       &= \frac{1}{8}(e^{2t}-e^{-2t}) + \frac{1}{2}t + C \\
       &= \frac{1}{2}\cdot \frac{e^t+e^{-t}}{2}\cdot\frac{e^t-e^{-t}}{2} + \frac{1}{2}t + C \\
       &= \frac{1}{2}x\sqrt{x^2+1} + \frac{1}{2}\log(x+\sqrt{x^2+1}) + C
-  }
+    \end{align*}
+  \end{fleqn}
   \end{other*}
 \end{intprob}
 
@@ -514,16 +540,19 @@
   }\\
   \vskip.2\baselineskip
   ある積分\dm{J = \int_{0}^{\pi}xf(\sin x)\,dx}に対して$x=\pi-t$とおくと
-  \flan{
+  \begin{fleqn}[20pt]
+    \begin{align*}
       J
       &= \int_{\pi}^{0}(\pi - t)f(\sin(\pi-t))(-1)\,dt \\
       &= \int_{0}^{\pi}(\pi - x)f(\sin x)\,dx \\
       &= \pi \int_{0}^{\pi}f(\sin x)\,dx - J \\
       &\therefore J = \frac{\pi}{2}\int_{0}^{\pi}f(\sin x)\,dx
-  }
-
+    \end{align*}
+  \end{fleqn}
   よって、
-  \flan{    I
+  \begin{fleqn}[20pt]
+    \begin{align*}
+      I
       &= \frac{\pi}{2}\int_{0}^{\pi}\frac{\sin x}{3 + \sin^2x}\,dx \\
       &= \frac{\pi}{2}\int_{0}^{\pi}\frac{\sin x}{3 + (1-\cos^2x)}\,dx \\
       &= \frac{\pi}{2}\int_{1}^{-1}\frac{-1}{4-t^2}\,dt\:(\cos x = t) \\
@@ -531,7 +560,8 @@
       &= \frac{\pi}{8}\biggl[ \log\frac{2+t}{2-t} \biggr]_{-1}^{1} \\
       &= \frac{\pi}{8}\biggl( \log3 - \log\frac{1}{3} \biggr) \\
       &= \frac{\pi}{4}\log3
-  }
+    \end{align*}
+  \end{fleqn}
   \begin{supple*}
     わざわざ上の積分$J$を導入する必要はありません。
     ここで$J$を導入したのはあくまで一般的にも成り立つということに触れたかったためで、
@@ -542,7 +572,7 @@
     という関係を導いて解くのが良いでしょう。
     King Propertyかな？と思って置換したら少し違ったみたいな感じでも良いです。
 
-    これが最初から解けていたらよくできていると思います。
+    これが初見で解けていたらよくできていると思います。
   \end{supple*}
 \end{intprob}
 
